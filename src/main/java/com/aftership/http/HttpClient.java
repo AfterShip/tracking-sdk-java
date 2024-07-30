@@ -54,9 +54,6 @@ public class HttpClient {
     }
 
     public Response makeRequest(final Request request) throws Exception {
-        // if (rateLimit != null && rateLimit.isExceeded()) {
-        //     throw new ApiException(ErrorEnum.RATE_LIMIT_EXCEED.getCode(), ErrorEnum.CLIENT_RATE_LIMIT_EXCEED.getMessage());
-        // }
         HttpMethod method = request.getMethod();
         RequestBuilder builder = RequestBuilder.create(method.toString())
                 .setUri(this.domain + request.getURL())
@@ -73,7 +70,6 @@ public class HttpClient {
         try {
             response = client.execute(builder.build());
             HttpEntity entity = response.getEntity();
-            // setRateLimiting(response);
             return new Response(EntityUtils.toString(entity), response.getStatusLine().getStatusCode(), false);
         } finally {
             if (response != null) {
