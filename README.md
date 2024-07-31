@@ -246,10 +246,10 @@ System.out.println(response.getTotal());
 **POST** /couriers/detect
 
 ```java
-TrackingDetectCourierRequest request = new TrackingDetectCourierRequest();
+DetectCourierRequest request = new DetectCourierRequest();
 request.setTrackingNumber("<tracking_number>");
 DetectCourierResponse response = CourierResource.detectCourier()
-      .setTrackingDetectCourierRequest(request)
+      .setDetectCourierRequest(request)
       .create();
 System.out.println(response.getTotal());
 ```
@@ -259,15 +259,6 @@ System.out.println(response.getTotal());
 **POST** /estimated-delivery-date/predict-batch
 
 ```java
-PredictBatchRequest request = new PredictBatchRequest();
-EstimatedDeliveryDateRequest edd = new EstimatedDeliveryDateRequest();
-edd.setSlug("<slug>");
-request.setEstimatedDeliveryDates(Arrays.asList(edd));
-PredictBatchResponse response = EstimatedDeliveryDateResource.predictBatch()
-        .setPredictBatchRequest(request)
-        .create();
-System.out.println(response.getEstimatedDeliveryDates().get(0).getSlug());
-
 PredictBatchRequest request = new PredictBatchRequest();
 EstimatedDeliveryDateRequest edd = new EstimatedDeliveryDateRequest();
 edd.setSlug("<slug>");
