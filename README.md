@@ -41,6 +41,7 @@ Each SDK version is designed to work with a specific API version. Please refer t
 
 | SDK Version | Supported API Version | Branch                                                      |
 | ----------- | --------------------- | ----------------------------------------------------------- |
+| 7.x.x       | 2024-10               | https://github.com/AfterShip/tracking-sdk-java/tree/2024-10 |
 | 6.x.x       | 2024-07               | https://github.com/AfterShip/tracking-sdk-java/tree/2024-07 |
 | 5.x.x       | 2024-04               | https://github.com/AfterShip/tracking-sdk-java/tree/2024-04 |
 | 4.x.x       | 2023-10               | https://github.com/AfterShip/aftership-sdk-java             |
@@ -104,7 +105,7 @@ public class App {
 
 ## Rate Limiter
 
-See the [Rate Limit](https://www.aftership.com/docs/tracking/2024-07/quickstart/rate-limit) to understand the AfterShip rate limit policy.
+See the [Rate Limit](https://www.aftership.com/docs/tracking/2024-10/quickstart/rate-limit) to understand the AfterShip rate limit policy.
 
 ## Error Handling
 
