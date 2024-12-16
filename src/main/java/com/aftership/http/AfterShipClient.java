@@ -57,10 +57,24 @@ public class AfterShipClient {
                 message = jsonObject.get("meta").getAsJsonObject().get("message").getAsString();
             } catch (Exception ignore) {
             }
-            throw new ApiException(metaCode, message, statusCode, ErrorEnum.getByMetaCode(metaCode), response.getContent());
+            throw new ApiException(
+                    metaCode,
+                    message,
+                    statusCode,
+                    ErrorEnum.getByMetaCode(metaCode),
+                    response.getContent(),
+                    response.getHeaders()
+            );
         }
         if (statusCode > 499) {
-            throw new ApiException(ErrorEnum.UNKNOWN_ERROR.getCode(), ErrorEnum.UNKNOWN_ERROR.getMessage(), ErrorEnum.UNKNOWN_ERROR.getStatusCode(), 0, "");
+            throw new ApiException(
+                    ErrorEnum.UNKNOWN_ERROR.getCode(),
+                    ErrorEnum.UNKNOWN_ERROR.getMessage(),
+                    ErrorEnum.UNKNOWN_ERROR.getStatusCode(),
+                    0,
+                    "",
+                    response.getHeaders()
+            );
         }
         return response;
     }
