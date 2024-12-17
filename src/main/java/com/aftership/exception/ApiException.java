@@ -4,13 +4,18 @@
  */
 package com.aftership.exception;
 
+import org.apache.http.Header;
+
+import java.util.Arrays;
+
 public class ApiException extends Exception {
 
-    private Integer metaCode;
-    private String message;
-    private Integer code;
-    private Integer statusCode;
-    private String responseBody;
+    private final Integer metaCode;
+    private final String message;
+    private final Integer code;
+    private final Integer statusCode;
+    private final String responseBody;
+    private final Header[] headers;
 
     public ApiException(final int code, final String message) {
         this.metaCode = 0;
@@ -18,23 +23,27 @@ public class ApiException extends Exception {
         this.statusCode = 0;
         this.code = code;
         this.responseBody = "";
+        this.headers = null;
     }
 
-    public ApiException(final int metaCode, final String message, final int code, final int statusCode,
-                        final String responseBody) {
+    public ApiException(
+            final int metaCode,
+            final String message,
+            final int code,
+            final int statusCode,
+            final String responseBody,
+            final Header[] headers
+    ) {
         this.metaCode = metaCode;
         this.message = message;
         this.code = code;
         this.statusCode = statusCode;
         this.responseBody = responseBody;
+        this.headers = headers;
     }
 
     public Integer getMetaCode() {
         return metaCode;
-    }
-
-    public void setMetaCode(Integer metaCode) {
-        this.metaCode = metaCode;
     }
 
     @Override
@@ -42,32 +51,20 @@ public class ApiException extends Exception {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public Integer getCode() {
         return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
     }
 
     public Integer getStatusCode() {
         return statusCode;
     }
 
-    public void setStatusCode(Integer statusCode) {
-        this.statusCode = statusCode;
-    }
-
     public String getResponseBody() {
         return responseBody;
     }
 
-    public void setResponseBody(String responseBody) {
-        this.responseBody = responseBody;
+    public Header[] getHeaders() {
+        return headers;
     }
 
     @Override
@@ -78,6 +75,7 @@ public class ApiException extends Exception {
                 ", code=" + code +
                 ", statusCode=" + statusCode +
                 ", responseBody='" + responseBody + '\'' +
+                ", headers=" + Arrays.toString(headers) +
                 '}';
     }
 }

@@ -6,7 +6,10 @@ package com.aftership.http;
 
 import com.aftership.constant.ErrorEnum;
 import com.aftership.exception.ApiException;
-import org.apache.http.*;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpHeaders;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpVersion;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.client.utils.HttpClientUtils;
@@ -24,15 +27,9 @@ import java.util.Map;
 
 public class HttpClient {
 
-    private static final String RATE_LIMIT_RESET = "x-ratelimit-reset";
-    private static final String RATE_LIMIT_LIMIT = "x-ratelimit-limit";
-    private static final String RATE_LIMIT_REMAINING = "x-ratelimit-remaining";
-
-    private static final String DEFAULT_USER_AGENT = "aftership-sdk-java/7.0.0 (https://www.aftership.com) apache-httpclient/4.5.14";
+    private static final String DEFAULT_USER_AGENT = "aftership-sdk-java/7.1.0 (https://www.aftership.com) apache-httpclient/4.5.14";
     protected final org.apache.http.client.HttpClient client;
     private final String domain;
-
-    private RateLimit rateLimit;
 
     public HttpClient(final RequestConfig requestConfig, String userAgent, String domain) {
         this.domain = domain;
@@ -53,7 +50,34 @@ public class HttpClient {
                 .build();
     }
 
-    public Response makeRequest(final Request request) throws Exception {
+    public Response request(final Request request, int retries) throws Exception {
+        Response response = null;
+        int i = 0;
+        while (i <= retries) {
+            try {
+                i++;
+                response = makeRequest(request);
+                if (!shouldRetry(response)) {
+                    break;
+                }
+            } catch (SocketTimeoutException e) {
+                if (i > retries) {
+                    throw new ApiException(
+                            0,
+                            ErrorEnum.TIMED_OUT.getMessage(),
+                            ErrorEnum.TIMED_OUT.getCode(),
+                            ErrorEnum.TIMED_OUT.getStatusCode(),
+                            e.getMessage(),
+                            null
+                    );
+                }
+            }
+            Thread.sleep(delay(i));
+        }
+        return response;
+    }
+
+    private Response makeRequest(final Request request) throws Exception {
         HttpMethod method = request.getMethod();
         RequestBuilder builder = RequestBuilder.create(method.toString())
                 .setUri(this.domain + request.getURL())
@@ -70,32 +94,17 @@ public class HttpClient {
         try {
             response = client.execute(builder.build());
             HttpEntity entity = response.getEntity();
-            return new Response(EntityUtils.toString(entity), response.getStatusLine().getStatusCode(), false);
+            return new Response(
+                    EntityUtils.toString(entity),
+                    response.getStatusLine().getStatusCode(),
+                    false,
+                    response.getAllHeaders()
+            );
         } finally {
             if (response != null) {
                 HttpClientUtils.closeQuietly(response);
             }
         }
-    }
-
-    public Response request(final Request request, int retries) throws Exception {
-        Response response = null;
-        int i = 0;
-        while (i <= retries) {
-            try {
-                i++;
-                response = makeRequest(request);
-                if (!shouldRetry(response)) {
-                    break;
-                }
-            } catch (SocketTimeoutException e) {
-                if (i > retries) {
-                    throw new ApiException(0, ErrorEnum.TIMED_OUT.getMessage(), ErrorEnum.TIMED_OUT.getCode(), ErrorEnum.TIMED_OUT.getStatusCode(), e.getMessage());
-                }
-            }
-            Thread.sleep(delay(i));
-        }
-        return response;
     }
 
     private boolean shouldRetry(Response response) {
@@ -110,25 +119,5 @@ public class HttpClient {
         int delay = delayBase * (2 ^ (retryAttempt - 1));
         double jitter = delay * (Math.random() - 0.5);
         return (int) (Math.max(1, delay + jitter) * 1000);
-    }
-
-    private void setRateLimiting(HttpResponse response) {
-        if (response == null) {
-            return;
-        }
-        RateLimit rateLimit = new RateLimit();
-        Header limit = response.getFirstHeader(RATE_LIMIT_LIMIT);
-        if (limit != null) {
-            rateLimit.setLimit(Integer.parseInt(limit.getValue()));
-        }
-        Header reset = response.getFirstHeader(RATE_LIMIT_RESET);
-        if (reset != null) {
-            rateLimit.setReset(Long.parseLong(reset.getValue()));
-        }
-        Header remaining = response.getFirstHeader(RATE_LIMIT_REMAINING);
-        if (remaining != null) {
-            rateLimit.setRemaining(Integer.parseInt(remaining.getValue()));
-        }
-        this.rateLimit = rateLimit;
     }
 }
