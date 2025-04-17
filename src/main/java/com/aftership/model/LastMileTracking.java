@@ -16,7 +16,7 @@ public class LastMileTracking extends Resource {
   private String slug;
 
   @SerializedName("transit_time")
-  private String transitTime;
+  private Integer transitTime;
 
   @SerializedName("courier_tracking_link")
   private String courierTrackingLink;
@@ -43,11 +43,11 @@ public class LastMileTracking extends Resource {
     this.slug = slug;
   }
 
-  public String getTransitTime() {
+  public Integer getTransitTime() {
     return transitTime;
   }
 
-  public void setTransitTime(String transitTime) {
+  public void setTransitTime(Integer transitTime) {
     this.transitTime = transitTime;
   }
 

@@ -43,7 +43,7 @@ public class Checkpoint extends Resource {
   private String message;
 
   @SerializedName("tag")
-  private TagV1 tag;
+  private Tag tag;
 
   @SerializedName("subtag")
   private String subtag;
@@ -148,11 +148,11 @@ public class Checkpoint extends Resource {
     this.message = message;
   }
 
-  public TagV1 getTag() {
+  public Tag getTag() {
     return tag;
   }
 
-  public void setTag(TagV1 tag) {
+  public void setTag(Tag tag) {
     this.tag = tag;
   }
 

@@ -8,6 +8,7 @@ import com.aftership.base.Deleter;
 import com.aftership.constant.ErrorEnum;
 import com.aftership.exception.ApiException;
 import com.aftership.http.*;
+import com.aftership.http.Request;
 import com.aftership.model.Tracking;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -16,7 +17,6 @@ import java.util.Map;
 
 public class DeleteTrackingByIdDeleter extends Deleter<Tracking> {
   private final Map<String, String> headerParams = new HashMap<>(8);
-  private String id;
 
   public DeleteTrackingByIdDeleter addHeaderParam(final String name, final String value) {
     if (value == null || value.equals("null")) {
@@ -35,6 +35,8 @@ public class DeleteTrackingByIdDeleter extends Deleter<Tracking> {
     }
   }
 
+  private String id;
+
   public DeleteTrackingByIdDeleter setId(String id) {
     this.id = id;
     return this;
@@ -47,7 +49,7 @@ public class DeleteTrackingByIdDeleter extends Deleter<Tracking> {
           ErrorEnum.BAD_REQUEST.getCode(),
           ErrorEnum.BAD_REQUEST.getMessage() + ": `id` is invalid");
     }
-    String path = String.format("/tracking/2025-01/trackings/%s", id);
+    String path = String.format("/tracking/2025-04/trackings/%s", id);
     Request request = new Request(HttpMethod.DELETE, path);
     setHeaderParams(request);
     Response response = client.request(request);

@@ -8,6 +8,7 @@ import com.aftership.base.Creator;
 import com.aftership.constant.ErrorEnum;
 import com.aftership.exception.ApiException;
 import com.aftership.http.*;
+import com.aftership.http.Request;
 import com.aftership.model.MarkTrackingCompletedByIdRequest;
 import com.aftership.model.Tracking;
 import com.google.gson.Gson;
@@ -17,8 +18,6 @@ import java.util.Map;
 
 public class MarkTrackingCompletedByIdCreator extends Creator<Tracking> {
   private final Map<String, String> headerParams = new HashMap<>(8);
-  private MarkTrackingCompletedByIdRequest markTrackingCompletedByIdRequest;
-  private String id;
 
   public MarkTrackingCompletedByIdCreator addHeaderParam(final String name, final String value) {
     if (value == null || value.equals("null")) {
@@ -37,11 +36,15 @@ public class MarkTrackingCompletedByIdCreator extends Creator<Tracking> {
     }
   }
 
+  private MarkTrackingCompletedByIdRequest markTrackingCompletedByIdRequest;
+
   public MarkTrackingCompletedByIdCreator setMarkTrackingCompletedByIdRequest(
       MarkTrackingCompletedByIdRequest markTrackingCompletedByIdRequest) {
     this.markTrackingCompletedByIdRequest = markTrackingCompletedByIdRequest;
     return this;
   }
+
+  private String id;
 
   public MarkTrackingCompletedByIdCreator setId(String id) {
     this.id = id;
@@ -55,7 +58,7 @@ public class MarkTrackingCompletedByIdCreator extends Creator<Tracking> {
           ErrorEnum.BAD_REQUEST.getCode(),
           ErrorEnum.BAD_REQUEST.getMessage() + ": `id` is invalid");
     }
-    String path = String.format("/tracking/2025-01/trackings/%s/mark-as-completed", id);
+    String path = String.format("/tracking/2025-04/trackings/%s/mark-as-completed", id);
     Request request = new Request(HttpMethod.POST, path);
     request.setBody((new Gson()).toJson(markTrackingCompletedByIdRequest));
 

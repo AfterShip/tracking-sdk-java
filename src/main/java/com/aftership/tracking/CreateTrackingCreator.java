@@ -6,6 +6,7 @@ package com.aftership.tracking;
 
 import com.aftership.base.Creator;
 import com.aftership.http.*;
+import com.aftership.http.Request;
 import com.aftership.model.CreateTrackingRequest;
 import com.aftership.model.Tracking;
 import com.google.gson.Gson;
@@ -15,7 +16,6 @@ import java.util.Map;
 
 public class CreateTrackingCreator extends Creator<Tracking> {
   private final Map<String, String> headerParams = new HashMap<>(8);
-  private CreateTrackingRequest createTrackingRequest;
 
   public CreateTrackingCreator addHeaderParam(final String name, final String value) {
     if (value == null || value.equals("null")) {
@@ -34,6 +34,8 @@ public class CreateTrackingCreator extends Creator<Tracking> {
     }
   }
 
+  private CreateTrackingRequest createTrackingRequest;
+
   public CreateTrackingCreator setCreateTrackingRequest(
       CreateTrackingRequest createTrackingRequest) {
     this.createTrackingRequest = createTrackingRequest;
@@ -42,7 +44,7 @@ public class CreateTrackingCreator extends Creator<Tracking> {
 
   @Override
   public Tracking create(AfterShipClient client) throws Exception {
-    String path = "/tracking/2025-01/trackings";
+    String path = "/tracking/2025-04/trackings";
     Request request = new Request(HttpMethod.POST, path);
     request.setBody((new Gson()).toJson(createTrackingRequest));
 

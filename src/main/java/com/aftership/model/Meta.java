@@ -7,7 +7,7 @@ package com.aftership.model;
 import com.aftership.base.Resource;
 import com.google.gson.annotations.SerializedName;
 
-public class MetaV1 extends Resource {
+public class Meta extends Resource {
 
   @SerializedName("code")
   private Integer code;

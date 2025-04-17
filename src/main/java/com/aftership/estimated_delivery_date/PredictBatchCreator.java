@@ -6,6 +6,7 @@ package com.aftership.estimated_delivery_date;
 
 import com.aftership.base.Creator;
 import com.aftership.http.*;
+import com.aftership.http.Request;
 import com.aftership.model.PredictBatchRequest;
 import com.aftership.model.PredictBatchResponse;
 import com.google.gson.Gson;
@@ -15,7 +16,6 @@ import java.util.Map;
 
 public class PredictBatchCreator extends Creator<PredictBatchResponse> {
   private final Map<String, String> headerParams = new HashMap<>(8);
-  private PredictBatchRequest predictBatchRequest;
 
   public PredictBatchCreator addHeaderParam(final String name, final String value) {
     if (value == null || value.equals("null")) {
@@ -34,6 +34,8 @@ public class PredictBatchCreator extends Creator<PredictBatchResponse> {
     }
   }
 
+  private PredictBatchRequest predictBatchRequest;
+
   public PredictBatchCreator setPredictBatchRequest(PredictBatchRequest predictBatchRequest) {
     this.predictBatchRequest = predictBatchRequest;
     return this;
@@ -41,7 +43,7 @@ public class PredictBatchCreator extends Creator<PredictBatchResponse> {
 
   @Override
   public PredictBatchResponse create(AfterShipClient client) throws Exception {
-    String path = "/tracking/2025-01/estimated-delivery-date/predict-batch";
+    String path = "/tracking/2025-04/estimated-delivery-date/predict-batch";
     Request request = new Request(HttpMethod.POST, path);
     request.setBody((new Gson()).toJson(predictBatchRequest));
 

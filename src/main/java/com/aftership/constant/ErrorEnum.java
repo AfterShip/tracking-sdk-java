@@ -64,6 +64,12 @@ public enum ErrorEnum {
       "You have exceeded the API call rate limit. The default limit is 10 requests per second."),
   INTERNAL_ERROR(500, 500, "Something went wrong on AfterShip's end.");
 
+  private final int code;
+
+  private final int statusCode;
+
+  private final String message;
+
   private static final Map<Integer, ErrorEnum> META = new HashMap<>();
 
   static {
@@ -72,22 +78,10 @@ public enum ErrorEnum {
     }
   }
 
-  private final int code;
-  private final int statusCode;
-  private final String message;
-
   ErrorEnum(int code, int statusCode, String message) {
     this.code = code;
     this.statusCode = statusCode;
     this.message = message;
-  }
-
-  public static int getByMetaCode(int code) {
-    ErrorEnum e = META.get(code);
-    if (e == null) {
-      return BAD_REQUEST.code;
-    }
-    return e.code;
   }
 
   public int getCode() {
@@ -100,6 +94,14 @@ public enum ErrorEnum {
 
   public String getMessage() {
     return message;
+  }
+
+  public static int getByMetaCode(int code) {
+    ErrorEnum e = META.get(code);
+    if (e == null) {
+      return BAD_REQUEST.code;
+    }
+    return e.code;
   }
 
   @Override

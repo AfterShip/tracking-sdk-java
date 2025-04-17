@@ -6,6 +6,7 @@ package com.aftership.courier;
 
 import com.aftership.base.Creator;
 import com.aftership.http.*;
+import com.aftership.http.Request;
 import com.aftership.model.DetectCourierRequest;
 import com.aftership.model.DetectCourierResponse;
 import com.google.gson.Gson;
@@ -15,7 +16,6 @@ import java.util.Map;
 
 public class DetectCourierCreator extends Creator<DetectCourierResponse> {
   private final Map<String, String> headerParams = new HashMap<>(8);
-  private DetectCourierRequest detectCourierRequest;
 
   public DetectCourierCreator addHeaderParam(final String name, final String value) {
     if (value == null || value.equals("null")) {
@@ -34,6 +34,8 @@ public class DetectCourierCreator extends Creator<DetectCourierResponse> {
     }
   }
 
+  private DetectCourierRequest detectCourierRequest;
+
   public DetectCourierCreator setDetectCourierRequest(DetectCourierRequest detectCourierRequest) {
     this.detectCourierRequest = detectCourierRequest;
     return this;
@@ -41,7 +43,7 @@ public class DetectCourierCreator extends Creator<DetectCourierResponse> {
 
   @Override
   public DetectCourierResponse create(AfterShipClient client) throws Exception {
-    String path = "/tracking/2025-01/couriers/detect";
+    String path = "/tracking/2025-04/couriers/detect";
     Request request = new Request(HttpMethod.POST, path);
     request.setBody((new Gson()).toJson(detectCourierRequest));
 

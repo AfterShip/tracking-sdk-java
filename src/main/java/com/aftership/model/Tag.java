@@ -6,7 +6,7 @@ package com.aftership.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public enum TagV1 {
+public enum Tag {
   @SerializedName("Pending")
   Pending("Pending"),
 
@@ -36,7 +36,7 @@ public enum TagV1 {
 
   private final String content;
 
-  TagV1(final String content) {
+  Tag(final String content) {
     this.content = content;
   }
 
