@@ -12,11 +12,22 @@ public class MarkTrackingCompletedByIdRequest extends Resource {
   @SerializedName("reason")
   private String reason;
 
+  @SerializedName("event_datetime")
+  private String eventDatetime;
+
   public String getReason() {
     return reason;
   }
 
   public void setReason(String reason) {
     this.reason = reason;
+  }
+
+  public String getEventDatetime() {
+    return eventDatetime;
+  }
+
+  public void setEventDatetime(String eventDatetime) {
+    this.eventDatetime = eventDatetime;
   }
 }

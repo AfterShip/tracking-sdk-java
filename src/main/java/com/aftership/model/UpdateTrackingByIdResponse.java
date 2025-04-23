@@ -106,7 +106,7 @@ public class UpdateTrackingByIdResponse extends Resource {
   private String source;
 
   @SerializedName("tag")
-  private TagV1 tag;
+  private Tag tag;
 
   @SerializedName("subtag")
   private String subtag;
@@ -200,18 +200,6 @@ public class UpdateTrackingByIdResponse extends Resource {
 
   @SerializedName("courier_connection_id")
   private String courierConnectionId;
-
-  @SerializedName("tracking_origin_country_region")
-  private String trackingOriginCountryRegion;
-
-  @SerializedName("tracking_destination_country_region")
-  private String trackingDestinationCountryRegion;
-
-  @SerializedName("tracking_postal_code")
-  private String trackingPostalCode;
-
-  @SerializedName("tracking_state")
-  private String trackingState;
 
   @SerializedName("carbon_emissions")
   private CarbonEmissionsUpdateTrackingByIdResponse carbonEmissions;
@@ -503,11 +491,11 @@ public class UpdateTrackingByIdResponse extends Resource {
     this.source = source;
   }
 
-  public TagV1 getTag() {
+  public Tag getTag() {
     return tag;
   }
 
-  public void setTag(TagV1 tag) {
+  public void setTag(Tag tag) {
     this.tag = tag;
   }
 
@@ -762,38 +750,6 @@ public class UpdateTrackingByIdResponse extends Resource {
 
   public void setCourierConnectionId(String courierConnectionId) {
     this.courierConnectionId = courierConnectionId;
-  }
-
-  public String getTrackingOriginCountryRegion() {
-    return trackingOriginCountryRegion;
-  }
-
-  public void setTrackingOriginCountryRegion(String trackingOriginCountryRegion) {
-    this.trackingOriginCountryRegion = trackingOriginCountryRegion;
-  }
-
-  public String getTrackingDestinationCountryRegion() {
-    return trackingDestinationCountryRegion;
-  }
-
-  public void setTrackingDestinationCountryRegion(String trackingDestinationCountryRegion) {
-    this.trackingDestinationCountryRegion = trackingDestinationCountryRegion;
-  }
-
-  public String getTrackingPostalCode() {
-    return trackingPostalCode;
-  }
-
-  public void setTrackingPostalCode(String trackingPostalCode) {
-    this.trackingPostalCode = trackingPostalCode;
-  }
-
-  public String getTrackingState() {
-    return trackingState;
-  }
-
-  public void setTrackingState(String trackingState) {
-    this.trackingState = trackingState;
   }
 
   public CarbonEmissionsUpdateTrackingByIdResponse getCarbonEmissions() {

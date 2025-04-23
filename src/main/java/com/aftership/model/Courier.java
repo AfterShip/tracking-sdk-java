@@ -39,6 +39,9 @@ public class Courier extends Resource {
   @SerializedName("service_from_country_regions")
   private java.util.List<String> serviceFromCountryRegions;
 
+  @SerializedName("credentials")
+  private CredentialsCourier credentials;
+
   public String getSlug() {
     return slug;
   }
@@ -117,5 +120,13 @@ public class Courier extends Resource {
 
   public void setServiceFromCountryRegions(java.util.List<String> serviceFromCountryRegions) {
     this.serviceFromCountryRegions = serviceFromCountryRegions;
+  }
+
+  public CredentialsCourier getCredentials() {
+    return credentials;
+  }
+
+  public void setCredentials(CredentialsCourier credentials) {
+    this.credentials = credentials;
   }
 }

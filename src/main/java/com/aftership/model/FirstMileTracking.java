@@ -16,7 +16,7 @@ public class FirstMileTracking extends Resource {
   private String slug;
 
   @SerializedName("transit_time")
-  private String transitTime;
+  private Integer transitTime;
 
   @SerializedName("courier_redirect_link")
   private String courierRedirectLink;
@@ -40,11 +40,11 @@ public class FirstMileTracking extends Resource {
     this.slug = slug;
   }
 
-  public String getTransitTime() {
+  public Integer getTransitTime() {
     return transitTime;
   }
 
-  public void setTransitTime(String transitTime) {
+  public void setTransitTime(Integer transitTime) {
     this.transitTime = transitTime;
   }
 

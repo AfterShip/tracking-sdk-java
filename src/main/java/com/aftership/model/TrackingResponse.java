@@ -7,27 +7,27 @@ package com.aftership.model;
 import com.aftership.base.Resource;
 import com.google.gson.annotations.SerializedName;
 
-public class TrackingResponseGetMultipleV1 extends Resource {
+public class TrackingResponse extends Resource {
 
   @SerializedName("meta")
-  private MetaV1 meta;
+  private Meta meta;
 
   @SerializedName("data")
-  private DataTrackingResponseGetMultipleV1 data;
+  private Tracking data;
 
-  public MetaV1 getMeta() {
+  public Meta getMeta() {
     return meta;
   }
 
-  public void setMeta(MetaV1 meta) {
+  public void setMeta(Meta meta) {
     this.meta = meta;
   }
 
-  public DataTrackingResponseGetMultipleV1 getData() {
+  public Tracking getData() {
     return data;
   }
 
-  public void setData(DataTrackingResponseGetMultipleV1 data) {
+  public void setData(Tracking data) {
     this.data = data;
   }
 }

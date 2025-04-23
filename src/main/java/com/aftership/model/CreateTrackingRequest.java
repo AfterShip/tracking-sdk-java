@@ -9,6 +9,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class CreateTrackingRequest extends Resource {
 
+  @SerializedName("id")
+  private String id;
+
   @SerializedName("tracking_number")
   private String trackingNumber;
 
@@ -21,11 +24,11 @@ public class CreateTrackingRequest extends Resource {
   @SerializedName("order_id")
   private String orderId;
 
-  @SerializedName("order_id_path")
-  private String orderIdPath;
-
   @SerializedName("custom_fields")
   private java.util.Map<String, String> customFields;
+
+  @SerializedName("order_id_path")
+  private String orderIdPath;
 
   @SerializedName("language")
   private String language;
@@ -85,7 +88,7 @@ public class CreateTrackingRequest extends Resource {
   private String note;
 
   @SerializedName("slug_group")
-  private SlugGroupV1 slugGroup;
+  private SlugGroup slugGroup;
 
   @SerializedName("order_date")
   private String orderDate;
@@ -102,18 +105,6 @@ public class CreateTrackingRequest extends Resource {
   @SerializedName("courier_connection_id")
   private String courierConnectionId;
 
-  @SerializedName("tracking_origin_country_region")
-  private String trackingOriginCountryRegion;
-
-  @SerializedName("tracking_destination_country_region")
-  private String trackingDestinationCountryRegion;
-
-  @SerializedName("tracking_postal_code")
-  private String trackingPostalCode;
-
-  @SerializedName("tracking_state")
-  private String trackingState;
-
   @SerializedName("location_id")
   private String locationId;
 
@@ -125,6 +116,14 @@ public class CreateTrackingRequest extends Resource {
 
   @SerializedName("customers")
   private java.util.List<CustomersCreateTrackingRequest> customers;
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
 
   public String getTrackingNumber() {
     return trackingNumber;
@@ -158,20 +157,20 @@ public class CreateTrackingRequest extends Resource {
     this.orderId = orderId;
   }
 
-  public String getOrderIdPath() {
-    return orderIdPath;
-  }
-
-  public void setOrderIdPath(String orderIdPath) {
-    this.orderIdPath = orderIdPath;
-  }
-
   public java.util.Map<String, String> getCustomFields() {
     return customFields;
   }
 
   public void setCustomFields(java.util.Map<String, String> customFields) {
     this.customFields = customFields;
+  }
+
+  public String getOrderIdPath() {
+    return orderIdPath;
+  }
+
+  public void setOrderIdPath(String orderIdPath) {
+    this.orderIdPath = orderIdPath;
   }
 
   public String getLanguage() {
@@ -326,11 +325,11 @@ public class CreateTrackingRequest extends Resource {
     this.note = note;
   }
 
-  public SlugGroupV1 getSlugGroup() {
+  public SlugGroup getSlugGroup() {
     return slugGroup;
   }
 
-  public void setSlugGroup(SlugGroupV1 slugGroup) {
+  public void setSlugGroup(SlugGroup slugGroup) {
     this.slugGroup = slugGroup;
   }
 
@@ -372,38 +371,6 @@ public class CreateTrackingRequest extends Resource {
 
   public void setCourierConnectionId(String courierConnectionId) {
     this.courierConnectionId = courierConnectionId;
-  }
-
-  public String getTrackingOriginCountryRegion() {
-    return trackingOriginCountryRegion;
-  }
-
-  public void setTrackingOriginCountryRegion(String trackingOriginCountryRegion) {
-    this.trackingOriginCountryRegion = trackingOriginCountryRegion;
-  }
-
-  public String getTrackingDestinationCountryRegion() {
-    return trackingDestinationCountryRegion;
-  }
-
-  public void setTrackingDestinationCountryRegion(String trackingDestinationCountryRegion) {
-    this.trackingDestinationCountryRegion = trackingDestinationCountryRegion;
-  }
-
-  public String getTrackingPostalCode() {
-    return trackingPostalCode;
-  }
-
-  public void setTrackingPostalCode(String trackingPostalCode) {
-    this.trackingPostalCode = trackingPostalCode;
-  }
-
-  public String getTrackingState() {
-    return trackingState;
-  }
-
-  public void setTrackingState(String trackingState) {
-    this.trackingState = trackingState;
   }
 
   public String getLocationId() {

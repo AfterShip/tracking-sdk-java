@@ -24,6 +24,9 @@ public class LatestEstimatedDeliveryTracking extends Resource {
   @SerializedName("datetime_max")
   private String datetimeMax;
 
+  @SerializedName("revise_reason")
+  private String reviseReason;
+
   public String getType() {
     return type;
   }
@@ -62,5 +65,13 @@ public class LatestEstimatedDeliveryTracking extends Resource {
 
   public void setDatetimeMax(String datetimeMax) {
     this.datetimeMax = datetimeMax;
+  }
+
+  public String getReviseReason() {
+    return reviseReason;
+  }
+
+  public void setReviseReason(String reviseReason) {
+    this.reviseReason = reviseReason;
   }
 }

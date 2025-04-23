@@ -11,11 +11,7 @@ public class CourierResource extends Resource {
     return new DetectCourierCreator();
   }
 
-  public static GetUserCouriersFetcher getUserCouriers() {
-    return new GetUserCouriersFetcher();
-  }
-
-  public static GetAllCouriersFetcher getAllCouriers() {
-    return new GetAllCouriersFetcher();
+  public static GetCouriersFetcher getCouriers() {
+    return new GetCouriersFetcher();
   }
 }

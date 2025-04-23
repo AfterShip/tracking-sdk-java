@@ -8,6 +8,7 @@ import com.aftership.base.Updater;
 import com.aftership.constant.ErrorEnum;
 import com.aftership.exception.ApiException;
 import com.aftership.http.*;
+import com.aftership.http.Request;
 import com.aftership.model.Tracking;
 import com.aftership.model.UpdateTrackingByIdRequest;
 import com.google.gson.Gson;
@@ -17,8 +18,6 @@ import java.util.Map;
 
 public class UpdateTrackingByIdUpdater extends Updater<Tracking> {
   private final Map<String, String> headerParams = new HashMap<>(8);
-  private UpdateTrackingByIdRequest updateTrackingByIdRequest;
-  private String id;
 
   public UpdateTrackingByIdUpdater addHeaderParam(final String name, final String value) {
     if (value == null || value.equals("null")) {
@@ -37,11 +36,15 @@ public class UpdateTrackingByIdUpdater extends Updater<Tracking> {
     }
   }
 
+  private UpdateTrackingByIdRequest updateTrackingByIdRequest;
+
   public UpdateTrackingByIdUpdater setUpdateTrackingByIdRequest(
       UpdateTrackingByIdRequest updateTrackingByIdRequest) {
     this.updateTrackingByIdRequest = updateTrackingByIdRequest;
     return this;
   }
+
+  private String id;
 
   public UpdateTrackingByIdUpdater setId(String id) {
     this.id = id;
@@ -55,7 +58,7 @@ public class UpdateTrackingByIdUpdater extends Updater<Tracking> {
           ErrorEnum.BAD_REQUEST.getCode(),
           ErrorEnum.BAD_REQUEST.getMessage() + ": `id` is invalid");
     }
-    String path = String.format("/tracking/2025-01/trackings/%s", id);
+    String path = String.format("/tracking/2025-04/trackings/%s", id);
     Request request = new Request(HttpMethod.PUT, path);
     request.setBody((new Gson()).toJson(updateTrackingByIdRequest));
 

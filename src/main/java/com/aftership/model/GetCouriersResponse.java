@@ -7,7 +7,7 @@ package com.aftership.model;
 import com.aftership.base.Resource;
 import com.google.gson.annotations.SerializedName;
 
-public class DataCourierResponseV1 extends Resource {
+public class GetCouriersResponse extends Resource {
 
   @SerializedName("total")
   private Integer total;

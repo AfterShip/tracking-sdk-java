@@ -18,9 +18,9 @@ public class Request {
 
   private final HttpMethod method;
   private final String path;
-  private final String date;
   private String queryString;
   private String body;
+  private final String date;
 
   public Request(HttpMethod method, String path) {
     this.method = method;
@@ -128,12 +128,12 @@ public class Request {
     return body;
   }
 
-  public void setBody(String body) {
-    this.body = body;
-  }
-
   public Map<String, String> getHeaders() {
     return headerParams;
+  }
+
+  public void setBody(String body) {
+    this.body = body;
   }
 
   public String getQueryString() {

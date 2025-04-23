@@ -6,7 +6,7 @@ package com.aftership.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public enum SlugGroupV1 {
+public enum SlugGroup {
   @SerializedName("amazon-group")
   AmazonGroup("amazon-group"),
 
@@ -45,7 +45,7 @@ public enum SlugGroupV1 {
 
   private final String content;
 
-  SlugGroupV1(final String content) {
+  SlugGroup(final String content) {
     this.content = content;
   }
 

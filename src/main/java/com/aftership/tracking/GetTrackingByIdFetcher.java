@@ -8,6 +8,7 @@ import com.aftership.base.Fetcher;
 import com.aftership.constant.ErrorEnum;
 import com.aftership.exception.ApiException;
 import com.aftership.http.*;
+import com.aftership.http.Request;
 import com.aftership.model.Tracking;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -16,9 +17,6 @@ import java.util.Map;
 
 public class GetTrackingByIdFetcher extends Fetcher<Tracking> {
   private final Map<String, String> headerParams = new HashMap<>(8);
-  private String fields;
-  private String lang;
-  private String id;
 
   public GetTrackingByIdFetcher addHeaderParam(final String name, final String value) {
     if (value == null || value.equals("null")) {
@@ -36,6 +34,12 @@ public class GetTrackingByIdFetcher extends Fetcher<Tracking> {
       request.addHeaderParam(entry.getKey(), entry.getValue());
     }
   }
+
+  private String fields;
+
+  private String lang;
+
+  private String id;
 
   public GetTrackingByIdFetcher setFields(String fields) {
     this.fields = fields;
@@ -59,7 +63,7 @@ public class GetTrackingByIdFetcher extends Fetcher<Tracking> {
           ErrorEnum.BAD_REQUEST.getCode(),
           ErrorEnum.BAD_REQUEST.getMessage() + ": `id` is invalid");
     }
-    String path = String.format("/tracking/2025-01/trackings/%s", id);
+    String path = String.format("/tracking/2025-04/trackings/%s", id);
     Request request = new Request(HttpMethod.GET, path);
     addQueryParams(request);
     setHeaderParams(request);

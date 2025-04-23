@@ -90,18 +90,6 @@ public class UpdateTrackingByIdRequest extends Resource {
   @SerializedName("destination_raw_location")
   private String destinationRawLocation;
 
-  @SerializedName("tracking_origin_country_region")
-  private String trackingOriginCountryRegion;
-
-  @SerializedName("tracking_destination_country_region")
-  private String trackingDestinationCountryRegion;
-
-  @SerializedName("tracking_postal_code")
-  private String trackingPostalCode;
-
-  @SerializedName("tracking_state")
-  private String trackingState;
-
   @SerializedName("location_id")
   private String locationId;
 
@@ -325,38 +313,6 @@ public class UpdateTrackingByIdRequest extends Resource {
 
   public void setDestinationRawLocation(String destinationRawLocation) {
     this.destinationRawLocation = destinationRawLocation;
-  }
-
-  public String getTrackingOriginCountryRegion() {
-    return trackingOriginCountryRegion;
-  }
-
-  public void setTrackingOriginCountryRegion(String trackingOriginCountryRegion) {
-    this.trackingOriginCountryRegion = trackingOriginCountryRegion;
-  }
-
-  public String getTrackingDestinationCountryRegion() {
-    return trackingDestinationCountryRegion;
-  }
-
-  public void setTrackingDestinationCountryRegion(String trackingDestinationCountryRegion) {
-    this.trackingDestinationCountryRegion = trackingDestinationCountryRegion;
-  }
-
-  public String getTrackingPostalCode() {
-    return trackingPostalCode;
-  }
-
-  public void setTrackingPostalCode(String trackingPostalCode) {
-    this.trackingPostalCode = trackingPostalCode;
-  }
-
-  public String getTrackingState() {
-    return trackingState;
-  }
-
-  public void setTrackingState(String trackingState) {
-    this.trackingState = trackingState;
   }
 
   public String getLocationId() {

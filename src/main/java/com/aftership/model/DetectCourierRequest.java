@@ -15,8 +15,8 @@ public class DetectCourierRequest extends Resource {
   @SerializedName("slug")
   private java.util.List<String> slug;
 
-  @SerializedName("tracking_postal_code")
-  private String trackingPostalCode;
+  @SerializedName("destination_postal_code")
+  private String destinationPostalCode;
 
   @SerializedName("tracking_ship_date")
   private String trackingShipDate;
@@ -27,17 +27,11 @@ public class DetectCourierRequest extends Resource {
   @SerializedName("tracking_key")
   private String trackingKey;
 
-  @SerializedName("tracking_origin_country_region")
-  private String trackingOriginCountryRegion;
-
-  @SerializedName("tracking_destination_country_region")
-  private String trackingDestinationCountryRegion;
-
-  @SerializedName("tracking_state")
-  private String trackingState;
+  @SerializedName("destination_state")
+  private String destinationState;
 
   @SerializedName("slug_group")
-  private SlugGroupV1 slugGroup;
+  private SlugGroup slugGroup;
 
   @SerializedName("origin_country_region")
   private String originCountryRegion;
@@ -61,12 +55,12 @@ public class DetectCourierRequest extends Resource {
     this.slug = slug;
   }
 
-  public String getTrackingPostalCode() {
-    return trackingPostalCode;
+  public String getDestinationPostalCode() {
+    return destinationPostalCode;
   }
 
-  public void setTrackingPostalCode(String trackingPostalCode) {
-    this.trackingPostalCode = trackingPostalCode;
+  public void setDestinationPostalCode(String destinationPostalCode) {
+    this.destinationPostalCode = destinationPostalCode;
   }
 
   public String getTrackingShipDate() {
@@ -93,35 +87,19 @@ public class DetectCourierRequest extends Resource {
     this.trackingKey = trackingKey;
   }
 
-  public String getTrackingOriginCountryRegion() {
-    return trackingOriginCountryRegion;
+  public String getDestinationState() {
+    return destinationState;
   }
 
-  public void setTrackingOriginCountryRegion(String trackingOriginCountryRegion) {
-    this.trackingOriginCountryRegion = trackingOriginCountryRegion;
+  public void setDestinationState(String destinationState) {
+    this.destinationState = destinationState;
   }
 
-  public String getTrackingDestinationCountryRegion() {
-    return trackingDestinationCountryRegion;
-  }
-
-  public void setTrackingDestinationCountryRegion(String trackingDestinationCountryRegion) {
-    this.trackingDestinationCountryRegion = trackingDestinationCountryRegion;
-  }
-
-  public String getTrackingState() {
-    return trackingState;
-  }
-
-  public void setTrackingState(String trackingState) {
-    this.trackingState = trackingState;
-  }
-
-  public SlugGroupV1 getSlugGroup() {
+  public SlugGroup getSlugGroup() {
     return slugGroup;
   }
 
-  public void setSlugGroup(SlugGroupV1 slugGroup) {
+  public void setSlugGroup(SlugGroup slugGroup) {
     this.slugGroup = slugGroup;
   }
 

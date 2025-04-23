@@ -7,19 +7,19 @@ package com.aftership.model;
 import com.aftership.base.Resource;
 import com.google.gson.annotations.SerializedName;
 
-public class DataTrackingResponseGetMultipleV1 extends Resource {
+public class DataTrackingResponseForGetTrackings extends Resource {
 
   @SerializedName("pagination")
-  private PaginationDataTrackingResponseGetMultipleV1 pagination;
+  private PaginationDataTrackingResponseForGetTrackings pagination;
 
   @SerializedName("trackings")
   private java.util.List<Tracking> trackings;
 
-  public PaginationDataTrackingResponseGetMultipleV1 getPagination() {
+  public PaginationDataTrackingResponseForGetTrackings getPagination() {
     return pagination;
   }
 
-  public void setPagination(PaginationDataTrackingResponseGetMultipleV1 pagination) {
+  public void setPagination(PaginationDataTrackingResponseForGetTrackings pagination) {
     this.pagination = pagination;
   }
 

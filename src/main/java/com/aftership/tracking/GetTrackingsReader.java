@@ -7,6 +7,7 @@ package com.aftership.tracking;
 import com.aftership.base.Page;
 import com.aftership.base.Reader;
 import com.aftership.http.*;
+import com.aftership.http.Request;
 import com.aftership.model.GetTrackingsResponse;
 import com.aftership.model.Tracking;
 import com.google.gson.Gson;
@@ -16,24 +17,6 @@ import java.util.Map;
 
 public class GetTrackingsReader extends Reader<Tracking> {
   private final Map<String, String> headerParams = new HashMap<>(8);
-  private String cursor;
-  private Integer limit;
-  private String keyword;
-  private String trackingNumbers;
-  private String slug;
-  private Integer transitTime;
-  private String origin;
-  private String destination;
-  private String tag;
-  private String createdAtMin;
-  private String createdAtMax;
-  private String updatedAtMin;
-  private String updatedAtMax;
-  private String fields;
-  private String returnToSender;
-  private String courierDestinationCountryRegion;
-  private String shipmentTags;
-  private String orderId;
 
   public GetTrackingsReader addHeaderParam(final String name, final String value) {
     if (value == null || value.equals("null")) {
@@ -51,6 +34,42 @@ public class GetTrackingsReader extends Reader<Tracking> {
       request.addHeaderParam(entry.getKey(), entry.getValue());
     }
   }
+
+  private String cursor;
+
+  private Integer limit;
+
+  private String keyword;
+
+  private String trackingNumbers;
+
+  private String slug;
+
+  private Integer transitTime;
+
+  private String origin;
+
+  private String destination;
+
+  private String tag;
+
+  private String createdAtMin;
+
+  private String createdAtMax;
+
+  private String updatedAtMin;
+
+  private String updatedAtMax;
+
+  private String fields;
+
+  private String returnToSender;
+
+  private String courierDestinationCountryRegion;
+
+  private String shipmentTags;
+
+  private String orderId;
 
   public GetTrackingsReader setCursor(String cursor) {
     this.cursor = cursor;
@@ -145,7 +164,7 @@ public class GetTrackingsReader extends Reader<Tracking> {
 
   @Override
   public Page<Tracking> read(AfterShipClient client) throws Exception {
-    String path = "/tracking/2025-01/trackings";
+    String path = "/tracking/2025-04/trackings";
     Request request = new Request(HttpMethod.GET, path);
     addQueryParams(request);
     setHeaderParams(request);
@@ -169,7 +188,7 @@ public class GetTrackingsReader extends Reader<Tracking> {
     if (cursor != null) {
       request.addQueryParam("cursor", cursor);
     }
-    if (limit != null && limit > 0) {
+    if (limit != null) {
       request.addQueryParam("limit", String.valueOf(limit));
     }
     if (keyword != null) {
@@ -181,7 +200,7 @@ public class GetTrackingsReader extends Reader<Tracking> {
     if (slug != null) {
       request.addQueryParam("slug", slug);
     }
-    if (transitTime != null && transitTime > 0) {
+    if (transitTime != null) {
       request.addQueryParam("transit_time", String.valueOf(transitTime));
     }
     if (origin != null) {

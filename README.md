@@ -22,6 +22,7 @@ If you need support using AfterShip products, please contact support@aftership.c
   - [Endpoints](#endpoints)
     - [/trackings](#trackings)
     - [/couriers](#couriers)
+    - [/courier-connections](#courier-connections)
     - [/estimated-delivery-date](#estimated-delivery-date)
   - [Help](#help)
   - [License](#license)
@@ -41,6 +42,7 @@ Each SDK version is designed to work with a specific API version. Please refer t
 
 | SDK Version | Supported API Version | Branch                                                      |
 | ----------- | --------------------- | ----------------------------------------------------------- |
+| 9.x.x       | 2025-04               | https://github.com/AfterShip/tracking-sdk-java/tree/2025-04 |
 | 8.x.x       | 2025-01               | https://github.com/AfterShip/tracking-sdk-java/tree/2025-01 |
 | 7.x.x       | 2024-10               | https://github.com/AfterShip/tracking-sdk-java/tree/2024-10 |
 | 6.x.x       | 2024-07               | https://github.com/AfterShip/tracking-sdk-java/tree/2024-07 |
@@ -55,7 +57,7 @@ Each SDK version is designed to work with a specific API version. Please refer t
 <dependency>
     <groupId>com.aftership</groupId>
     <artifactId>tracking-sdk</artifactId>
-    <version>8.0.0</version>
+    <version>9.0.0</version>
 </dependency>
 ```
 
@@ -106,7 +108,7 @@ public class App {
 
 ## Rate Limiter
 
-See the [Rate Limit](https://www.aftership.com/docs/tracking/2025-01/quickstart/rate-limit) to understand the AfterShip rate limit policy.
+See the [Rate Limit](https://www.aftership.com/docs/tracking/2025-04/quickstart/rate-limit) to understand the AfterShip rate limit policy.
 
 ## Error Handling
 
@@ -155,6 +157,7 @@ The AfterShip instance has the following properties which are exactly the same a
 
 - courier - Get a list of our supported couriers.
 - tracking - Create trackings, update trackings, and get tracking results.
+- courier-connection - Create courier connections, update courier connections, and get courier connections results.
 - estimated-delivery-date - Get estimated delivery date for your order.
 
 ### /trackings
@@ -235,14 +238,7 @@ System.out.println(response.getTrackingNumber());
 **GET** /couriers
 
 ```java
-GetUserCouriersResponse response = CourierResource.getUserCouriers().fetch();
-System.out.println(response.getTotal());
-```
-
-**GET** /couriers/all
-
-```java
-GetAllCouriersResponse response = CourierResource.getAllCouriers().fetch();
+GetUserCouriersResponse response = CourierResource.getCouriers().fetch();
 System.out.println(response.getTotal());
 ```
 
