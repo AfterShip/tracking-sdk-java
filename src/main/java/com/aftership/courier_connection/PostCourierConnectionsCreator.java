@@ -44,7 +44,7 @@ public class PostCourierConnectionsCreator extends Creator<CourierConnection> {
 
   @Override
   public CourierConnection create(AfterShipClient client) throws Exception {
-    String path = "/tracking/2025-04/courier-connections";
+    String path = "/tracking/2025-07/courier-connections";
     Request request = new Request(HttpMethod.POST, path);
     request.setBody((new Gson()).toJson(postCourierConnectionsRequest));
 

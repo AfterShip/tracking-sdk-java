@@ -63,7 +63,7 @@ public class GetTrackingByIdFetcher extends Fetcher<Tracking> {
           ErrorEnum.BAD_REQUEST.getCode(),
           ErrorEnum.BAD_REQUEST.getMessage() + ": `id` is invalid");
     }
-    String path = String.format("/tracking/2025-04/trackings/%s", id);
+    String path = String.format("/tracking/2025-07/trackings/%s", id);
     Request request = new Request(HttpMethod.GET, path);
     addQueryParams(request);
     setHeaderParams(request);

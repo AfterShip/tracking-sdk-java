@@ -43,7 +43,7 @@ public class DetectCourierCreator extends Creator<DetectCourierResponse> {
 
   @Override
   public DetectCourierResponse create(AfterShipClient client) throws Exception {
-    String path = "/tracking/2025-04/couriers/detect";
+    String path = "/tracking/2025-07/couriers/detect";
     Request request = new Request(HttpMethod.POST, path);
     request.setBody((new Gson()).toJson(detectCourierRequest));
 

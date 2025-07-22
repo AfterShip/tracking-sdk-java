@@ -11,16 +11,16 @@ public class CourierConnectionResource extends Resource {
     return new GetCourierConnectionsByIdFetcher();
   }
 
-  public static GetCourierConnectionsReader getCourierConnections() {
-    return new GetCourierConnectionsReader();
+  public static DeleteCourierConnectionsByIdDeleter deleteCourierConnectionsById() {
+    return new DeleteCourierConnectionsByIdDeleter();
   }
 
   public static PutCourierConnectionsByIdUpdater putCourierConnectionsById() {
     return new PutCourierConnectionsByIdUpdater();
   }
 
-  public static DeleteCourierConnectionsByIdDeleter deleteCourierConnectionsById() {
-    return new DeleteCourierConnectionsByIdDeleter();
+  public static GetCourierConnectionsReader getCourierConnections() {
+    return new GetCourierConnectionsReader();
   }
 
   public static PostCourierConnectionsCreator postCourierConnections() {

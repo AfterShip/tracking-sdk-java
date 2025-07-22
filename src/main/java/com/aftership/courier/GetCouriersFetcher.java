@@ -49,7 +49,7 @@ public class GetCouriersFetcher extends Fetcher<GetCouriersResponse> {
 
   @Override
   public GetCouriersResponse fetch(AfterShipClient client) throws Exception {
-    String path = "/tracking/2025-04/couriers";
+    String path = "/tracking/2025-07/couriers";
     Request request = new Request(HttpMethod.GET, path);
     addQueryParams(request);
     setHeaderParams(request);

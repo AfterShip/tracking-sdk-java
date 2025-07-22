@@ -164,7 +164,7 @@ public class GetTrackingsReader extends Reader<Tracking> {
 
   @Override
   public Page<Tracking> read(AfterShipClient client) throws Exception {
-    String path = "/tracking/2025-04/trackings";
+    String path = "/tracking/2025-07/trackings";
     Request request = new Request(HttpMethod.GET, path);
     addQueryParams(request);
     setHeaderParams(request);

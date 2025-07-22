@@ -7,11 +7,11 @@ package com.aftership.courier;
 import com.aftership.base.Resource;
 
 public class CourierResource extends Resource {
-  public static DetectCourierCreator detectCourier() {
-    return new DetectCourierCreator();
-  }
-
   public static GetCouriersFetcher getCouriers() {
     return new GetCouriersFetcher();
+  }
+
+  public static DetectCourierCreator detectCourier() {
+    return new DetectCourierCreator();
   }
 }

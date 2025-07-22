@@ -44,7 +44,7 @@ public class CreateTrackingCreator extends Creator<Tracking> {
 
   @Override
   public Tracking create(AfterShipClient client) throws Exception {
-    String path = "/tracking/2025-04/trackings";
+    String path = "/tracking/2025-07/trackings";
     Request request = new Request(HttpMethod.POST, path);
     request.setBody((new Gson()).toJson(createTrackingRequest));
 
