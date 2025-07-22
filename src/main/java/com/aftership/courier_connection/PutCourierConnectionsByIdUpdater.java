@@ -58,7 +58,7 @@ public class PutCourierConnectionsByIdUpdater extends Updater<CourierConnection>
           ErrorEnum.BAD_REQUEST.getCode(),
           ErrorEnum.BAD_REQUEST.getMessage() + ": `id` is invalid");
     }
-    String path = String.format("/tracking/2025-04/courier-connections/%s", id);
+    String path = String.format("/tracking/2025-07/courier-connections/%s", id);
     Request request = new Request(HttpMethod.PATCH, path);
     request.setBody((new Gson()).toJson(putCourierConnectionsByIdRequest));
 

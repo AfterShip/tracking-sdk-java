@@ -58,7 +58,7 @@ public class GetCourierConnectionsReader extends Reader<CourierConnection> {
 
   @Override
   public Page<CourierConnection> read(AfterShipClient client) throws Exception {
-    String path = "/tracking/2025-04/courier-connections";
+    String path = "/tracking/2025-07/courier-connections";
     Request request = new Request(HttpMethod.GET, path);
     addQueryParams(request);
     setHeaderParams(request);

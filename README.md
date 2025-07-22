@@ -42,6 +42,7 @@ Each SDK version is designed to work with a specific API version. Please refer t
 
 | SDK Version | Supported API Version | Branch                                                      |
 | ----------- | --------------------- | ----------------------------------------------------------- |
+| 10.x.x      | 2025-07               | https://github.com/AfterShip/tracking-sdk-java/tree/2025-07 |
 | 9.x.x       | 2025-04               | https://github.com/AfterShip/tracking-sdk-java/tree/2025-04 |
 | 8.x.x       | 2025-01               | https://github.com/AfterShip/tracking-sdk-java/tree/2025-01 |
 | 7.x.x       | 2024-10               | https://github.com/AfterShip/tracking-sdk-java/tree/2024-10 |
@@ -108,7 +109,7 @@ public class App {
 
 ## Rate Limiter
 
-See the [Rate Limit](https://www.aftership.com/docs/tracking/2025-04/quickstart/rate-limit) to understand the AfterShip rate limit policy.
+See the [Rate Limit](https://www.aftership.com/docs/tracking/2025-07/quickstart/rate-limit) to understand the AfterShip rate limit policy.
 
 ## Error Handling
 
@@ -253,6 +254,61 @@ DetectCourierResponse response = CourierResource.detectCourier()
 System.out.println(response.getTotal());
 ```
 
+### /courier-connections
+
+**POST** /courier-connections
+
+```java
+PostCourierConnectionsRequest courierConnectionsRequest = new PostCourierConnectionsRequest();
+courierConnectionsRequest.setCourierSlug("dhl-api");
+Map credentials = new HashMap();
+credentials.put("api_key", "<dhl_pai_key>");
+courierConnectionsRequest.setCredentials(credentials);
+CourierConnection courierConnection = CourierConnectionResource.postCourierConnections()
+.setPostCourierConnectionsRequest(courierConnectionsRequest)
+.create();
+System.out.println(courierConnection.getId());
+```
+
+**GET** /courier-connections
+
+```java
+Page<CourierConnection> getCourierConnectionsResponse = CourierConnectionResource.getCourierConnections()
+.read();
+System.out.println(getCourierConnectionsResponse.getTotal());
+```
+
+**GET** /courier-connections/:id
+
+```java
+CourierConnection courierConnection = CourierConnectionResource.getCourierConnectionsById()
+.setId("<id>")
+.fetch();
+System.out.println(courierConnection.getCourierSlug());
+```
+
+**PATCH** /courier-connections/:id
+
+```java
+PutCourierConnectionsByIdRequest putCourierConnectionsByIdRequest = new PutCourierConnectionsByIdRequest();
+Map credentials = new HashMap();
+credentials.put("api_key", "<dhl_api_key>");
+putCourierConnectionsByIdRequest.setCredentials(credentials);
+CourierConnection courierConnection = CourierConnectionResource.putCourierConnectionsById()
+.setId("<id>")
+.setPutCourierConnectionsByIdRequest(putCourierConnectionsByIdRequest)
+.update();
+System.out.println(courierConnection.getCourierSlug());
+```
+
+**DELETE** /courier-connections/:id
+
+```java
+CourierConnection courierConnection = CourierConnectionResource.deleteCourierConnectionsById()
+.setId("<id>")
+.delete();
+System.out.println(courierConnection.getCourierSlug());
+```
 ### /estimated-delivery-date
 
 **POST** /estimated-delivery-date/predict-batch
@@ -278,6 +334,30 @@ PredictBatchResponse response = EstimatedDeliveryDateResource.predictBatch()
         .setPredictBatchRequest(request)
         .create();
 System.out.println(response.getEstimatedDeliveryDates().get(0).getSlug());
+```
+
+**POST** /estimated-delivery-date/predict
+
+```java
+EstimatedDeliveryDateRequest edd = new EstimatedDeliveryDateRequest();
+edd.setSlug("<slug>");
+DestinationAddressEstimatedDeliveryDateRequest dest = new DestinationAddressEstimatedDeliveryDateRequest();
+dest.setCountryRegion("<ISO 3166-1 country/region code>");
+dest.setState("<ISO 3166-1 country/region code>");
+
+edd.setDestinationAddress( dest);
+
+OriginAddressEstimatedDeliveryDateRequest origin  = new OriginAddressEstimatedDeliveryDateRequest();
+origin.setCountryRegion("<ISO 3166-1 country/region code>");
+origin.setState("<ISO 3166-1 country/region code>");
+edd.setOriginAddress(origin);
+
+edd.setPickupTime("2024-08-01 06:42:30");
+
+EstimatedDeliveryDateResponse response = EstimatedDeliveryDateResource.predict()
+.setEstimatedDeliveryDateRequest(edd)
+.create();
+System.out.println(response.getId());
 ```
 
 ## Help
