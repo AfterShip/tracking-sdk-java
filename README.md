@@ -47,7 +47,7 @@ Before you begin to integrate:
 <dependency>
     <groupId>com.aftership</groupId>
     <artifactId>tracking-sdk</artifactId>
-    <version>11.0.0</version>
+    <version>10.0.0</version>
 </dependency>
 ```
 
