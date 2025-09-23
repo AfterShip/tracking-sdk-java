@@ -28,7 +28,7 @@ import java.util.Map;
 
 public class HttpClient {
 
-    private static final String DEFAULT_USER_AGENT = "tracking-sdk-java/11.0.0 (https://www.aftership.com) apache-httpclient/4.5.14";
+    private static final String DEFAULT_USER_AGENT = "tracking-sdk-java/10.0.0 (https://www.aftership.com) apache-httpclient/4.5.14";
     protected final org.apache.http.client.HttpClient client;
 
     public HttpClient(final RequestConfig requestConfig, String userAgent) {
