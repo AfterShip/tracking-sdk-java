@@ -38,19 +38,8 @@ Before you begin to integrate:
 
 ### API and SDK Version
 
-Each SDK version is designed to work with a specific API version. Please refer to the table below to identify the supported API versions for each SDK version, ensuring you select the appropriate SDK version for the API version you intend to use.
-
-| SDK Version | Supported API Version | Branch                                                      |
-| ----------- | --------------------- | ----------------------------------------------------------- |
-| 10.x.x      | 2025-07               | https://github.com/AfterShip/tracking-sdk-java/tree/2025-07 |
-| 9.x.x       | 2025-04               | https://github.com/AfterShip/tracking-sdk-java/tree/2025-04 |
-| 8.x.x       | 2025-01               | https://github.com/AfterShip/tracking-sdk-java/tree/2025-01 |
-| 7.x.x       | 2024-10               | https://github.com/AfterShip/tracking-sdk-java/tree/2024-10 |
-| 6.x.x       | 2024-07               | https://github.com/AfterShip/tracking-sdk-java/tree/2024-07 |
-| 5.x.x       | 2024-04               | https://github.com/AfterShip/tracking-sdk-java/tree/2024-04 |
-| 4.x.x       | 2023-10               | https://github.com/AfterShip/aftership-sdk-java             |
-| <=3.x.x     | Legacy API            | https://github.com/AfterShip/aftership-sdk-java             |
-
+- SDK Version: 
+- API Version: 2025-07
 ## Quick Start
 
 ### Installation
@@ -58,7 +47,7 @@ Each SDK version is designed to work with a specific API version. Please refer t
 <dependency>
     <groupId>com.aftership</groupId>
     <artifactId>tracking-sdk</artifactId>
-    <version>9.0.0</version>
+    <version>11.0.0</version>
 </dependency>
 ```
 
@@ -81,25 +70,20 @@ Create AfterShip instance with options
 ### Example
 
 ```java
-import com.aftership.AfterShip;
-import com.aftership.model.CreateTrackingRequest;
-import com.aftership.model.CreateTrackingResponse;
-import com.aftership.tracking.TrackingResource;
+import com.aftership.tracking.TrackingSdk;
+import com.aftership.tracking.model.GetTrackingByIdResponse;
+import com.aftership.tracking.tracking.TrackingResource;
 
 public class App {
     public static void main(String[] args) {
         try {
-            AfterShip.init(
+            TrackingSdk.init(
                     "YOUR_API_KEY"
             );
-            
-            CreateTrackingRequest trackingCreateTrackingRequest = new CreateTrackingRequest();
-            trackingCreateTrackingRequest.setTrackingNumber("<tracking_number>");
-            trackingCreateTrackingRequest.setSlug("<slug>");
-            Tracking response = TrackingResource.createTracking().
-                    setCreateTrackingRequest(trackingCreateTrackingRequest).
-                    create();
-            System.out.println(response.getTrackingNumber());
+            GetTrackingByIdResponse response = TrackingResource.getTrackingById()
+                .setId("valid_value")
+                .fetch();
+            System.out.println(response.getData());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -109,7 +93,7 @@ public class App {
 
 ## Rate Limiter
 
-See the [Rate Limit](https://www.aftership.com/docs/tracking/2025-07/quickstart/rate-limit) to understand the AfterShip rate limit policy.
+See the [Rate Limit](https://www.aftership.com/docs/tracking/quickstart/rate-limit) to understand the AfterShip rate limit policy.
 
 ## Error Handling
 
@@ -129,236 +113,224 @@ The SDK will return an error object when there is any error during the request, 
 
 | code                              | meta_code       | status_code     | message                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | --------------------------------- | --------------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| INVALID_REQUEST                   | 400             | 400             | The request was invalid or cannot be otherwise served.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| INVALID_JSON                      | 4001            | 400             | Invalid JSON data.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| TRACKING_ALREADY_EXIST            | 4003            | 400             | Tracking already exists.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| TRACKING_DOES_NOT_EXIST           | 4004            | 404             | Tracking does not exist.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| TRACKING_NUMBER_INVALID           | 4005            | 400             | The value of tracking_number is invalid.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| TRACKING_REQUIRED                 | 4006            | 400             | tracking object is required.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| TRACKING_NUMBER_REQUIRED          | 4007            | 400             | tracking_number is required.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| VALUE_INVALID                     | 4008            | 400             | The value of [field_name] is invalid.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| VALUE_REQUIRED                    | 4009            | 400             | [field_name] is required.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| SLUG_INVALID                      | 4010            | 400             | The value of slug is invalid.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| MISSING_OR_INVALID_REQUIRED_FIELD | 4011            | 400             | Missing or invalid value of the required fields for this courier. Besides tracking_number, also required: [field_name]                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| BAD_COURIER                       | 4012            | 400             | The error message will be one of the following:<br/>1. Unable to import shipment as the carrier is not on your approved list for carrier auto-detection. Add the carrier here: https://admin.aftership.com/settings/couriers<br/>2. Unable to import shipment as we don’t recognize the carrier from this tracking number.<br/>3. Unable to import shipment as the tracking number has an invalid format.<br/>4. Unable to import shipment as this carrier is no longer supported.<br/>5. Unable to import shipment as the tracking number does not belong to a carrier in that group. |
-| INACTIVE_RETRACK_NOT_ALLOWED      | 4013            | 400             | Retrack is not allowed. You can only retrack an inactive tracking.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| NOTIFICATION_REUQIRED             | 4014            | 400             | notification object is required.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| ID_INVALID                        | 4015            | 400             | The value of id is invalid.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| RETRACK_ONCE_ALLOWED              | 4016            | 400             | Retrack is not allowed. You can only retrack each shipment once.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| TRACKING_NUMBER_FORMAT_INVALID    | 4017            | 400             | The format of tracking_number is invalid.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| API_KEY_INVALID                   | 401             | 401             | The API key is invalid.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| REQUEST_NOT_ALLOWED               | 403             | 403             | The request is understood, but it has been refused or access is not allowed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| NOT_FOUND                         | 404             | 404             | The URI requested is invalid or the resource requested does not exist.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| TOO_MANY_REQUEST                  | 429             | 429             | You have exceeded the API call rate limit. The default limit is 10 requests per second.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| INTERNAL_ERROR                    | 500 502 503 504 | 500 502 503 504 | Something went wrong on AfterShip's end.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| INVALID_REQUEST | 400 | 400 | The request was invalid or cannot be otherwise served. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| INVALID_JSON | 4001 | 400 | Invalid JSON data. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| TRACKING_ALREADY_EXIST | 4003 | 400 | Tracking already exists. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| TRACKING_DOES_NOT_EXIST | 4004 | 404 | Tracking does not exist. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| TRACKING_NUMBER_INVALID | 4005 | 400 | The value of tracking_number is invalid. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| TRACKING_REQUIRED | 4006 | 400 | tracking object is required. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| TRACKING_NUMBER_REQUIRED | 4007 | 400 | tracking_number is required. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| VALUE_INVALID | 4008 | 400 | The value of [field_name] is invalid. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| VALUE_REQUIRED | 4009 | 400 | [field_name] is required. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| SLUG_INVALID | 4010 | 400 | The value of slug is invalid. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| MISSING_OR_INVALID_REQUIRED_FIELD | 4011 | 400 | Missing or invalid value of the required fields for this courier. Besides tracking_number, also required: [field_name] |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| BAD_COURIER | 4012 | 400 | The error message will be one of the following:1. Unable to import shipment as the carrier is not on your approved list for carrier auto-detection. Add the carrier here: https://admin.aftership.com/settings/couriers2. Unable to import shipment as we don&#39;t recognize the carrier from this tracking number.3. Unable to import shipment as the tracking number has an invalid format.4. Unable to import shipment as this carrier is no longer supported.5. Unable to import shipment as the tracking number does not belong to a carrier in that group. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| INACTIVE_RETRACK_NOT_ALLOWED | 4013 | 400 | Retrack is not allowed. You can only retrack an inactive tracking. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| NOTIFICATION_REQUIRED | 4014 | 400 | notification object is required. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ID_INVALID | 4015 | 400 | The value of id is invalid. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| RETRACK_ONCE_ALLOWED | 4016 | 400 | Retrack is not allowed. You can only retrack each shipment once. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| TRACKING_NUMBER_FORMAT_INVALID | 4017 | 400 | The format of tracking_number is invalid. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| API_KEY_INVALID | 401 | 401 | The API Key is invalid. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| REQUEST_NOT_ALLOWED | 403 | 403 | The request is understood, but it has been refused or access is not allowed. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| NOT_FOUND | 404 | 404 | The URI requested is invalid or the resource requested does not exist. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| TOO_MANY_REQUEST | 429 | 429 | You have exceeded the API call rate limit. The default limit is 10 requests per second. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| INTERNAL_ERROR | 500 | 500 | Something went wrong on AfterShip&#39;s end. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| INTERNAL_ERROR | 502 | 502 | Something went wrong on AfterShip&#39;s end. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| INTERNAL_ERROR | 503 | 503 | Something went wrong on AfterShip&#39;s end. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| INTERNAL_ERROR | 504 | 504 | Something went wrong on AfterShip&#39;s end. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 
 ## Endpoints
 
-The AfterShip instance has the following properties which are exactly the same as the API endpoints:
+The AfterShip SDK has the following resource which are exactly the same as the API endpoints:
 
-- courier - Get a list of our supported couriers.
-- tracking - Create trackings, update trackings, and get tracking results.
-- courier-connection - Create courier connections, update courier connections, and get courier connections results.
-- estimated-delivery-date - Get estimated delivery date for your order.
+- TrackingResource
+  - Get trackings
+  - Create a tracking
+  - Get a tracking by ID
+  - Update a tracking by ID
+  - Delete a tracking by ID
+  - Retrack an expired tracking by ID
+  - Mark tracking as completed by ID
+- CourierResource
+  - Get couriers
+  - Detect courier
+- CourierConnectionResource
+  - Get courier connections
+  - Create courier connections
+  - Get courier connection by id
+  - Update courier connection by id
+  - Delete courier connection by id
+- EstimatedDeliveryDateResource
+  - Prediction for the Estimated Delivery Date
+  - Batch prediction for the Estimated Delivery Date
 
 ### /trackings
+**GET** /trackings
+
+```java
+    GetTrackingsResponse response = TrackingResource.getTrackings()
+        .fetch();
+    System.out.println(response.getData());
+```
 
 **POST** /trackings
 
 ```java
-CreateTrackingRequest trackingCreateTrackingRequest = new CreateTrackingRequest();
-trackingCreateTrackingRequest.setTrackingNumber("<tracking_number>");
-trackingCreateTrackingRequest.setSlug("<slug>");
-Tracking response = TrackingResource.createTracking().
-        setCreateTrackingRequest(trackingCreateTrackingRequest).
-        create();
-System.out.println(response.getTrackingNumber());
+    CreateTrackingRequest request = new CreateTrackingRequest();
+    request.setTrackingNumber("valid_value");
+    CreateTrackingResponse response = TrackingResource.createTracking()
+        .setCreateTrackingRequest(request)
+        .create();
+    System.out.println(response.getData());
 ```
 
-**DELETE** /trackings/:id
+**GET** /trackings/{id}
 
 ```java
-Tracking response = TrackingResource.deleteTrackingById()
-        .setId("<tracking_id>")
-        .delete();
-System.out.println(response.getId());
-```
-
-**GET** /trackings
-
-```java
-Page<Tracking> response =  TrackingResource.getTrackings().setKeyword("test").read();
-for (Tracking tracking : response.getRecords()) {
-    System.out.println(tracking.getTrackingNumber());
-}
-```
-
-**GET** /trackings/:id
-
-```java
-Tracking response = TrackingResource.getTrackingById()
-        .setId("<tracking_id>")
+    GetTrackingByIdResponse response = TrackingResource.getTrackingById()
+        .setId("valid_value")
         .fetch();
-System.out.println(response.getTrackingNumber());
+    System.out.println(response.getData());
 ```
 
-**PUT** /trackings/:id
+**PUT** /trackings/{id}
 
 ```java
-UpdateTrackingByIdRequest request = new UpdateTrackingByIdRequest();
-request.setTitle("test");
-Tracking response = TrackingResource.updateTrackingById()
-        .setId("<tracking_id>")
+    UpdateTrackingByIdRequest request = new UpdateTrackingByIdRequest();
+    UpdateTrackingByIdResponse response = TrackingResource.updateTrackingById()
+        .setId("valid_value")
         .setUpdateTrackingByIdRequest(request)
         .update();
-System.out.println(response.getTitle());
+    System.out.println(response.getData());
 ```
 
-**POST** /trackings/:id/retrack
+**DELETE** /trackings/{id}
 
 ```java
-Tracking response = TrackingResource.retrackTrackingById()
-        .setId("<tracking_id>")
+    DeleteTrackingByIdResponse response = TrackingResource.deleteTrackingById()
+        .setId("valid_value")
+        .delete();
+    System.out.println(response.getData());
+```
+
+**POST** /trackings/{id}/retrack
+
+```java
+    RetrackTrackingByIdResponse response = TrackingResource.retrackTrackingById()
+        .setId("valid_value")
         .create();
-System.out.println(response.getTrackingNumber());
+    System.out.println(response.getData());
 ```
 
-**POST** /trackings/:id/mark-as-completed
+**POST** /trackings/{id}/mark-as-completed
 
 ```java
-MarkTrackingCompletedByIdRequest request =  new MarkTrackingCompletedByIdRequest();
-request.setReason("LOST");
-Tracking response = TrackingResource.markTrackingCompletedById()
-        .setId("<tracking_id>")
+    MarkTrackingCompletedByIdRequest request = new MarkTrackingCompletedByIdRequest();
+    MarkTrackingCompletedByIdResponse response = TrackingResource.markTrackingCompletedById()
+        .setId("valid_value")
         .setMarkTrackingCompletedByIdRequest(request)
         .create();
-System.out.println(response.getTrackingNumber());
+    System.out.println(response.getData());
 ```
 
 ### /couriers
 **GET** /couriers
 
 ```java
-GetUserCouriersResponse response = CourierResource.getCouriers().fetch();
-System.out.println(response.getTotal());
+    GetCouriersResponse response = CourierResource.getCouriers()
+        .fetch();
+    System.out.println(response.getData());
 ```
 
 **POST** /couriers/detect
 
 ```java
-DetectCourierRequest request = new DetectCourierRequest();
-request.setTrackingNumber("<tracking_number>");
-DetectCourierResponse response = CourierResource.detectCourier()
-      .setDetectCourierRequest(request)
-      .create();
-System.out.println(response.getTotal());
+    DetectCourierRequest request = new DetectCourierRequest();
+    request.setTrackingNumber("valid_value");
+    DetectCourierResponse response = CourierResource.detectCourier()
+        .setDetectCourierRequest(request)
+        .create();
+    System.out.println(response.getData());
 ```
 
 ### /courier-connections
+**GET** /courier-connections
+
+```java
+    GetCourierConnectionsResponse response = CourierConnectionResource.getCourierConnections()
+        .fetch();
+    System.out.println(response.getData());
+```
 
 **POST** /courier-connections
 
 ```java
-PostCourierConnectionsRequest courierConnectionsRequest = new PostCourierConnectionsRequest();
-courierConnectionsRequest.setCourierSlug("dhl-api");
-Map credentials = new HashMap();
-credentials.put("api_key", "<dhl_pai_key>");
-courierConnectionsRequest.setCredentials(credentials);
-CourierConnection courierConnection = CourierConnectionResource.postCourierConnections()
-.setPostCourierConnectionsRequest(courierConnectionsRequest)
-.create();
-System.out.println(courierConnection.getId());
+    PostCourierConnectionsRequest request = new PostCourierConnectionsRequest();
+    request.setCourierSlug("valid_value");
+    request.setCredentials();
+    PostCourierConnectionsResponse response = CourierConnectionResource.postCourierConnections()
+        .setPostCourierConnectionsRequest(request)
+        .create();
+    System.out.println(response.getData());
 ```
 
-**GET** /courier-connections
+**GET** /courier-connections/{id}
 
 ```java
-Page<CourierConnection> getCourierConnectionsResponse = CourierConnectionResource.getCourierConnections()
-.read();
-System.out.println(getCourierConnectionsResponse.getTotal());
+    GetCourierConnectionsByIdResponse response = CourierConnectionResource.getCourierConnectionsById()
+        .setId("valid_value")
+        .fetch();
+    System.out.println(response.getData());
 ```
 
-**GET** /courier-connections/:id
+**PATCH** /courier-connections/{id}
 
 ```java
-CourierConnection courierConnection = CourierConnectionResource.getCourierConnectionsById()
-.setId("<id>")
-.fetch();
-System.out.println(courierConnection.getCourierSlug());
+    PutCourierConnectionsByIdRequest request = new PutCourierConnectionsByIdRequest();
+    request.setCredentials();
+    PutCourierConnectionsByIdResponse response = CourierConnectionResource.putCourierConnectionsById()
+        .setId("valid_value")
+        .setPutCourierConnectionsByIdRequest(request)
+        .update();
+    System.out.println(response.getData());
 ```
 
-**PATCH** /courier-connections/:id
+**DELETE** /courier-connections/{id}
 
 ```java
-PutCourierConnectionsByIdRequest putCourierConnectionsByIdRequest = new PutCourierConnectionsByIdRequest();
-Map credentials = new HashMap();
-credentials.put("api_key", "<dhl_api_key>");
-putCourierConnectionsByIdRequest.setCredentials(credentials);
-CourierConnection courierConnection = CourierConnectionResource.putCourierConnectionsById()
-.setId("<id>")
-.setPutCourierConnectionsByIdRequest(putCourierConnectionsByIdRequest)
-.update();
-System.out.println(courierConnection.getCourierSlug());
+    DeleteCourierConnectionsByIdResponse response = CourierConnectionResource.deleteCourierConnectionsById()
+        .setId("valid_value")
+        .delete();
+    System.out.println(response.getData());
 ```
 
-**DELETE** /courier-connections/:id
-
-```java
-CourierConnection courierConnection = CourierConnectionResource.deleteCourierConnectionsById()
-.setId("<id>")
-.delete();
-System.out.println(courierConnection.getCourierSlug());
-```
 ### /estimated-delivery-date
+**POST** /estimated-delivery-date/predict
+
+```java
+    EstimatedDeliveryDateRequest request = new EstimatedDeliveryDateRequest();
+    request.setSlug("valid_value");
+    EstimatedDeliveryDateRequestOriginAddress originAddress = new EstimatedDeliveryDateRequestOriginAddress();
+    request.setOriginAddress(originAddress);
+    EstimatedDeliveryDateRequestDestinationAddress destinationAddress = new EstimatedDeliveryDateRequestDestinationAddress();
+    request.setDestinationAddress(destinationAddress);
+    PredictResponse response = EstimatedDeliveryDateResource.predict()
+        .setPredictRequest(request)
+        .create();
+    System.out.println(response.getData());
+```
 
 **POST** /estimated-delivery-date/predict-batch
 
 ```java
-PredictBatchRequest request = new PredictBatchRequest();
-EstimatedDeliveryDateRequest edd = new EstimatedDeliveryDateRequest();
-edd.setSlug("<slug>");
-DestinationAddressEstimatedDeliveryDateRequest dest = new DestinationAddressEstimatedDeliveryDateRequest();
-dest.setCountry("<ISO 3166-1 country/region code>");
-dest.setState("<ISO 3166-1 country/region code>");
-
-edd.setDestinationAddress( dest);
-
-OriginAddressEstimatedDeliveryDateRequest origin  = new OriginAddressEstimatedDeliveryDateRequest();
-origin.setCountry("<ISO 3166-1 country/region code>");
-origin.setState("<ISO 3166-1 country/region code>");
-edd.setOriginAddress(origin);
-
-edd.setPickupTime("2024-08-01 06:42:30");
-request.setEstimatedDeliveryDates(Arrays.asList(edd));
-PredictBatchResponse response = EstimatedDeliveryDateResource.predictBatch()
+    PredictBatchRequest request = new PredictBatchRequest();
+    PredictBatchResponse response = EstimatedDeliveryDateResource.predictBatch()
         .setPredictBatchRequest(request)
         .create();
-System.out.println(response.getEstimatedDeliveryDates().get(0).getSlug());
+    System.out.println(response.getData());
 ```
 
-**POST** /estimated-delivery-date/predict
-
-```java
-EstimatedDeliveryDateRequest edd = new EstimatedDeliveryDateRequest();
-edd.setSlug("<slug>");
-DestinationAddressEstimatedDeliveryDateRequest dest = new DestinationAddressEstimatedDeliveryDateRequest();
-dest.setCountryRegion("<ISO 3166-1 country/region code>");
-dest.setState("<ISO 3166-1 country/region code>");
-
-edd.setDestinationAddress( dest);
-
-OriginAddressEstimatedDeliveryDateRequest origin  = new OriginAddressEstimatedDeliveryDateRequest();
-origin.setCountryRegion("<ISO 3166-1 country/region code>");
-origin.setState("<ISO 3166-1 country/region code>");
-edd.setOriginAddress(origin);
-
-edd.setPickupTime("2024-08-01 06:42:30");
-
-EstimatedDeliveryDateResponse response = EstimatedDeliveryDateResource.predict()
-.setEstimatedDeliveryDateRequest(edd)
-.create();
-System.out.println(response.getId());
-```
 
 ## Help
 
