@@ -20,10 +20,10 @@ If you need support using AfterShip products, please contact support@aftership.c
   - [Error Handling](#error-handling)
     - [Error List](#error-list)
   - [Endpoints](#endpoints)
-    - [/trackings](#trackings)
     - [/couriers](#couriers)
     - [/courier-connections](#courier-connections)
     - [/estimated-delivery-date](#estimated-delivery-date)
+    - [/trackings](#trackings)
   - [Help](#help)
   - [License](#license)
 
@@ -47,7 +47,7 @@ Before you begin to integrate:
 <dependency>
     <groupId>com.aftership</groupId>
     <artifactId>tracking-sdk</artifactId>
-    <version>10.1.0</version>
+    <version>10.0.1</version>
 </dependency>
 ```
 
@@ -144,14 +144,6 @@ The SDK will return an error object when there is any error during the request, 
 
 The AfterShip SDK has the following resource which are exactly the same as the API endpoints:
 
-- TrackingResource
-  - Get trackings
-  - Create a tracking
-  - Get a tracking by ID
-  - Update a tracking by ID
-  - Delete a tracking by ID
-  - Retrack an expired tracking by ID
-  - Mark tracking as completed by ID
 - CourierResource
   - Get couriers
   - Detect courier
@@ -164,75 +156,14 @@ The AfterShip SDK has the following resource which are exactly the same as the A
 - EstimatedDeliveryDateResource
   - Prediction for the Estimated Delivery Date
   - Batch prediction for the Estimated Delivery Date
-
-### /trackings
-**GET** /trackings
-
-```java
-    GetTrackingsResponse response = TrackingResource.getTrackings()
-        .fetch();
-    System.out.println(response.getData());
-```
-
-**POST** /trackings
-
-```java
-    CreateTrackingRequest request = new CreateTrackingRequest();
-    request.setTrackingNumber("valid_value");
-    CreateTrackingResponse response = TrackingResource.createTracking()
-        .setCreateTrackingRequest(request)
-        .create();
-    System.out.println(response.getData());
-```
-
-**GET** /trackings/{id}
-
-```java
-    GetTrackingByIdResponse response = TrackingResource.getTrackingById()
-        .setId("valid_value")
-        .fetch();
-    System.out.println(response.getData());
-```
-
-**PUT** /trackings/{id}
-
-```java
-    UpdateTrackingByIdRequest request = new UpdateTrackingByIdRequest();
-    UpdateTrackingByIdResponse response = TrackingResource.updateTrackingById()
-        .setId("valid_value")
-        .setUpdateTrackingByIdRequest(request)
-        .update();
-    System.out.println(response.getData());
-```
-
-**DELETE** /trackings/{id}
-
-```java
-    DeleteTrackingByIdResponse response = TrackingResource.deleteTrackingById()
-        .setId("valid_value")
-        .delete();
-    System.out.println(response.getData());
-```
-
-**POST** /trackings/{id}/retrack
-
-```java
-    RetrackTrackingByIdResponse response = TrackingResource.retrackTrackingById()
-        .setId("valid_value")
-        .create();
-    System.out.println(response.getData());
-```
-
-**POST** /trackings/{id}/mark-as-completed
-
-```java
-    MarkTrackingCompletedByIdRequest request = new MarkTrackingCompletedByIdRequest();
-    MarkTrackingCompletedByIdResponse response = TrackingResource.markTrackingCompletedById()
-        .setId("valid_value")
-        .setMarkTrackingCompletedByIdRequest(request)
-        .create();
-    System.out.println(response.getData());
-```
+- TrackingResource
+  - Get trackings
+  - Create a tracking
+  - Get a tracking by ID
+  - Update a tracking by ID
+  - Delete a tracking by ID
+  - Retrack an expired tracking by ID
+  - Mark tracking as completed by ID
 
 ### /couriers
 **GET** /couriers
@@ -327,6 +258,75 @@ The AfterShip SDK has the following resource which are exactly the same as the A
     PredictBatchRequest request = new PredictBatchRequest();
     PredictBatchResponse response = EstimatedDeliveryDateResource.predictBatch()
         .setPredictBatchRequest(request)
+        .create();
+    System.out.println(response.getData());
+```
+
+### /trackings
+**GET** /trackings
+
+```java
+    GetTrackingsResponse response = TrackingResource.getTrackings()
+        .fetch();
+    System.out.println(response.getData());
+```
+
+**POST** /trackings
+
+```java
+    CreateTrackingRequest request = new CreateTrackingRequest();
+    request.setTrackingNumber("valid_value");
+    CreateTrackingResponse response = TrackingResource.createTracking()
+        .setCreateTrackingRequest(request)
+        .create();
+    System.out.println(response.getData());
+```
+
+**GET** /trackings/{id}
+
+```java
+    GetTrackingByIdResponse response = TrackingResource.getTrackingById()
+        .setId("valid_value")
+        .fetch();
+    System.out.println(response.getData());
+```
+
+**PUT** /trackings/{id}
+
+```java
+    UpdateTrackingByIdRequest request = new UpdateTrackingByIdRequest();
+    UpdateTrackingByIdResponse response = TrackingResource.updateTrackingById()
+        .setId("valid_value")
+        .setUpdateTrackingByIdRequest(request)
+        .update();
+    System.out.println(response.getData());
+```
+
+**DELETE** /trackings/{id}
+
+```java
+    DeleteTrackingByIdResponse response = TrackingResource.deleteTrackingById()
+        .setId("valid_value")
+        .delete();
+    System.out.println(response.getData());
+```
+
+**POST** /trackings/{id}/retrack
+
+```java
+    RetrackTrackingByIdResponse response = TrackingResource.retrackTrackingById()
+        .setId("valid_value")
+        .create();
+    System.out.println(response.getData());
+```
+
+**POST** /trackings/{id}/mark-as-completed
+
+```java
+    MarkTrackingCompletedByIdRequest request = new MarkTrackingCompletedByIdRequest();
+    MarkTrackingCompletedByIdResponse response = TrackingResource.markTrackingCompletedById()
+        .setId("valid_value")
+        .setMarkTrackingCompletedByIdRequest(request)
         .create();
     System.out.println(response.getData());
 ```
