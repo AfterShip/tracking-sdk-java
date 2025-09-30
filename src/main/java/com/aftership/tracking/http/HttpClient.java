@@ -19,16 +19,18 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
 
+import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class HttpClient {
 
-    private static final String DEFAULT_USER_AGENT = "tracking-sdk-java/10.0.0 (https://www.aftership.com) apache-httpclient/4.5.14";
+    private static final String DEFAULT_USER_AGENT = "tracking-sdk-java/10.0.1 (https://www.aftership.com) apache-httpclient/4.5.14";
     protected final org.apache.http.client.HttpClient client;
 
     public HttpClient(final RequestConfig requestConfig, String userAgent) {
@@ -46,6 +48,9 @@ public class HttpClient {
         client = clientBuilder
                 .setDefaultHeaders(headers)
                 .setDefaultRequestConfig(requestConfig)
+                .setMaxConnPerRoute(20)
+                .setMaxConnTotal(100)
+                .setConnectionTimeToLive(300, TimeUnit.SECONDS).evictExpiredConnections()
                 .build();
     }
 
@@ -65,6 +70,17 @@ public class HttpClient {
                             ErrorEnum.TIMED_OUT.name(),
                             "Request timed out."
                     );
+                }
+            } catch (SocketException e) {
+                if (e.getMessage().equals("Connection reset")) {
+                    if (i > retries) {
+                        throw new ApiException(
+                                ErrorEnum.TIMED_OUT.name(),
+                                "Request timed out."
+                        );
+                    }
+                } else {
+                    throw e;
                 }
             } catch (Exception e) {
                 throw e;
@@ -115,7 +131,7 @@ public class HttpClient {
 
     private int delay(int retryAttempt) {
         int delayBase = 3;
-        int delay = delayBase * (2 ^ (retryAttempt - 1));
+        int delay = delayBase * (1 << (retryAttempt - 1));
         double jitter = delay * (Math.random() - 0.5);
         return (int) (Math.max(1, delay + jitter) * 1000);
     }
