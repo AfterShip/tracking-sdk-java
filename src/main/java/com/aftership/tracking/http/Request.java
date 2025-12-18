@@ -32,6 +32,7 @@ public class Request {
         URIBuilder validateURI = new URIBuilder(domain);
         uriBuilder.setHost(validateURI.getHost());
         uriBuilder.setScheme(validateURI.getScheme());
+        uriBuilder.setPort(validateURI.getPort());
     }
 
     public void setAuth(final String apiKey, final String apiSecret, final AuthType authenticationType) throws Exception {
