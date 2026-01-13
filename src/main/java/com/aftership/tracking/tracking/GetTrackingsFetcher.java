@@ -164,7 +164,7 @@ public class GetTrackingsFetcher extends Fetcher<GetTrackingsResponse> {
 
     @Override
     public GetTrackingsResponse fetch(AfterShipClient client) throws Exception {
-        String path = "/tracking/2025-07/trackings";
+        String path = "/tracking/2026-01/trackings";
         Request request = new Request(HttpMethod.GET, path);
         addQueryParams(request);
         setHeaderParams(request);

@@ -48,7 +48,7 @@ public class DeleteCourierConnectionsByIdDeleter extends Deleter<DeleteCourierCo
         if (id == null || id.isEmpty()) {
             throw new ApiException(ErrorEnum.BAD_REQUEST.name(), "Invalid request: `id` is invalid");
         }
-        String path = String.format("/tracking/2025-07/courier-connections/%s", id);
+        String path = String.format("/tracking/2026-01/courier-connections/%s", id);
         Request request = new Request(HttpMethod.DELETE, path);
         setHeaderParams(request);
         Response response = client.request(request);

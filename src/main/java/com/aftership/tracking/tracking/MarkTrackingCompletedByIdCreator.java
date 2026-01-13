@@ -55,7 +55,7 @@ public class MarkTrackingCompletedByIdCreator extends Creator<MarkTrackingComple
         if (id == null || id.isEmpty()) {
             throw new ApiException(ErrorEnum.BAD_REQUEST.name(), "Invalid request: `id` is invalid");
         }
-        String path = String.format("/tracking/2025-07/trackings/%s/mark-as-completed", id);
+        String path = String.format("/tracking/2026-01/trackings/%s/mark-as-completed", id);
         Request request = new Request(HttpMethod.POST, path);
         request.setBody((new Gson()).toJson(markTrackingCompletedByIdRequest));
 

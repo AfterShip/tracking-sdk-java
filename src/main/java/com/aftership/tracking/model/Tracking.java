@@ -120,9 +120,6 @@ public class Tracking extends Resource {
     @SerializedName("tracked_count")
     private Float trackedCount;
 
-    @SerializedName("last_mile_tracking_supported")
-    private Boolean lastMileTrackingSupported;
-
     @SerializedName("language")
     private String language;
 
@@ -142,7 +139,7 @@ public class Tracking extends Resource {
     private Boolean returnToSender;
 
     @SerializedName("order_promised_delivery_date")
-    private String orderPromisedDeliveryDate;
+    private TrackingOrderPromisedDeliveryDate orderPromisedDeliveryDate;
 
     @SerializedName("delivery_type")
     private String deliveryType;
@@ -530,14 +527,6 @@ public class Tracking extends Resource {
         this.trackedCount = trackedCount;
     }
 
-    public  Boolean getLastMileTrackingSupported() {
-        return lastMileTrackingSupported;
-    }
-
-    public void setLastMileTrackingSupported( Boolean lastMileTrackingSupported) {
-        this.lastMileTrackingSupported = lastMileTrackingSupported;
-    }
-
     public  String getLanguage() {
         return language;
     }
@@ -586,11 +575,11 @@ public class Tracking extends Resource {
         this.returnToSender = returnToSender;
     }
 
-    public  String getOrderPromisedDeliveryDate() {
+    public  TrackingOrderPromisedDeliveryDate getOrderPromisedDeliveryDate() {
         return orderPromisedDeliveryDate;
     }
 
-    public void setOrderPromisedDeliveryDate( String orderPromisedDeliveryDate) {
+    public void setOrderPromisedDeliveryDate( TrackingOrderPromisedDeliveryDate orderPromisedDeliveryDate) {
         this.orderPromisedDeliveryDate = orderPromisedDeliveryDate;
     }
 

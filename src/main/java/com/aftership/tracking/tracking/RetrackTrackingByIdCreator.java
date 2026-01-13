@@ -48,7 +48,7 @@ public class RetrackTrackingByIdCreator extends Creator<RetrackTrackingByIdRespo
         if (id == null || id.isEmpty()) {
             throw new ApiException(ErrorEnum.BAD_REQUEST.name(), "Invalid request: `id` is invalid");
         }
-        String path = String.format("/tracking/2025-07/trackings/%s/retrack", id);
+        String path = String.format("/tracking/2026-01/trackings/%s/retrack", id);
         Request request = new Request(HttpMethod.POST, path);
         setHeaderParams(request);
         Response response = client.request(request);

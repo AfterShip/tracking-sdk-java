@@ -27,8 +27,8 @@ public class Checkpoint extends Resource {
     @SerializedName("state")
     private String state;
 
-    @SerializedName("zip")
-    private String zip;
+    @SerializedName("postal_code")
+    private String postalCode;
 
     @SerializedName("coordinate")
     private CheckpointCoordinate coordinate;
@@ -108,12 +108,12 @@ public class Checkpoint extends Resource {
         this.state = state;
     }
 
-    public  String getZip() {
-        return zip;
+    public  String getPostalCode() {
+        return postalCode;
     }
 
-    public void setZip( String zip) {
-        this.zip = zip;
+    public void setPostalCode( String postalCode) {
+        this.postalCode = postalCode;
     }
 
     public  CheckpointCoordinate getCoordinate() {
