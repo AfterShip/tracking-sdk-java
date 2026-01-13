@@ -55,7 +55,7 @@ public class UpdateTrackingByIdUpdater extends Updater<UpdateTrackingByIdRespons
         if (id == null || id.isEmpty()) {
             throw new ApiException(ErrorEnum.BAD_REQUEST.name(), "Invalid request: `id` is invalid");
         }
-        String path = String.format("/tracking/2025-07/trackings/%s", id);
+        String path = String.format("/tracking/2026-01/trackings/%s", id);
         Request request = new Request(HttpMethod.PUT, path);
         request.setBody((new Gson()).toJson(updateTrackingByIdRequest));
 

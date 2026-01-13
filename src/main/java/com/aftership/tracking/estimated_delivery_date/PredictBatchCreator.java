@@ -45,7 +45,7 @@ public class PredictBatchCreator extends Creator<PredictBatchResponse> {
 
     @Override
     public PredictBatchResponse create(AfterShipClient client) throws Exception {
-        String path = "/tracking/2025-07/estimated-delivery-date/predict-batch";
+        String path = "/tracking/2026-01/estimated-delivery-date/predict-batch";
         Request request = new Request(HttpMethod.POST, path);
         request.setBody((new Gson()).toJson(predictBatchRequest));
 

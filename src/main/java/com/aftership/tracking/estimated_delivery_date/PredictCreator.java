@@ -45,7 +45,7 @@ public class PredictCreator extends Creator<PredictResponse> {
 
     @Override
     public PredictResponse create(AfterShipClient client) throws Exception {
-        String path = "/tracking/2025-07/estimated-delivery-date/predict";
+        String path = "/tracking/2026-01/estimated-delivery-date/predict";
         Request request = new Request(HttpMethod.POST, path);
         request.setBody((new Gson()).toJson(predictRequest));
 

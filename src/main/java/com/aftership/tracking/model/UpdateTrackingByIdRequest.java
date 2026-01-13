@@ -28,7 +28,7 @@ public class UpdateTrackingByIdRequest extends Resource {
     private String language;
 
     @SerializedName("order_promised_delivery_date")
-    private String orderPromisedDeliveryDate;
+    private UpdateTrackingByIdRequestOrderPromisedDeliveryDate orderPromisedDeliveryDate;
 
     @SerializedName("delivery_type")
     private UpdateTrackingByIdRequestDeliveryType deliveryType;
@@ -147,11 +147,11 @@ public class UpdateTrackingByIdRequest extends Resource {
         this.language = language;
     }
 
-    public  String getOrderPromisedDeliveryDate() {
+    public  UpdateTrackingByIdRequestOrderPromisedDeliveryDate getOrderPromisedDeliveryDate() {
         return orderPromisedDeliveryDate;
     }
 
-    public void setOrderPromisedDeliveryDate( String orderPromisedDeliveryDate) {
+    public void setOrderPromisedDeliveryDate( UpdateTrackingByIdRequestOrderPromisedDeliveryDate orderPromisedDeliveryDate) {
         this.orderPromisedDeliveryDate = orderPromisedDeliveryDate;
     }
 

@@ -31,7 +31,7 @@ public class DetectCourierRequest extends Resource {
     private String destinationState;
 
     @SerializedName("slug_group")
-    private SlugGroup slugGroup;
+    private String slugGroup;
 
     @SerializedName("origin_country_region")
     private String originCountryRegion;
@@ -95,11 +95,11 @@ public class DetectCourierRequest extends Resource {
         this.destinationState = destinationState;
     }
 
-    public  SlugGroup getSlugGroup() {
+    public  String getSlugGroup() {
         return slugGroup;
     }
 
-    public void setSlugGroup( SlugGroup slugGroup) {
+    public void setSlugGroup( String slugGroup) {
         this.slugGroup = slugGroup;
     }
 

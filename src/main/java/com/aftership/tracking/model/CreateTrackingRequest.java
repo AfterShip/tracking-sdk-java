@@ -34,13 +34,13 @@ public class CreateTrackingRequest extends Resource {
     private String language;
 
     @SerializedName("order_promised_delivery_date")
-    private String orderPromisedDeliveryDate;
-
-    @SerializedName("delivery_type")
-    private CreateTrackingRequestDeliveryType deliveryType;
+    private CreateTrackingRequestOrderPromisedDeliveryDate orderPromisedDeliveryDate;
 
     @SerializedName("pickup_location")
     private String pickupLocation;
+
+    @SerializedName("delivery_type")
+    private CreateTrackingRequestDeliveryType deliveryType;
 
     @SerializedName("pickup_note")
     private String pickupNote;
@@ -88,7 +88,7 @@ public class CreateTrackingRequest extends Resource {
     private String note;
 
     @SerializedName("slug_group")
-    private SlugGroup slugGroup;
+    private String slugGroup;
 
     @SerializedName("order_date")
     private String orderDate;
@@ -181,20 +181,12 @@ public class CreateTrackingRequest extends Resource {
         this.language = language;
     }
 
-    public  String getOrderPromisedDeliveryDate() {
+    public  CreateTrackingRequestOrderPromisedDeliveryDate getOrderPromisedDeliveryDate() {
         return orderPromisedDeliveryDate;
     }
 
-    public void setOrderPromisedDeliveryDate( String orderPromisedDeliveryDate) {
+    public void setOrderPromisedDeliveryDate( CreateTrackingRequestOrderPromisedDeliveryDate orderPromisedDeliveryDate) {
         this.orderPromisedDeliveryDate = orderPromisedDeliveryDate;
-    }
-
-    public  CreateTrackingRequestDeliveryType getDeliveryType() {
-        return deliveryType;
-    }
-
-    public void setDeliveryType( CreateTrackingRequestDeliveryType deliveryType) {
-        this.deliveryType = deliveryType;
     }
 
     public  String getPickupLocation() {
@@ -203,6 +195,14 @@ public class CreateTrackingRequest extends Resource {
 
     public void setPickupLocation( String pickupLocation) {
         this.pickupLocation = pickupLocation;
+    }
+
+    public  CreateTrackingRequestDeliveryType getDeliveryType() {
+        return deliveryType;
+    }
+
+    public void setDeliveryType( CreateTrackingRequestDeliveryType deliveryType) {
+        this.deliveryType = deliveryType;
     }
 
     public  String getPickupNote() {
@@ -325,11 +325,11 @@ public class CreateTrackingRequest extends Resource {
         this.note = note;
     }
 
-    public  SlugGroup getSlugGroup() {
+    public  String getSlugGroup() {
         return slugGroup;
     }
 
-    public void setSlugGroup( SlugGroup slugGroup) {
+    public void setSlugGroup( String slugGroup) {
         this.slugGroup = slugGroup;
     }
 

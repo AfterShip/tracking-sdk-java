@@ -59,7 +59,7 @@ public class GetCourierConnectionsFetcher extends Fetcher<GetCourierConnectionsR
 
     @Override
     public GetCourierConnectionsResponse fetch(AfterShipClient client) throws Exception {
-        String path = "/tracking/2025-07/courier-connections";
+        String path = "/tracking/2026-01/courier-connections";
         Request request = new Request(HttpMethod.GET, path);
         addQueryParams(request);
         setHeaderParams(request);
