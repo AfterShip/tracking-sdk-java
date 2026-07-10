@@ -8,65 +8,69 @@ import com.aftership.tracking.base.Updater;
 import com.aftership.tracking.constant.ErrorEnum;
 import com.aftership.tracking.exception.ApiException;
 import com.aftership.tracking.http.*;
+import com.aftership.tracking.http.Request;
+import com.aftership.tracking.model.CourierConnection;
+import com.aftership.tracking.model.PutCourierConnectionsByIdRequest;
+import com.aftership.tracking.model.PutCourierConnectionsByIdResponse;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.util.HashMap;
 import java.util.Map;
-import com.aftership.tracking.http.Request;
-import com.aftership.tracking.model.PutCourierConnectionsByIdResponse;
-import com.aftership.tracking.model.CourierConnection;
-import com.aftership.tracking.model.PutCourierConnectionsByIdRequest;
 
 public class PutCourierConnectionsByIdUpdater extends Updater<PutCourierConnectionsByIdResponse> {
-    private final Map<String, String> headerParams= new HashMap<>(8);
+  private final Map<String, String> headerParams = new HashMap<>(8);
 
-    public PutCourierConnectionsByIdUpdater addHeaderParam(final String name, final String value) {
-        if (value == null || value.equals("null")) {
-            return this;
-        }
-
-        if (!headerParams.containsKey(name)) {
-            headerParams.put(name, value);
-        }
-        return this;
+  public PutCourierConnectionsByIdUpdater addHeaderParam(final String name, final String value) {
+    if (value == null || value.equals("null")) {
+      return this;
     }
 
-    private void setHeaderParams(final Request request) {
-        for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
-            request.addHeaderParam(entry.getKey(), entry.getValue());
-        }
+    if (!headerParams.containsKey(name)) {
+      headerParams.put(name, value);
     }
-    private PutCourierConnectionsByIdRequest putCourierConnectionsByIdRequest;
+    return this;
+  }
 
-    public PutCourierConnectionsByIdUpdater setPutCourierConnectionsByIdRequest(PutCourierConnectionsByIdRequest putCourierConnectionsByIdRequest) {
-        this.putCourierConnectionsByIdRequest = putCourierConnectionsByIdRequest;
-        return this;
+  private void setHeaderParams(final Request request) {
+    for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
+      request.addHeaderParam(entry.getKey(), entry.getValue());
     }
-    private String id;
+  }
 
+  private PutCourierConnectionsByIdRequest putCourierConnectionsByIdRequest;
 
-    public PutCourierConnectionsByIdUpdater setId(String id) {
-        this.id = id;
-        return this;
+  public PutCourierConnectionsByIdUpdater setPutCourierConnectionsByIdRequest(
+      PutCourierConnectionsByIdRequest putCourierConnectionsByIdRequest) {
+    this.putCourierConnectionsByIdRequest = putCourierConnectionsByIdRequest;
+    return this;
+  }
+
+  private String id;
+
+  public PutCourierConnectionsByIdUpdater setId(String id) {
+    this.id = id;
+    return this;
+  }
+
+  @Override
+  public PutCourierConnectionsByIdResponse update(AfterShipClient client) throws Exception {
+    if (id == null || id.isEmpty()) {
+      throw new ApiException(ErrorEnum.BAD_REQUEST.name(), "Invalid request: `id` is invalid");
     }
+    String path = String.format("/tracking/2026-07/courier-connections/%s", id);
+    Request request = new Request(HttpMethod.PATCH, path);
+    request.setBody((new Gson()).toJson(putCourierConnectionsByIdRequest));
 
-    @Override
-    public PutCourierConnectionsByIdResponse update(AfterShipClient client) throws Exception {
-        if (id == null || id.isEmpty()) {
-            throw new ApiException(ErrorEnum.BAD_REQUEST.name(), "Invalid request: `id` is invalid");
-        }
-        String path = String.format("/tracking/2026-01/courier-connections/%s", id);
-        Request request = new Request(HttpMethod.PATCH, path);
-        request.setBody((new Gson()).toJson(putCourierConnectionsByIdRequest));
-
-        setHeaderParams(request);
-        Response response = client.request(request);
-        AfterShipResponse<CourierConnection> responseData = new Gson().fromJson(response.getContent(), new TypeToken<AfterShipResponse<CourierConnection>>() {
-            }.getType());
-        PutCourierConnectionsByIdResponse result = new PutCourierConnectionsByIdResponse();
-        result.setData(responseData.getData());
-        result.setResponseHeader(response.getResponseHeader());
-        return result;
-    }
-
+    setHeaderParams(request);
+    Response response = client.request(request);
+    AfterShipResponse<CourierConnection> responseData =
+        new Gson()
+            .fromJson(
+                response.getContent(),
+                new TypeToken<AfterShipResponse<CourierConnection>>() {}.getType());
+    PutCourierConnectionsByIdResponse result = new PutCourierConnectionsByIdResponse();
+    result.setData(responseData.getData());
+    result.setResponseHeader(response.getResponseHeader());
+    return result;
+  }
 }

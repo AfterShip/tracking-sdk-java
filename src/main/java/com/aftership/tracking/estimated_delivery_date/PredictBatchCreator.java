@@ -5,58 +5,59 @@
 package com.aftership.tracking.estimated_delivery_date;
 
 import com.aftership.tracking.base.Creator;
-import com.aftership.tracking.constant.ErrorEnum;
-import com.aftership.tracking.exception.ApiException;
 import com.aftership.tracking.http.*;
+import com.aftership.tracking.http.Request;
+import com.aftership.tracking.model.PredictBatchRequest;
+import com.aftership.tracking.model.PredictBatchResponse;
+import com.aftership.tracking.model.PredictBatchResponseData;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.util.HashMap;
 import java.util.Map;
-import com.aftership.tracking.http.Request;
-import com.aftership.tracking.model.PredictBatchResponse;
-import com.aftership.tracking.model.PredictBatchResponseData;
-import com.aftership.tracking.model.PredictBatchRequest;
 
 public class PredictBatchCreator extends Creator<PredictBatchResponse> {
-    private final Map<String, String> headerParams= new HashMap<>(8);
+  private final Map<String, String> headerParams = new HashMap<>(8);
 
-    public PredictBatchCreator addHeaderParam(final String name, final String value) {
-        if (value == null || value.equals("null")) {
-            return this;
-        }
-
-        if (!headerParams.containsKey(name)) {
-            headerParams.put(name, value);
-        }
-        return this;
+  public PredictBatchCreator addHeaderParam(final String name, final String value) {
+    if (value == null || value.equals("null")) {
+      return this;
     }
 
-    private void setHeaderParams(final Request request) {
-        for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
-            request.addHeaderParam(entry.getKey(), entry.getValue());
-        }
+    if (!headerParams.containsKey(name)) {
+      headerParams.put(name, value);
     }
-    private PredictBatchRequest predictBatchRequest;
+    return this;
+  }
 
-    public PredictBatchCreator setPredictBatchRequest(PredictBatchRequest predictBatchRequest) {
-        this.predictBatchRequest = predictBatchRequest;
-        return this;
+  private void setHeaderParams(final Request request) {
+    for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
+      request.addHeaderParam(entry.getKey(), entry.getValue());
     }
+  }
 
-    @Override
-    public PredictBatchResponse create(AfterShipClient client) throws Exception {
-        String path = "/tracking/2026-01/estimated-delivery-date/predict-batch";
-        Request request = new Request(HttpMethod.POST, path);
-        request.setBody((new Gson()).toJson(predictBatchRequest));
+  private PredictBatchRequest predictBatchRequest;
 
-        setHeaderParams(request);
-        Response response = client.request(request);
-        AfterShipResponse<PredictBatchResponseData> responseData = new Gson().fromJson(response.getContent(), new TypeToken<AfterShipResponse<PredictBatchResponseData>>() {
-            }.getType());
-        PredictBatchResponse result = new PredictBatchResponse();
-        result.setData(responseData.getData());
-        result.setResponseHeader(response.getResponseHeader());
-        return result;
-    }
+  public PredictBatchCreator setPredictBatchRequest(PredictBatchRequest predictBatchRequest) {
+    this.predictBatchRequest = predictBatchRequest;
+    return this;
+  }
 
+  @Override
+  public PredictBatchResponse create(AfterShipClient client) throws Exception {
+    String path = "/tracking/2026-07/estimated-delivery-date/predict-batch";
+    Request request = new Request(HttpMethod.POST, path);
+    request.setBody((new Gson()).toJson(predictBatchRequest));
+
+    setHeaderParams(request);
+    Response response = client.request(request);
+    AfterShipResponse<PredictBatchResponseData> responseData =
+        new Gson()
+            .fromJson(
+                response.getContent(),
+                new TypeToken<AfterShipResponse<PredictBatchResponseData>>() {}.getType());
+    PredictBatchResponse result = new PredictBatchResponse();
+    result.setData(responseData.getData());
+    result.setResponseHeader(response.getResponseHeader());
+    return result;
+  }
 }

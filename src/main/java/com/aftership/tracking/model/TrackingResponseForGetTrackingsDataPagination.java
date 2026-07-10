@@ -4,42 +4,41 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class TrackingResponseForGetTrackingsDataPagination extends Resource {
 
-    @SerializedName("total")
-    private Integer total;
+  @SerializedName("total")
+  private Integer total;
 
-    @SerializedName("next_cursor")
-    private String nextCursor;
+  @SerializedName("next_cursor")
+  private String nextCursor;
 
-    @SerializedName("has_next_page")
-    private Boolean hasNextPage;
+  @SerializedName("has_next_page")
+  private Boolean hasNextPage;
 
-    public  Integer getTotal() {
-        return total;
-    }
+  public Integer getTotal() {
+    return total;
+  }
 
-    public void setTotal( Integer total) {
-        this.total = total;
-    }
+  public void setTotal(Integer total) {
+    this.total = total;
+  }
 
-    public  String getNextCursor() {
-        return nextCursor;
-    }
+  public String getNextCursor() {
+    return nextCursor;
+  }
 
-    public void setNextCursor( String nextCursor) {
-        this.nextCursor = nextCursor;
-    }
+  public void setNextCursor(String nextCursor) {
+    this.nextCursor = nextCursor;
+  }
 
-    public  Boolean getHasNextPage() {
-        return hasNextPage;
-    }
+  public Boolean getHasNextPage() {
+    return hasNextPage;
+  }
 
-    public void setHasNextPage( Boolean hasNextPage) {
-        this.hasNextPage = hasNextPage;
-    }
-
+  public void setHasNextPage(Boolean hasNextPage) {
+    this.hasNextPage = hasNextPage;
+  }
 }

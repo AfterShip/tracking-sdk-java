@@ -6,6 +6,14 @@ package com.aftership.tracking.http;
 
 import com.aftership.tracking.constant.ErrorEnum;
 import com.aftership.tracking.exception.ApiException;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
+import java.net.URI;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
@@ -19,120 +27,108 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
 
-import java.net.SocketException;
-import java.net.SocketTimeoutException;
-import java.net.URI;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
 public class HttpClient {
 
-    private static final String DEFAULT_USER_AGENT = "tracking-sdk-java/11.0.0 (https://www.aftership.com) apache-httpclient/4.5.14";
-    protected final org.apache.http.client.HttpClient client;
+  private static final String DEFAULT_USER_AGENT =
+      "tracking-sdk-java/12.0.0 (https://www.aftership.com) apache-httpclient/4.5.14";
+  protected final org.apache.http.client.HttpClient client;
 
-    public HttpClient(final RequestConfig requestConfig, String userAgent) {
-        if (userAgent == null || userAgent.isEmpty()) {
-            userAgent = DEFAULT_USER_AGENT;
+  public HttpClient(final RequestConfig requestConfig, String userAgent) {
+    if (userAgent == null || userAgent.isEmpty()) {
+      userAgent = DEFAULT_USER_AGENT;
+    }
+    Collection<BasicHeader> headers =
+        Arrays.asList(
+            new BasicHeader(HttpHeaders.USER_AGENT, userAgent),
+            new BasicHeader("aftership-client", DEFAULT_USER_AGENT),
+            new BasicHeader(HttpHeaders.ACCEPT, "application/json"),
+            new BasicHeader(HttpHeaders.ACCEPT_ENCODING, "utf-8"),
+            new BasicHeader(HttpHeaders.CONTENT_TYPE, "application/json"));
+    HttpClientBuilder clientBuilder = HttpClientBuilder.create();
+    client =
+        clientBuilder
+            .setDefaultHeaders(headers)
+            .setDefaultRequestConfig(requestConfig)
+            .setMaxConnPerRoute(20)
+            .setMaxConnTotal(100)
+            .setConnectionTimeToLive(300, TimeUnit.SECONDS)
+            .evictExpiredConnections()
+            .build();
+  }
+
+  public Response request(final Request request, int retries) throws Exception {
+    Response response = null;
+    int i = 0;
+    while (i <= retries) {
+      try {
+        i++;
+        response = makeRequest(request);
+        if (!shouldRetry(response)) {
+          break;
         }
-        Collection<BasicHeader> headers = Arrays.asList(
-                new BasicHeader(HttpHeaders.USER_AGENT, userAgent),
-                new BasicHeader("aftership-client", DEFAULT_USER_AGENT),
-                new BasicHeader(HttpHeaders.ACCEPT, "application/json"),
-                new BasicHeader(HttpHeaders.ACCEPT_ENCODING, "utf-8"),
-                new BasicHeader(HttpHeaders.CONTENT_TYPE, "application/json")
-        );
-        HttpClientBuilder clientBuilder = HttpClientBuilder.create();
-        client = clientBuilder
-                .setDefaultHeaders(headers)
-                .setDefaultRequestConfig(requestConfig)
-                .setMaxConnPerRoute(20)
-                .setMaxConnTotal(100)
-                .setConnectionTimeToLive(300, TimeUnit.SECONDS).evictExpiredConnections()
-                .build();
-    }
-
-    public Response request(final Request request, int retries) throws Exception {
-        Response response = null;
-        int i = 0;
-        while (i <= retries) {
-            try {
-                i++;
-                response = makeRequest(request);
-                if (!shouldRetry(response)) {
-                    break;
-                }
-            } catch (SocketTimeoutException e) {
-                if (i > retries) {
-                    throw new ApiException(
-                            ErrorEnum.TIMED_OUT.name(),
-                            "Request timed out."
-                    );
-                }
-            } catch (SocketException e) {
-                if (e.getMessage().equals("Connection reset")) {
-                    if (i > retries) {
-                        throw new ApiException(
-                                ErrorEnum.TIMED_OUT.name(),
-                                "Request timed out."
-                        );
-                    }
-                } else {
-                    throw e;
-                }
-            } catch (Exception e) {
-                throw e;
-            }
-            Thread.sleep(delay(i));
+      } catch (SocketTimeoutException e) {
+        if (i > retries) {
+          throw new ApiException(ErrorEnum.TIMED_OUT.name(), "Request timed out.");
         }
-        return response;
-    }
-
-    private Response makeRequest(final Request request) throws Exception {
-        HttpResponse response = null;
-        try {
-            HttpMethod method = request.getMethod();
-            URI uri = request.getURI();
-            RequestBuilder builder = RequestBuilder.create(method.toString())
-                    .setUri(uri)
-                    .setVersion(HttpVersion.HTTP_1_1)
-                    .setCharset(StandardCharsets.UTF_8);
-            for (Map.Entry<String, String> entry : request.getHeaders().entrySet()) {
-                builder.addHeader(entry.getKey(), entry.getValue());
-            }
-            if (request.getBody() != null) {
-                HttpEntity entity = new StringEntity(request.getBody(), ContentType.APPLICATION_JSON);
-                builder.setEntity(entity);
-            }
-            
-            response = client.execute(builder.build());
-            HttpEntity entity = response.getEntity();
-            return new Response(
-                    EntityUtils.toString(entity),
-                    response.getStatusLine().getStatusCode(),
-                    false,
-                    response.getAllHeaders()
-            );
-        } finally {
-            if (response != null) {
-                HttpClientUtils.closeQuietly(response);
-            }
+      } catch (SocketException e) {
+        if (e.getMessage().equals("Connection reset")) {
+          if (i > retries) {
+            throw new ApiException(ErrorEnum.TIMED_OUT.name(), "Request timed out.");
+          }
+        } else {
+          throw e;
         }
+      } catch (Exception e) {
+        throw e;
+      }
+      Thread.sleep(delay(i));
     }
+    return response;
+  }
 
-    private boolean shouldRetry(Response response) {
-        if (response.isTimeout()) {
-            return true;
-        }
-        return response.getStatusCode() >= 500;
-    }
+  private Response makeRequest(final Request request) throws Exception {
+    HttpResponse response = null;
+    try {
+      HttpMethod method = request.getMethod();
+      URI uri = request.getURI();
+      RequestBuilder builder =
+          RequestBuilder.create(method.toString())
+              .setUri(uri)
+              .setVersion(HttpVersion.HTTP_1_1)
+              .setCharset(StandardCharsets.UTF_8);
+      for (Map.Entry<String, String> entry : request.getHeaders().entrySet()) {
+        builder.addHeader(entry.getKey(), entry.getValue());
+      }
+      if (request.getBody() != null) {
+        HttpEntity entity = new StringEntity(request.getBody(), ContentType.APPLICATION_JSON);
+        builder.setEntity(entity);
+      }
 
-    private int delay(int retryAttempt) {
-        int delayBase = 3;
-        int delay = delayBase * (1 << (retryAttempt - 1));
-        double jitter = delay * (Math.random() - 0.5);
-        return (int) (Math.max(1, delay + jitter) * 1000);
+      response = client.execute(builder.build());
+      HttpEntity entity = response.getEntity();
+      return new Response(
+          EntityUtils.toString(entity),
+          response.getStatusLine().getStatusCode(),
+          false,
+          response.getAllHeaders());
+    } finally {
+      if (response != null) {
+        HttpClientUtils.closeQuietly(response);
+      }
     }
+  }
+
+  private boolean shouldRetry(Response response) {
+    if (response.isTimeout()) {
+      return true;
+    }
+    return response.getStatusCode() >= 500;
+  }
+
+  private int delay(int retryAttempt) {
+    int delayBase = 3;
+    int delay = delayBase * (1 << (retryAttempt - 1));
+    double jitter = delay * (Math.random() - 0.5);
+    return (int) (Math.max(1, delay + jitter) * 1000);
+  }
 }

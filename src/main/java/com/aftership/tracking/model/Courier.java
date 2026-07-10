@@ -4,130 +4,129 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class Courier extends Resource {
 
-    @SerializedName("slug")
-    private String slug;
+  @SerializedName("slug")
+  private String slug;
 
-    @SerializedName("name")
-    private String name;
+  @SerializedName("name")
+  private String name;
 
-    @SerializedName("phone")
-    private String phone;
+  @SerializedName("phone")
+  private String phone;
 
-    @SerializedName("other_name")
-    private String otherName;
+  @SerializedName("other_name")
+  private String otherName;
 
-    @SerializedName("web_url")
-    private String webUrl;
+  @SerializedName("web_url")
+  private String webUrl;
 
-    @SerializedName("required_fields")
-    private java.util.List<AdditionalFields> requiredFields;
+  @SerializedName("required_fields")
+  private java.util.List<AdditionalFields> requiredFields;
 
-    @SerializedName("optional_fields")
-    private java.util.List<AdditionalFields> optionalFields;
+  @SerializedName("optional_fields")
+  private java.util.List<AdditionalFields> optionalFields;
 
-    @SerializedName("default_language")
-    private String defaultLanguage;
+  @SerializedName("default_language")
+  private String defaultLanguage;
 
-    @SerializedName("support_languages")
-    private java.util.List<String> supportLanguages;
+  @SerializedName("support_languages")
+  private java.util.List<String> supportLanguages;
 
-    @SerializedName("service_from_country_regions")
-    private java.util.List<String> serviceFromCountryRegions;
+  @SerializedName("service_from_country_regions")
+  private java.util.List<String> serviceFromCountryRegions;
 
-    @SerializedName("credentials")
-    private CourierCredentials credentials;
+  @SerializedName("credentials")
+  private CourierCredentials credentials;
 
-    public  String getSlug() {
-        return slug;
-    }
+  public String getSlug() {
+    return slug;
+  }
 
-    public void setSlug( String slug) {
-        this.slug = slug;
-    }
+  public void setSlug(String slug) {
+    this.slug = slug;
+  }
 
-    public  String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName( String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public  String getPhone() {
-        return phone;
-    }
+  public String getPhone() {
+    return phone;
+  }
 
-    public void setPhone( String phone) {
-        this.phone = phone;
-    }
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
 
-    public  String getOtherName() {
-        return otherName;
-    }
+  public String getOtherName() {
+    return otherName;
+  }
 
-    public void setOtherName( String otherName) {
-        this.otherName = otherName;
-    }
+  public void setOtherName(String otherName) {
+    this.otherName = otherName;
+  }
 
-    public  String getWebUrl() {
-        return webUrl;
-    }
+  public String getWebUrl() {
+    return webUrl;
+  }
 
-    public void setWebUrl( String webUrl) {
-        this.webUrl = webUrl;
-    }
+  public void setWebUrl(String webUrl) {
+    this.webUrl = webUrl;
+  }
 
-    public java.util.List<AdditionalFields>  getRequiredFields() {
-        return requiredFields;
-    }
+  public java.util.List<AdditionalFields> getRequiredFields() {
+    return requiredFields;
+  }
 
-    public void setRequiredFields(java.util.List<AdditionalFields>  requiredFields) {
-        this.requiredFields = requiredFields;
-    }
+  public void setRequiredFields(java.util.List<AdditionalFields> requiredFields) {
+    this.requiredFields = requiredFields;
+  }
 
-    public java.util.List<AdditionalFields>  getOptionalFields() {
-        return optionalFields;
-    }
+  public java.util.List<AdditionalFields> getOptionalFields() {
+    return optionalFields;
+  }
 
-    public void setOptionalFields(java.util.List<AdditionalFields>  optionalFields) {
-        this.optionalFields = optionalFields;
-    }
+  public void setOptionalFields(java.util.List<AdditionalFields> optionalFields) {
+    this.optionalFields = optionalFields;
+  }
 
-    public  String getDefaultLanguage() {
-        return defaultLanguage;
-    }
+  public String getDefaultLanguage() {
+    return defaultLanguage;
+  }
 
-    public void setDefaultLanguage( String defaultLanguage) {
-        this.defaultLanguage = defaultLanguage;
-    }
+  public void setDefaultLanguage(String defaultLanguage) {
+    this.defaultLanguage = defaultLanguage;
+  }
 
-    public java.util.List<String>  getSupportLanguages() {
-        return supportLanguages;
-    }
+  public java.util.List<String> getSupportLanguages() {
+    return supportLanguages;
+  }
 
-    public void setSupportLanguages(java.util.List<String>  supportLanguages) {
-        this.supportLanguages = supportLanguages;
-    }
+  public void setSupportLanguages(java.util.List<String> supportLanguages) {
+    this.supportLanguages = supportLanguages;
+  }
 
-    public java.util.List<String>  getServiceFromCountryRegions() {
-        return serviceFromCountryRegions;
-    }
+  public java.util.List<String> getServiceFromCountryRegions() {
+    return serviceFromCountryRegions;
+  }
 
-    public void setServiceFromCountryRegions(java.util.List<String>  serviceFromCountryRegions) {
-        this.serviceFromCountryRegions = serviceFromCountryRegions;
-    }
+  public void setServiceFromCountryRegions(java.util.List<String> serviceFromCountryRegions) {
+    this.serviceFromCountryRegions = serviceFromCountryRegions;
+  }
 
-    public  CourierCredentials getCredentials() {
-        return credentials;
-    }
+  public CourierCredentials getCredentials() {
+    return credentials;
+  }
 
-    public void setCredentials( CourierCredentials credentials) {
-        this.credentials = credentials;
-    }
-
+  public void setCredentials(CourierCredentials credentials) {
+    this.credentials = credentials;
+  }
 }

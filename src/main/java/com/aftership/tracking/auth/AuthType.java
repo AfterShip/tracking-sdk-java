@@ -5,17 +5,17 @@
 package com.aftership.tracking.auth;
 
 public enum AuthType {
-    APIKEY("API_KEY"),
-    AES("AES"),
-    RSA("RSA");
+  APIKEY("API_KEY"),
+  AES("AES"),
+  RSA("RSA");
 
-    private final String type;
+  private final String type;
 
-    AuthType(final String type) {
-        this.type = type;
-    }
+  AuthType(final String type) {
+    this.type = type;
+  }
 
-    public String toString() {
-        return type;
-    }
+  public String toString() {
+    return type;
+  }
 }

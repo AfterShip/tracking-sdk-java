@@ -6,37 +6,37 @@ package com.aftership.tracking.http;
 
 public class RateLimit {
 
-    private Long reset;
+  private Long reset;
 
-    private Integer limit;
+  private Integer limit;
 
-    private Integer remaining;
+  private Integer remaining;
 
-    public Long getReset() {
-        return reset;
-    }
+  public Long getReset() {
+    return reset;
+  }
 
-    public void setReset(Long reset) {
-        this.reset = reset;
-    }
+  public void setReset(Long reset) {
+    this.reset = reset;
+  }
 
-    public Integer getLimit() {
-        return limit;
-    }
+  public Integer getLimit() {
+    return limit;
+  }
 
-    public void setLimit(Integer limit) {
-        this.limit = limit;
-    }
+  public void setLimit(Integer limit) {
+    this.limit = limit;
+  }
 
-    public Integer getRemaining() {
-        return remaining;
-    }
+  public Integer getRemaining() {
+    return remaining;
+  }
 
-    public void setRemaining(Integer remaining) {
-        this.remaining = remaining;
-    }
+  public void setRemaining(Integer remaining) {
+    this.remaining = remaining;
+  }
 
-    public boolean isExceeded() {
-        return this.remaining <= 0 && this.reset >= (System.currentTimeMillis() / 1000L);
-    }
+  public boolean isExceeded() {
+    return this.remaining <= 0 && this.reset >= (System.currentTimeMillis() / 1000L);
+  }
 }

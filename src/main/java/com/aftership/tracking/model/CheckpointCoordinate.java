@@ -4,31 +4,30 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class CheckpointCoordinate extends Resource {
 
-    @SerializedName("latitude")
-    private Float latitude;
+  @SerializedName("latitude")
+  private Float latitude;
 
-    @SerializedName("longitude")
-    private Float longitude;
+  @SerializedName("longitude")
+  private Float longitude;
 
-    public  Float getLatitude() {
-        return latitude;
-    }
+  public Float getLatitude() {
+    return latitude;
+  }
 
-    public void setLatitude( Float latitude) {
-        this.latitude = latitude;
-    }
+  public void setLatitude(Float latitude) {
+    this.latitude = latitude;
+  }
 
-    public  Float getLongitude() {
-        return longitude;
-    }
+  public Float getLongitude() {
+    return longitude;
+  }
 
-    public void setLongitude( Float longitude) {
-        this.longitude = longitude;
-    }
-
+  public void setLongitude(Float longitude) {
+    this.longitude = longitude;
+  }
 }

@@ -4,20 +4,19 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class PutCourierConnectionsByIdRequest extends Resource {
 
-    @SerializedName("credentials")
-    private java.util.Map<String,String> credentials;
+  @SerializedName("credentials")
+  private java.util.Map<String, String> credentials;
 
-    public  java.util.Map<String,String> getCredentials() {
-        return credentials;
-    }
+  public java.util.Map<String, String> getCredentials() {
+    return credentials;
+  }
 
-    public void setCredentials( java.util.Map<String,String> credentials) {
-        this.credentials = credentials;
-    }
-
+  public void setCredentials(java.util.Map<String, String> credentials) {
+    this.credentials = credentials;
+  }
 }

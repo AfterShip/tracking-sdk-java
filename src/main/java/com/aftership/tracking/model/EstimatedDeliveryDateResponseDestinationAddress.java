@@ -4,64 +4,63 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class EstimatedDeliveryDateResponseDestinationAddress extends Resource {
 
-    @SerializedName("country_region")
-    private String countryRegion;
+  @SerializedName("country_region")
+  private String countryRegion;
 
-    @SerializedName("state")
-    private String state;
+  @SerializedName("state")
+  private String state;
 
-    @SerializedName("city")
-    private String city;
+  @SerializedName("city")
+  private String city;
 
-    @SerializedName("postal_code")
-    private String postalCode;
+  @SerializedName("postal_code")
+  private String postalCode;
 
-    @SerializedName("raw_location")
-    private String rawLocation;
+  @SerializedName("raw_location")
+  private String rawLocation;
 
-    public  String getCountryRegion() {
-        return countryRegion;
-    }
+  public String getCountryRegion() {
+    return countryRegion;
+  }
 
-    public void setCountryRegion( String countryRegion) {
-        this.countryRegion = countryRegion;
-    }
+  public void setCountryRegion(String countryRegion) {
+    this.countryRegion = countryRegion;
+  }
 
-    public  String getState() {
-        return state;
-    }
+  public String getState() {
+    return state;
+  }
 
-    public void setState( String state) {
-        this.state = state;
-    }
+  public void setState(String state) {
+    this.state = state;
+  }
 
-    public  String getCity() {
-        return city;
-    }
+  public String getCity() {
+    return city;
+  }
 
-    public void setCity( String city) {
-        this.city = city;
-    }
+  public void setCity(String city) {
+    this.city = city;
+  }
 
-    public  String getPostalCode() {
-        return postalCode;
-    }
+  public String getPostalCode() {
+    return postalCode;
+  }
 
-    public void setPostalCode( String postalCode) {
-        this.postalCode = postalCode;
-    }
+  public void setPostalCode(String postalCode) {
+    this.postalCode = postalCode;
+  }
 
-    public  String getRawLocation() {
-        return rawLocation;
-    }
+  public String getRawLocation() {
+    return rawLocation;
+  }
 
-    public void setRawLocation( String rawLocation) {
-        this.rawLocation = rawLocation;
-    }
-
+  public void setRawLocation(String rawLocation) {
+    this.rawLocation = rawLocation;
+  }
 }

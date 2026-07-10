@@ -5,58 +5,59 @@
 package com.aftership.tracking.estimated_delivery_date;
 
 import com.aftership.tracking.base.Creator;
-import com.aftership.tracking.constant.ErrorEnum;
-import com.aftership.tracking.exception.ApiException;
 import com.aftership.tracking.http.*;
+import com.aftership.tracking.http.Request;
+import com.aftership.tracking.model.EstimatedDeliveryDateRequest;
+import com.aftership.tracking.model.EstimatedDeliveryDateResponse;
+import com.aftership.tracking.model.PredictResponse;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.util.HashMap;
 import java.util.Map;
-import com.aftership.tracking.http.Request;
-import com.aftership.tracking.model.PredictResponse;
-import com.aftership.tracking.model.EstimatedDeliveryDateResponse;
-import com.aftership.tracking.model.EstimatedDeliveryDateRequest;
 
 public class PredictCreator extends Creator<PredictResponse> {
-    private final Map<String, String> headerParams= new HashMap<>(8);
+  private final Map<String, String> headerParams = new HashMap<>(8);
 
-    public PredictCreator addHeaderParam(final String name, final String value) {
-        if (value == null || value.equals("null")) {
-            return this;
-        }
-
-        if (!headerParams.containsKey(name)) {
-            headerParams.put(name, value);
-        }
-        return this;
+  public PredictCreator addHeaderParam(final String name, final String value) {
+    if (value == null || value.equals("null")) {
+      return this;
     }
 
-    private void setHeaderParams(final Request request) {
-        for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
-            request.addHeaderParam(entry.getKey(), entry.getValue());
-        }
+    if (!headerParams.containsKey(name)) {
+      headerParams.put(name, value);
     }
-    private EstimatedDeliveryDateRequest predictRequest;
+    return this;
+  }
 
-    public PredictCreator setPredictRequest(EstimatedDeliveryDateRequest predictRequest) {
-        this.predictRequest = predictRequest;
-        return this;
+  private void setHeaderParams(final Request request) {
+    for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
+      request.addHeaderParam(entry.getKey(), entry.getValue());
     }
+  }
 
-    @Override
-    public PredictResponse create(AfterShipClient client) throws Exception {
-        String path = "/tracking/2026-01/estimated-delivery-date/predict";
-        Request request = new Request(HttpMethod.POST, path);
-        request.setBody((new Gson()).toJson(predictRequest));
+  private EstimatedDeliveryDateRequest predictRequest;
 
-        setHeaderParams(request);
-        Response response = client.request(request);
-        AfterShipResponse<EstimatedDeliveryDateResponse> responseData = new Gson().fromJson(response.getContent(), new TypeToken<AfterShipResponse<EstimatedDeliveryDateResponse>>() {
-            }.getType());
-        PredictResponse result = new PredictResponse();
-        result.setData(responseData.getData());
-        result.setResponseHeader(response.getResponseHeader());
-        return result;
-    }
+  public PredictCreator setPredictRequest(EstimatedDeliveryDateRequest predictRequest) {
+    this.predictRequest = predictRequest;
+    return this;
+  }
 
+  @Override
+  public PredictResponse create(AfterShipClient client) throws Exception {
+    String path = "/tracking/2026-07/estimated-delivery-date/predict";
+    Request request = new Request(HttpMethod.POST, path);
+    request.setBody((new Gson()).toJson(predictRequest));
+
+    setHeaderParams(request);
+    Response response = client.request(request);
+    AfterShipResponse<EstimatedDeliveryDateResponse> responseData =
+        new Gson()
+            .fromJson(
+                response.getContent(),
+                new TypeToken<AfterShipResponse<EstimatedDeliveryDateResponse>>() {}.getType());
+    PredictResponse result = new PredictResponse();
+    result.setData(responseData.getData());
+    result.setResponseHeader(response.getResponseHeader());
+    return result;
+  }
 }

@@ -7,10 +7,11 @@ package com.aftership.tracking.estimated_delivery_date;
 import com.aftership.tracking.base.Resource;
 
 public class EstimatedDeliveryDateResource extends Resource {
-    public static PredictCreator predict() {
-        return new PredictCreator();
-    }
-    public static PredictBatchCreator predictBatch() {
-        return new PredictBatchCreator();
-    }
+  public static PredictCreator predict() {
+    return new PredictCreator();
+  }
+
+  public static PredictBatchCreator predictBatch() {
+    return new PredictBatchCreator();
+  }
 }

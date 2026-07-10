@@ -4,31 +4,30 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class MarkTrackingCompletedByIdRequest extends Resource {
 
-    @SerializedName("reason")
-    private MarkTrackingCompletedByIdRequestReason reason;
+  @SerializedName("reason")
+  private MarkTrackingCompletedByIdRequestReason reason;
 
-    @SerializedName("event_datetime")
-    private String eventDatetime;
+  @SerializedName("event_datetime")
+  private String eventDatetime;
 
-    public  MarkTrackingCompletedByIdRequestReason getReason() {
-        return reason;
-    }
+  public MarkTrackingCompletedByIdRequestReason getReason() {
+    return reason;
+  }
 
-    public void setReason( MarkTrackingCompletedByIdRequestReason reason) {
-        this.reason = reason;
-    }
+  public void setReason(MarkTrackingCompletedByIdRequestReason reason) {
+    this.reason = reason;
+  }
 
-    public  String getEventDatetime() {
-        return eventDatetime;
-    }
+  public String getEventDatetime() {
+    return eventDatetime;
+  }
 
-    public void setEventDatetime( String eventDatetime) {
-        this.eventDatetime = eventDatetime;
-    }
-
+  public void setEventDatetime(String eventDatetime) {
+    this.eventDatetime = eventDatetime;
+  }
 }

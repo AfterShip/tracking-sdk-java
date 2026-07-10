@@ -5,232 +5,234 @@
 package com.aftership.tracking.tracking;
 
 import com.aftership.tracking.base.Fetcher;
-import com.aftership.tracking.constant.ErrorEnum;
-import com.aftership.tracking.exception.ApiException;
 import com.aftership.tracking.http.*;
+import com.aftership.tracking.http.Request;
+import com.aftership.tracking.model.GetTrackingsResponse;
+import com.aftership.tracking.model.GetTrackingsResponseData;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.util.HashMap;
 import java.util.Map;
-import com.aftership.tracking.http.Request;
-import com.aftership.tracking.model.GetTrackingsResponse;
-import com.aftership.tracking.model.GetTrackingsResponseData;
 
 public class GetTrackingsFetcher extends Fetcher<GetTrackingsResponse> {
-    private final Map<String, String> headerParams= new HashMap<>(8);
+  private final Map<String, String> headerParams = new HashMap<>(8);
 
-    public GetTrackingsFetcher addHeaderParam(final String name, final String value) {
-        if (value == null || value.equals("null")) {
-            return this;
-        }
-
-        if (!headerParams.containsKey(name)) {
-            headerParams.put(name, value);
-        }
-        return this;
+  public GetTrackingsFetcher addHeaderParam(final String name, final String value) {
+    if (value == null || value.equals("null")) {
+      return this;
     }
 
-    private void setHeaderParams(final Request request) {
-        for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
-            request.addHeaderParam(entry.getKey(), entry.getValue());
-        }
+    if (!headerParams.containsKey(name)) {
+      headerParams.put(name, value);
     }
-     private String cursor;
+    return this;
+  }
 
-     private Integer limit;
-
-     private String keyword;
-
-     private String trackingNumbers;
-
-     private String slug;
-
-     private Integer transitTime;
-
-     private String origin;
-
-     private String destination;
-
-     private String tag;
-
-     private String createdAtMin;
-
-     private String createdAtMax;
-
-     private String updatedAtMin;
-
-     private String updatedAtMax;
-
-     private String fields;
-
-     private String returnToSender;
-
-     private String courierDestinationCountryRegion;
-
-     private String shipmentTags;
-
-     private String orderId;
-
-
-    public GetTrackingsFetcher setCursor(String cursor) {
-        this.cursor = cursor;
-        return this;
+  private void setHeaderParams(final Request request) {
+    for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
+      request.addHeaderParam(entry.getKey(), entry.getValue());
     }
+  }
 
-    public GetTrackingsFetcher setLimit(Integer limit) {
-        this.limit = limit;
-        return this;
-    }
+  private String cursor;
 
-    public GetTrackingsFetcher setKeyword(String keyword) {
-        this.keyword = keyword;
-        return this;
-    }
+  private Integer limit;
 
-    public GetTrackingsFetcher setTrackingNumbers(String trackingNumbers) {
-        this.trackingNumbers = trackingNumbers;
-        return this;
-    }
+  private String keyword;
 
-    public GetTrackingsFetcher setSlug(String slug) {
-        this.slug = slug;
-        return this;
-    }
+  private String trackingNumbers;
 
-    public GetTrackingsFetcher setTransitTime(Integer transitTime) {
-        this.transitTime = transitTime;
-        return this;
-    }
+  private String slug;
 
-    public GetTrackingsFetcher setOrigin(String origin) {
-        this.origin = origin;
-        return this;
-    }
+  private Integer transitTime;
 
-    public GetTrackingsFetcher setDestination(String destination) {
-        this.destination = destination;
-        return this;
-    }
+  private String origin;
 
-    public GetTrackingsFetcher setTag(String tag) {
-        this.tag = tag;
-        return this;
-    }
+  private String destination;
 
-    public GetTrackingsFetcher setCreatedAtMin(String createdAtMin) {
-        this.createdAtMin = createdAtMin;
-        return this;
-    }
+  private String tag;
 
-    public GetTrackingsFetcher setCreatedAtMax(String createdAtMax) {
-        this.createdAtMax = createdAtMax;
-        return this;
-    }
+  private String createdAtMin;
 
-    public GetTrackingsFetcher setUpdatedAtMin(String updatedAtMin) {
-        this.updatedAtMin = updatedAtMin;
-        return this;
-    }
+  private String createdAtMax;
 
-    public GetTrackingsFetcher setUpdatedAtMax(String updatedAtMax) {
-        this.updatedAtMax = updatedAtMax;
-        return this;
-    }
+  private String updatedAtMin;
 
-    public GetTrackingsFetcher setFields(String fields) {
-        this.fields = fields;
-        return this;
-    }
+  private String updatedAtMax;
 
-    public GetTrackingsFetcher setReturnToSender(String returnToSender) {
-        this.returnToSender = returnToSender;
-        return this;
-    }
+  private String fields;
 
-    public GetTrackingsFetcher setCourierDestinationCountryRegion(String courierDestinationCountryRegion) {
-        this.courierDestinationCountryRegion = courierDestinationCountryRegion;
-        return this;
-    }
+  private String returnToSender;
 
-    public GetTrackingsFetcher setShipmentTags(String shipmentTags) {
-        this.shipmentTags = shipmentTags;
-        return this;
-    }
+  private String courierDestinationCountryRegion;
 
-    public GetTrackingsFetcher setOrderId(String orderId) {
-        this.orderId = orderId;
-        return this;
-    }
+  private String shipmentTags;
 
-    @Override
-    public GetTrackingsResponse fetch(AfterShipClient client) throws Exception {
-        String path = "/tracking/2026-01/trackings";
-        Request request = new Request(HttpMethod.GET, path);
-        addQueryParams(request);
-        setHeaderParams(request);
-        Response response = client.request(request);
-        AfterShipResponse<GetTrackingsResponseData> responseData = new Gson().fromJson(response.getContent(), new TypeToken<AfterShipResponse<GetTrackingsResponseData>>() {
-            }.getType());
-        GetTrackingsResponse result = new GetTrackingsResponse();
-        result.setData(responseData.getData());
-        result.setResponseHeader(response.getResponseHeader());
-        return result;
-    }
+  private String orderId;
 
-    private void addQueryParams(final Request request) {
-        if (cursor != null) {
-            request.addQueryParam("cursor", cursor);
-        }
-        if (limit != null && limit > 0) {
-            request.addQueryParam("limit", String.valueOf(limit));
-        }
-        if (keyword != null) {
-            request.addQueryParam("keyword", keyword);
-        }
-        if (trackingNumbers != null) {
-            request.addQueryParam("tracking_numbers", trackingNumbers);
-        }
-        if (slug != null) {
-            request.addQueryParam("slug", slug);
-        }
-        if (transitTime != null && transitTime > 0) {
-            request.addQueryParam("transit_time", String.valueOf(transitTime));
-        }
-        if (origin != null) {
-            request.addQueryParam("origin", origin);
-        }
-        if (destination != null) {
-            request.addQueryParam("destination", destination);
-        }
-        if (tag != null) {
-            request.addQueryParam("tag", tag);
-        }
-        if (createdAtMin != null) {
-            request.addQueryParam("created_at_min", createdAtMin);
-        }
-        if (createdAtMax != null) {
-            request.addQueryParam("created_at_max", createdAtMax);
-        }
-        if (updatedAtMin != null) {
-            request.addQueryParam("updated_at_min", updatedAtMin);
-        }
-        if (updatedAtMax != null) {
-            request.addQueryParam("updated_at_max", updatedAtMax);
-        }
-        if (fields != null) {
-            request.addQueryParam("fields", fields);
-        }
-        if (returnToSender != null) {
-            request.addQueryParam("return_to_sender", returnToSender);
-        }
-        if (courierDestinationCountryRegion != null) {
-            request.addQueryParam("courier_destination_country_region", courierDestinationCountryRegion);
-        }
-        if (shipmentTags != null) {
-            request.addQueryParam("shipment_tags", shipmentTags);
-        }
-        if (orderId != null) {
-            request.addQueryParam("order_id", orderId);
-        }
+  public GetTrackingsFetcher setCursor(String cursor) {
+    this.cursor = cursor;
+    return this;
+  }
+
+  public GetTrackingsFetcher setLimit(Integer limit) {
+    this.limit = limit;
+    return this;
+  }
+
+  public GetTrackingsFetcher setKeyword(String keyword) {
+    this.keyword = keyword;
+    return this;
+  }
+
+  public GetTrackingsFetcher setTrackingNumbers(String trackingNumbers) {
+    this.trackingNumbers = trackingNumbers;
+    return this;
+  }
+
+  public GetTrackingsFetcher setSlug(String slug) {
+    this.slug = slug;
+    return this;
+  }
+
+  public GetTrackingsFetcher setTransitTime(Integer transitTime) {
+    this.transitTime = transitTime;
+    return this;
+  }
+
+  public GetTrackingsFetcher setOrigin(String origin) {
+    this.origin = origin;
+    return this;
+  }
+
+  public GetTrackingsFetcher setDestination(String destination) {
+    this.destination = destination;
+    return this;
+  }
+
+  public GetTrackingsFetcher setTag(String tag) {
+    this.tag = tag;
+    return this;
+  }
+
+  public GetTrackingsFetcher setCreatedAtMin(String createdAtMin) {
+    this.createdAtMin = createdAtMin;
+    return this;
+  }
+
+  public GetTrackingsFetcher setCreatedAtMax(String createdAtMax) {
+    this.createdAtMax = createdAtMax;
+    return this;
+  }
+
+  public GetTrackingsFetcher setUpdatedAtMin(String updatedAtMin) {
+    this.updatedAtMin = updatedAtMin;
+    return this;
+  }
+
+  public GetTrackingsFetcher setUpdatedAtMax(String updatedAtMax) {
+    this.updatedAtMax = updatedAtMax;
+    return this;
+  }
+
+  public GetTrackingsFetcher setFields(String fields) {
+    this.fields = fields;
+    return this;
+  }
+
+  public GetTrackingsFetcher setReturnToSender(String returnToSender) {
+    this.returnToSender = returnToSender;
+    return this;
+  }
+
+  public GetTrackingsFetcher setCourierDestinationCountryRegion(
+      String courierDestinationCountryRegion) {
+    this.courierDestinationCountryRegion = courierDestinationCountryRegion;
+    return this;
+  }
+
+  public GetTrackingsFetcher setShipmentTags(String shipmentTags) {
+    this.shipmentTags = shipmentTags;
+    return this;
+  }
+
+  public GetTrackingsFetcher setOrderId(String orderId) {
+    this.orderId = orderId;
+    return this;
+  }
+
+  @Override
+  public GetTrackingsResponse fetch(AfterShipClient client) throws Exception {
+    String path = "/tracking/2026-07/trackings";
+    Request request = new Request(HttpMethod.GET, path);
+    addQueryParams(request);
+    setHeaderParams(request);
+    Response response = client.request(request);
+    AfterShipResponse<GetTrackingsResponseData> responseData =
+        new Gson()
+            .fromJson(
+                response.getContent(),
+                new TypeToken<AfterShipResponse<GetTrackingsResponseData>>() {}.getType());
+    GetTrackingsResponse result = new GetTrackingsResponse();
+    result.setData(responseData.getData());
+    result.setResponseHeader(response.getResponseHeader());
+    return result;
+  }
+
+  private void addQueryParams(final Request request) {
+    if (cursor != null) {
+      request.addQueryParam("cursor", cursor);
     }
+    if (limit != null && limit > 0) {
+      request.addQueryParam("limit", String.valueOf(limit));
+    }
+    if (keyword != null) {
+      request.addQueryParam("keyword", keyword);
+    }
+    if (trackingNumbers != null) {
+      request.addQueryParam("tracking_numbers", trackingNumbers);
+    }
+    if (slug != null) {
+      request.addQueryParam("slug", slug);
+    }
+    if (transitTime != null && transitTime > 0) {
+      request.addQueryParam("transit_time", String.valueOf(transitTime));
+    }
+    if (origin != null) {
+      request.addQueryParam("origin", origin);
+    }
+    if (destination != null) {
+      request.addQueryParam("destination", destination);
+    }
+    if (tag != null) {
+      request.addQueryParam("tag", tag);
+    }
+    if (createdAtMin != null) {
+      request.addQueryParam("created_at_min", createdAtMin);
+    }
+    if (createdAtMax != null) {
+      request.addQueryParam("created_at_max", createdAtMax);
+    }
+    if (updatedAtMin != null) {
+      request.addQueryParam("updated_at_min", updatedAtMin);
+    }
+    if (updatedAtMax != null) {
+      request.addQueryParam("updated_at_max", updatedAtMax);
+    }
+    if (fields != null) {
+      request.addQueryParam("fields", fields);
+    }
+    if (returnToSender != null) {
+      request.addQueryParam("return_to_sender", returnToSender);
+    }
+    if (courierDestinationCountryRegion != null) {
+      request.addQueryParam("courier_destination_country_region", courierDestinationCountryRegion);
+    }
+    if (shipmentTags != null) {
+      request.addQueryParam("shipment_tags", shipmentTags);
+    }
+    if (orderId != null) {
+      request.addQueryParam("order_id", orderId);
+    }
+  }
 }

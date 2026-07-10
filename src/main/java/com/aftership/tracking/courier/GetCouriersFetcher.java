@@ -5,72 +5,73 @@
 package com.aftership.tracking.courier;
 
 import com.aftership.tracking.base.Fetcher;
-import com.aftership.tracking.constant.ErrorEnum;
-import com.aftership.tracking.exception.ApiException;
 import com.aftership.tracking.http.*;
+import com.aftership.tracking.http.Request;
+import com.aftership.tracking.model.GetCouriersResponse;
+import com.aftership.tracking.model.GetCouriersResponseData;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.util.HashMap;
 import java.util.Map;
-import com.aftership.tracking.http.Request;
-import com.aftership.tracking.model.GetCouriersResponse;
-import com.aftership.tracking.model.GetCouriersResponseData;
 
 public class GetCouriersFetcher extends Fetcher<GetCouriersResponse> {
-    private final Map<String, String> headerParams= new HashMap<>(8);
+  private final Map<String, String> headerParams = new HashMap<>(8);
 
-    public GetCouriersFetcher addHeaderParam(final String name, final String value) {
-        if (value == null || value.equals("null")) {
-            return this;
-        }
-
-        if (!headerParams.containsKey(name)) {
-            headerParams.put(name, value);
-        }
-        return this;
+  public GetCouriersFetcher addHeaderParam(final String name, final String value) {
+    if (value == null || value.equals("null")) {
+      return this;
     }
 
-    private void setHeaderParams(final Request request) {
-        for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
-            request.addHeaderParam(entry.getKey(), entry.getValue());
-        }
+    if (!headerParams.containsKey(name)) {
+      headerParams.put(name, value);
     }
-     private Boolean active;
+    return this;
+  }
 
-     private String slug;
-
-
-    public GetCouriersFetcher setActive(Boolean active) {
-        this.active = active;
-        return this;
+  private void setHeaderParams(final Request request) {
+    for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
+      request.addHeaderParam(entry.getKey(), entry.getValue());
     }
+  }
 
-    public GetCouriersFetcher setSlug(String slug) {
-        this.slug = slug;
-        return this;
-    }
+  private Boolean active;
 
-    @Override
-    public GetCouriersResponse fetch(AfterShipClient client) throws Exception {
-        String path = "/tracking/2026-01/couriers";
-        Request request = new Request(HttpMethod.GET, path);
-        addQueryParams(request);
-        setHeaderParams(request);
-        Response response = client.request(request);
-        AfterShipResponse<GetCouriersResponseData> responseData = new Gson().fromJson(response.getContent(), new TypeToken<AfterShipResponse<GetCouriersResponseData>>() {
-            }.getType());
-        GetCouriersResponse result = new GetCouriersResponse();
-        result.setData(responseData.getData());
-        result.setResponseHeader(response.getResponseHeader());
-        return result;
-    }
+  private String slug;
 
-    private void addQueryParams(final Request request) {
-        if (active != null) {
-            request.addQueryParam("active", String.valueOf(active));
-        }
-        if (slug != null) {
-            request.addQueryParam("slug", slug);
-        }
+  public GetCouriersFetcher setActive(Boolean active) {
+    this.active = active;
+    return this;
+  }
+
+  public GetCouriersFetcher setSlug(String slug) {
+    this.slug = slug;
+    return this;
+  }
+
+  @Override
+  public GetCouriersResponse fetch(AfterShipClient client) throws Exception {
+    String path = "/tracking/2026-07/couriers";
+    Request request = new Request(HttpMethod.GET, path);
+    addQueryParams(request);
+    setHeaderParams(request);
+    Response response = client.request(request);
+    AfterShipResponse<GetCouriersResponseData> responseData =
+        new Gson()
+            .fromJson(
+                response.getContent(),
+                new TypeToken<AfterShipResponse<GetCouriersResponseData>>() {}.getType());
+    GetCouriersResponse result = new GetCouriersResponse();
+    result.setData(responseData.getData());
+    result.setResponseHeader(response.getResponseHeader());
+    return result;
+  }
+
+  private void addQueryParams(final Request request) {
+    if (active != null) {
+      request.addQueryParam("active", String.valueOf(active));
     }
+    if (slug != null) {
+      request.addQueryParam("slug", slug);
+    }
+  }
 }

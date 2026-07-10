@@ -4,20 +4,20 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class PredictBatchResponseData extends Resource {
 
-    @SerializedName("estimated_delivery_dates")
-    private java.util.List<EstimatedDeliveryDateResponse> estimatedDeliveryDates;
+  @SerializedName("estimated_delivery_dates")
+  private java.util.List<EstimatedDeliveryDateResponse> estimatedDeliveryDates;
 
-    public java.util.List<EstimatedDeliveryDateResponse>  getEstimatedDeliveryDates() {
-        return estimatedDeliveryDates;
-    }
+  public java.util.List<EstimatedDeliveryDateResponse> getEstimatedDeliveryDates() {
+    return estimatedDeliveryDates;
+  }
 
-    public void setEstimatedDeliveryDates(java.util.List<EstimatedDeliveryDateResponse>  estimatedDeliveryDates) {
-        this.estimatedDeliveryDates = estimatedDeliveryDates;
-    }
-
+  public void setEstimatedDeliveryDates(
+      java.util.List<EstimatedDeliveryDateResponse> estimatedDeliveryDates) {
+    this.estimatedDeliveryDates = estimatedDeliveryDates;
+  }
 }

@@ -4,42 +4,41 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class CredentialField extends Resource {
 
-    @SerializedName("name")
-    private String name;
+  @SerializedName("name")
+  private String name;
 
-    @SerializedName("type")
-    private String type;
+  @SerializedName("type")
+  private String type;
 
-    @SerializedName("required")
-    private Boolean required;
+  @SerializedName("required")
+  private Boolean required;
 
-    public  String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName( String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public  String getType() {
-        return type;
-    }
+  public String getType() {
+    return type;
+  }
 
-    public void setType( String type) {
-        this.type = type;
-    }
+  public void setType(String type) {
+    this.type = type;
+  }
 
-    public  Boolean getRequired() {
-        return required;
-    }
+  public Boolean getRequired() {
+    return required;
+  }
 
-    public void setRequired( Boolean required) {
-        this.required = required;
-    }
-
+  public void setRequired(Boolean required) {
+    this.required = required;
+  }
 }

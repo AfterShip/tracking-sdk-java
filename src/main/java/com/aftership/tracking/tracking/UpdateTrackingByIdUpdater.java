@@ -8,65 +8,68 @@ import com.aftership.tracking.base.Updater;
 import com.aftership.tracking.constant.ErrorEnum;
 import com.aftership.tracking.exception.ApiException;
 import com.aftership.tracking.http.*;
+import com.aftership.tracking.http.Request;
+import com.aftership.tracking.model.Tracking;
+import com.aftership.tracking.model.UpdateTrackingByIdRequest;
+import com.aftership.tracking.model.UpdateTrackingByIdResponse;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.util.HashMap;
 import java.util.Map;
-import com.aftership.tracking.http.Request;
-import com.aftership.tracking.model.UpdateTrackingByIdResponse;
-import com.aftership.tracking.model.Tracking;
-import com.aftership.tracking.model.UpdateTrackingByIdRequest;
 
 public class UpdateTrackingByIdUpdater extends Updater<UpdateTrackingByIdResponse> {
-    private final Map<String, String> headerParams= new HashMap<>(8);
+  private final Map<String, String> headerParams = new HashMap<>(8);
 
-    public UpdateTrackingByIdUpdater addHeaderParam(final String name, final String value) {
-        if (value == null || value.equals("null")) {
-            return this;
-        }
-
-        if (!headerParams.containsKey(name)) {
-            headerParams.put(name, value);
-        }
-        return this;
+  public UpdateTrackingByIdUpdater addHeaderParam(final String name, final String value) {
+    if (value == null || value.equals("null")) {
+      return this;
     }
 
-    private void setHeaderParams(final Request request) {
-        for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
-            request.addHeaderParam(entry.getKey(), entry.getValue());
-        }
+    if (!headerParams.containsKey(name)) {
+      headerParams.put(name, value);
     }
-    private UpdateTrackingByIdRequest updateTrackingByIdRequest;
+    return this;
+  }
 
-    public UpdateTrackingByIdUpdater setUpdateTrackingByIdRequest(UpdateTrackingByIdRequest updateTrackingByIdRequest) {
-        this.updateTrackingByIdRequest = updateTrackingByIdRequest;
-        return this;
+  private void setHeaderParams(final Request request) {
+    for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
+      request.addHeaderParam(entry.getKey(), entry.getValue());
     }
-    private String id;
+  }
 
+  private UpdateTrackingByIdRequest updateTrackingByIdRequest;
 
-    public UpdateTrackingByIdUpdater setId(String id) {
-        this.id = id;
-        return this;
+  public UpdateTrackingByIdUpdater setUpdateTrackingByIdRequest(
+      UpdateTrackingByIdRequest updateTrackingByIdRequest) {
+    this.updateTrackingByIdRequest = updateTrackingByIdRequest;
+    return this;
+  }
+
+  private String id;
+
+  public UpdateTrackingByIdUpdater setId(String id) {
+    this.id = id;
+    return this;
+  }
+
+  @Override
+  public UpdateTrackingByIdResponse update(AfterShipClient client) throws Exception {
+    if (id == null || id.isEmpty()) {
+      throw new ApiException(ErrorEnum.BAD_REQUEST.name(), "Invalid request: `id` is invalid");
     }
+    String path = String.format("/tracking/2026-07/trackings/%s", id);
+    Request request = new Request(HttpMethod.PUT, path);
+    request.setBody((new Gson()).toJson(updateTrackingByIdRequest));
 
-    @Override
-    public UpdateTrackingByIdResponse update(AfterShipClient client) throws Exception {
-        if (id == null || id.isEmpty()) {
-            throw new ApiException(ErrorEnum.BAD_REQUEST.name(), "Invalid request: `id` is invalid");
-        }
-        String path = String.format("/tracking/2026-01/trackings/%s", id);
-        Request request = new Request(HttpMethod.PUT, path);
-        request.setBody((new Gson()).toJson(updateTrackingByIdRequest));
-
-        setHeaderParams(request);
-        Response response = client.request(request);
-        AfterShipResponse<Tracking> responseData = new Gson().fromJson(response.getContent(), new TypeToken<AfterShipResponse<Tracking>>() {
-            }.getType());
-        UpdateTrackingByIdResponse result = new UpdateTrackingByIdResponse();
-        result.setData(responseData.getData());
-        result.setResponseHeader(response.getResponseHeader());
-        return result;
-    }
-
+    setHeaderParams(request);
+    Response response = client.request(request);
+    AfterShipResponse<Tracking> responseData =
+        new Gson()
+            .fromJson(
+                response.getContent(), new TypeToken<AfterShipResponse<Tracking>>() {}.getType());
+    UpdateTrackingByIdResponse result = new UpdateTrackingByIdResponse();
+    result.setData(responseData.getData());
+    result.setResponseHeader(response.getResponseHeader());
+    return result;
+  }
 }

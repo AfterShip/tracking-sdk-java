@@ -4,64 +4,63 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class CourierConnection extends Resource {
 
-    @SerializedName("id")
-    private String id;
+  @SerializedName("id")
+  private String id;
 
-    @SerializedName("courier_slug")
-    private String courierSlug;
+  @SerializedName("courier_slug")
+  private String courierSlug;
 
-    @SerializedName("credentials")
-    private java.util.Map<String,String> credentials;
+  @SerializedName("credentials")
+  private java.util.Map<String, String> credentials;
 
-    @SerializedName("created_at")
-    private String createdAt;
+  @SerializedName("created_at")
+  private String createdAt;
 
-    @SerializedName("updated_at")
-    private String updatedAt;
+  @SerializedName("updated_at")
+  private String updatedAt;
 
-    public  String getId() {
-        return id;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public void setId( String id) {
-        this.id = id;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public  String getCourierSlug() {
-        return courierSlug;
-    }
+  public String getCourierSlug() {
+    return courierSlug;
+  }
 
-    public void setCourierSlug( String courierSlug) {
-        this.courierSlug = courierSlug;
-    }
+  public void setCourierSlug(String courierSlug) {
+    this.courierSlug = courierSlug;
+  }
 
-    public  java.util.Map<String,String> getCredentials() {
-        return credentials;
-    }
+  public java.util.Map<String, String> getCredentials() {
+    return credentials;
+  }
 
-    public void setCredentials( java.util.Map<String,String> credentials) {
-        this.credentials = credentials;
-    }
+  public void setCredentials(java.util.Map<String, String> credentials) {
+    this.credentials = credentials;
+  }
 
-    public  String getCreatedAt() {
-        return createdAt;
-    }
+  public String getCreatedAt() {
+    return createdAt;
+  }
 
-    public void setCreatedAt( String createdAt) {
-        this.createdAt = createdAt;
-    }
+  public void setCreatedAt(String createdAt) {
+    this.createdAt = createdAt;
+  }
 
-    public  String getUpdatedAt() {
-        return updatedAt;
-    }
+  public String getUpdatedAt() {
+    return updatedAt;
+  }
 
-    public void setUpdatedAt( String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
+  public void setUpdatedAt(String updatedAt) {
+    this.updatedAt = updatedAt;
+  }
 }

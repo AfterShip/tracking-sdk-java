@@ -4,152 +4,152 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class EstimatedDeliveryDateResponse extends Resource {
 
-    @SerializedName("id")
-    private String id;
+  @SerializedName("id")
+  private String id;
 
-    @SerializedName("slug")
-    private String slug;
+  @SerializedName("slug")
+  private String slug;
 
-    @SerializedName("service_type_name")
-    private String serviceTypeName;
+  @SerializedName("service_type_name")
+  private String serviceTypeName;
 
-    @SerializedName("origin_address")
-    private EstimatedDeliveryDateResponseOriginAddress originAddress;
+  @SerializedName("origin_address")
+  private EstimatedDeliveryDateResponseOriginAddress originAddress;
 
-    @SerializedName("destination_address")
-    private EstimatedDeliveryDateResponseDestinationAddress destinationAddress;
+  @SerializedName("destination_address")
+  private EstimatedDeliveryDateResponseDestinationAddress destinationAddress;
 
-    @SerializedName("weight")
-    private EstimatedDeliveryDateResponseWeight weight;
+  @SerializedName("weight")
+  private EstimatedDeliveryDateResponseWeight weight;
 
-    @SerializedName("package_count")
-    private Integer packageCount;
+  @SerializedName("package_count")
+  private Integer packageCount;
 
-    @SerializedName("pickup_time")
-    private String pickupTime;
+  @SerializedName("pickup_time")
+  private String pickupTime;
 
-    @SerializedName("estimated_pickup")
-    private EstimatedDeliveryDateResponseEstimatedPickup estimatedPickup;
+  @SerializedName("estimated_pickup")
+  private EstimatedDeliveryDateResponseEstimatedPickup estimatedPickup;
 
-    @SerializedName("estimated_delivery_date")
-    private String estimatedDeliveryDate;
+  @SerializedName("estimated_delivery_date")
+  private String estimatedDeliveryDate;
 
-    @SerializedName("confidence_code")
-    private Float confidenceCode;
+  @SerializedName("confidence_code")
+  private Float confidenceCode;
 
-    @SerializedName("estimated_delivery_date_min")
-    private String estimatedDeliveryDateMin;
+  @SerializedName("estimated_delivery_date_min")
+  private String estimatedDeliveryDateMin;
 
-    @SerializedName("estimated_delivery_date_max")
-    private String estimatedDeliveryDateMax;
+  @SerializedName("estimated_delivery_date_max")
+  private String estimatedDeliveryDateMax;
 
-    public  String getId() {
-        return id;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public void setId( String id) {
-        this.id = id;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public  String getSlug() {
-        return slug;
-    }
+  public String getSlug() {
+    return slug;
+  }
 
-    public void setSlug( String slug) {
-        this.slug = slug;
-    }
+  public void setSlug(String slug) {
+    this.slug = slug;
+  }
 
-    public  String getServiceTypeName() {
-        return serviceTypeName;
-    }
+  public String getServiceTypeName() {
+    return serviceTypeName;
+  }
 
-    public void setServiceTypeName( String serviceTypeName) {
-        this.serviceTypeName = serviceTypeName;
-    }
+  public void setServiceTypeName(String serviceTypeName) {
+    this.serviceTypeName = serviceTypeName;
+  }
 
-    public  EstimatedDeliveryDateResponseOriginAddress getOriginAddress() {
-        return originAddress;
-    }
+  public EstimatedDeliveryDateResponseOriginAddress getOriginAddress() {
+    return originAddress;
+  }
 
-    public void setOriginAddress( EstimatedDeliveryDateResponseOriginAddress originAddress) {
-        this.originAddress = originAddress;
-    }
+  public void setOriginAddress(EstimatedDeliveryDateResponseOriginAddress originAddress) {
+    this.originAddress = originAddress;
+  }
 
-    public  EstimatedDeliveryDateResponseDestinationAddress getDestinationAddress() {
-        return destinationAddress;
-    }
+  public EstimatedDeliveryDateResponseDestinationAddress getDestinationAddress() {
+    return destinationAddress;
+  }
 
-    public void setDestinationAddress( EstimatedDeliveryDateResponseDestinationAddress destinationAddress) {
-        this.destinationAddress = destinationAddress;
-    }
+  public void setDestinationAddress(
+      EstimatedDeliveryDateResponseDestinationAddress destinationAddress) {
+    this.destinationAddress = destinationAddress;
+  }
 
-    public  EstimatedDeliveryDateResponseWeight getWeight() {
-        return weight;
-    }
+  public EstimatedDeliveryDateResponseWeight getWeight() {
+    return weight;
+  }
 
-    public void setWeight( EstimatedDeliveryDateResponseWeight weight) {
-        this.weight = weight;
-    }
+  public void setWeight(EstimatedDeliveryDateResponseWeight weight) {
+    this.weight = weight;
+  }
 
-    public  Integer getPackageCount() {
-        return packageCount;
-    }
+  public Integer getPackageCount() {
+    return packageCount;
+  }
 
-    public void setPackageCount( Integer packageCount) {
-        this.packageCount = packageCount;
-    }
+  public void setPackageCount(Integer packageCount) {
+    this.packageCount = packageCount;
+  }
 
-    public  String getPickupTime() {
-        return pickupTime;
-    }
+  public String getPickupTime() {
+    return pickupTime;
+  }
 
-    public void setPickupTime( String pickupTime) {
-        this.pickupTime = pickupTime;
-    }
+  public void setPickupTime(String pickupTime) {
+    this.pickupTime = pickupTime;
+  }
 
-    public  EstimatedDeliveryDateResponseEstimatedPickup getEstimatedPickup() {
-        return estimatedPickup;
-    }
+  public EstimatedDeliveryDateResponseEstimatedPickup getEstimatedPickup() {
+    return estimatedPickup;
+  }
 
-    public void setEstimatedPickup( EstimatedDeliveryDateResponseEstimatedPickup estimatedPickup) {
-        this.estimatedPickup = estimatedPickup;
-    }
+  public void setEstimatedPickup(EstimatedDeliveryDateResponseEstimatedPickup estimatedPickup) {
+    this.estimatedPickup = estimatedPickup;
+  }
 
-    public  String getEstimatedDeliveryDate() {
-        return estimatedDeliveryDate;
-    }
+  public String getEstimatedDeliveryDate() {
+    return estimatedDeliveryDate;
+  }
 
-    public void setEstimatedDeliveryDate( String estimatedDeliveryDate) {
-        this.estimatedDeliveryDate = estimatedDeliveryDate;
-    }
+  public void setEstimatedDeliveryDate(String estimatedDeliveryDate) {
+    this.estimatedDeliveryDate = estimatedDeliveryDate;
+  }
 
-    public  Float getConfidenceCode() {
-        return confidenceCode;
-    }
+  public Float getConfidenceCode() {
+    return confidenceCode;
+  }
 
-    public void setConfidenceCode( Float confidenceCode) {
-        this.confidenceCode = confidenceCode;
-    }
+  public void setConfidenceCode(Float confidenceCode) {
+    this.confidenceCode = confidenceCode;
+  }
 
-    public  String getEstimatedDeliveryDateMin() {
-        return estimatedDeliveryDateMin;
-    }
+  public String getEstimatedDeliveryDateMin() {
+    return estimatedDeliveryDateMin;
+  }
 
-    public void setEstimatedDeliveryDateMin( String estimatedDeliveryDateMin) {
-        this.estimatedDeliveryDateMin = estimatedDeliveryDateMin;
-    }
+  public void setEstimatedDeliveryDateMin(String estimatedDeliveryDateMin) {
+    this.estimatedDeliveryDateMin = estimatedDeliveryDateMin;
+  }
 
-    public  String getEstimatedDeliveryDateMax() {
-        return estimatedDeliveryDateMax;
-    }
+  public String getEstimatedDeliveryDateMax() {
+    return estimatedDeliveryDateMax;
+  }
 
-    public void setEstimatedDeliveryDateMax( String estimatedDeliveryDateMax) {
-        this.estimatedDeliveryDateMax = estimatedDeliveryDateMax;
-    }
-
+  public void setEstimatedDeliveryDateMax(String estimatedDeliveryDateMax) {
+    this.estimatedDeliveryDateMax = estimatedDeliveryDateMax;
+  }
 }

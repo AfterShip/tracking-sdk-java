@@ -5,20 +5,20 @@
 package com.aftership.tracking.http;
 
 public enum HttpMethod {
-    GET("GET"),
-    POST("POST"),
-    PUT("PUT"),
-    DELETE("DELETE"),
-    HEAD("HEAD"),
-    PATCH("PATCH");
+  GET("GET"),
+  POST("POST"),
+  PUT("PUT"),
+  DELETE("DELETE"),
+  HEAD("HEAD"),
+  PATCH("PATCH");
 
-    private final String method;
+  private final String method;
 
-    HttpMethod(final String method) {
-        this.method = method;
-    }
+  HttpMethod(final String method) {
+    this.method = method;
+  }
 
-    public String toString() {
-        return method;
-    }
+  public String toString() {
+    return method;
+  }
 }

@@ -4,64 +4,63 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class TrackingFirstMile extends Resource {
 
-    @SerializedName("tracking_number")
-    private String trackingNumber;
+  @SerializedName("tracking_number")
+  private String trackingNumber;
 
-    @SerializedName("slug")
-    private String slug;
+  @SerializedName("slug")
+  private String slug;
 
-    @SerializedName("transit_time")
-    private Integer transitTime;
+  @SerializedName("transit_time")
+  private Integer transitTime;
 
-    @SerializedName("courier_redirect_link")
-    private String courierRedirectLink;
+  @SerializedName("courier_redirect_link")
+  private String courierRedirectLink;
 
-    @SerializedName("courier_tracking_link")
-    private String courierTrackingLink;
+  @SerializedName("courier_tracking_link")
+  private String courierTrackingLink;
 
-    public  String getTrackingNumber() {
-        return trackingNumber;
-    }
+  public String getTrackingNumber() {
+    return trackingNumber;
+  }
 
-    public void setTrackingNumber( String trackingNumber) {
-        this.trackingNumber = trackingNumber;
-    }
+  public void setTrackingNumber(String trackingNumber) {
+    this.trackingNumber = trackingNumber;
+  }
 
-    public  String getSlug() {
-        return slug;
-    }
+  public String getSlug() {
+    return slug;
+  }
 
-    public void setSlug( String slug) {
-        this.slug = slug;
-    }
+  public void setSlug(String slug) {
+    this.slug = slug;
+  }
 
-    public  Integer getTransitTime() {
-        return transitTime;
-    }
+  public Integer getTransitTime() {
+    return transitTime;
+  }
 
-    public void setTransitTime( Integer transitTime) {
-        this.transitTime = transitTime;
-    }
+  public void setTransitTime(Integer transitTime) {
+    this.transitTime = transitTime;
+  }
 
-    public  String getCourierRedirectLink() {
-        return courierRedirectLink;
-    }
+  public String getCourierRedirectLink() {
+    return courierRedirectLink;
+  }
 
-    public void setCourierRedirectLink( String courierRedirectLink) {
-        this.courierRedirectLink = courierRedirectLink;
-    }
+  public void setCourierRedirectLink(String courierRedirectLink) {
+    this.courierRedirectLink = courierRedirectLink;
+  }
 
-    public  String getCourierTrackingLink() {
-        return courierTrackingLink;
-    }
+  public String getCourierTrackingLink() {
+    return courierTrackingLink;
+  }
 
-    public void setCourierTrackingLink( String courierTrackingLink) {
-        this.courierTrackingLink = courierTrackingLink;
-    }
-
+  public void setCourierTrackingLink(String courierTrackingLink) {
+    this.courierTrackingLink = courierTrackingLink;
+  }
 }

@@ -4,31 +4,30 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class CourierConnectionResponseForGetCourierConnections extends Resource {
 
-    @SerializedName("meta")
-    private Meta meta;
+  @SerializedName("meta")
+  private Meta meta;
 
-    @SerializedName("data")
-    private CourierConnectionResponseForGetCourierConnectionsData data;
+  @SerializedName("data")
+  private CourierConnectionResponseForGetCourierConnectionsData data;
 
-    public  Meta getMeta() {
-        return meta;
-    }
+  public Meta getMeta() {
+    return meta;
+  }
 
-    public void setMeta( Meta meta) {
-        this.meta = meta;
-    }
+  public void setMeta(Meta meta) {
+    this.meta = meta;
+  }
 
-    public  CourierConnectionResponseForGetCourierConnectionsData getData() {
-        return data;
-    }
+  public CourierConnectionResponseForGetCourierConnectionsData getData() {
+    return data;
+  }
 
-    public void setData( CourierConnectionResponseForGetCourierConnectionsData data) {
-        this.data = data;
-    }
-
+  public void setData(CourierConnectionResponseForGetCourierConnectionsData data) {
+    this.data = data;
+  }
 }

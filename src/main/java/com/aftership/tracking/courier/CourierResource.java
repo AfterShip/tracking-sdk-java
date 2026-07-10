@@ -7,10 +7,11 @@ package com.aftership.tracking.courier;
 import com.aftership.tracking.base.Resource;
 
 public class CourierResource extends Resource {
-    public static GetCouriersFetcher getCouriers() {
-        return new GetCouriersFetcher();
-    }
-    public static DetectCourierCreator detectCourier() {
-        return new DetectCourierCreator();
-    }
+  public static GetCouriersFetcher getCouriers() {
+    return new GetCouriersFetcher();
+  }
+
+  public static DetectCourierCreator detectCourier() {
+    return new DetectCourierCreator();
+  }
 }

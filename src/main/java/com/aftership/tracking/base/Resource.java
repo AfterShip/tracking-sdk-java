@@ -8,5 +8,5 @@ import java.io.Serializable;
 
 public abstract class Resource implements Serializable {
 
-    private static final long serialVersionUID = -3063712988312126015L;
+  private static final long serialVersionUID = -3063712988312126015L;
 }

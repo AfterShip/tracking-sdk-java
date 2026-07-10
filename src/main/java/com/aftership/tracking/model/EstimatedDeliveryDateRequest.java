@@ -4,97 +4,97 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class EstimatedDeliveryDateRequest extends Resource {
 
-    @SerializedName("slug")
-    private String slug;
+  @SerializedName("slug")
+  private String slug;
 
-    @SerializedName("service_type_name")
-    private String serviceTypeName;
+  @SerializedName("service_type_name")
+  private String serviceTypeName;
 
-    @SerializedName("origin_address")
-    private EstimatedDeliveryDateRequestOriginAddress originAddress;
+  @SerializedName("origin_address")
+  private EstimatedDeliveryDateRequestOriginAddress originAddress;
 
-    @SerializedName("destination_address")
-    private EstimatedDeliveryDateRequestDestinationAddress destinationAddress;
+  @SerializedName("destination_address")
+  private EstimatedDeliveryDateRequestDestinationAddress destinationAddress;
 
-    @SerializedName("weight")
-    private EstimatedDeliveryDateRequestWeight weight;
+  @SerializedName("weight")
+  private EstimatedDeliveryDateRequestWeight weight;
 
-    @SerializedName("package_count")
-    private Integer packageCount;
+  @SerializedName("package_count")
+  private Integer packageCount;
 
-    @SerializedName("pickup_time")
-    private String pickupTime;
+  @SerializedName("pickup_time")
+  private String pickupTime;
 
-    @SerializedName("estimated_pickup")
-    private EstimatedDeliveryDateRequestEstimatedPickup estimatedPickup;
+  @SerializedName("estimated_pickup")
+  private EstimatedDeliveryDateRequestEstimatedPickup estimatedPickup;
 
-    public  String getSlug() {
-        return slug;
-    }
+  public String getSlug() {
+    return slug;
+  }
 
-    public void setSlug( String slug) {
-        this.slug = slug;
-    }
+  public void setSlug(String slug) {
+    this.slug = slug;
+  }
 
-    public  String getServiceTypeName() {
-        return serviceTypeName;
-    }
+  public String getServiceTypeName() {
+    return serviceTypeName;
+  }
 
-    public void setServiceTypeName( String serviceTypeName) {
-        this.serviceTypeName = serviceTypeName;
-    }
+  public void setServiceTypeName(String serviceTypeName) {
+    this.serviceTypeName = serviceTypeName;
+  }
 
-    public  EstimatedDeliveryDateRequestOriginAddress getOriginAddress() {
-        return originAddress;
-    }
+  public EstimatedDeliveryDateRequestOriginAddress getOriginAddress() {
+    return originAddress;
+  }
 
-    public void setOriginAddress( EstimatedDeliveryDateRequestOriginAddress originAddress) {
-        this.originAddress = originAddress;
-    }
+  public void setOriginAddress(EstimatedDeliveryDateRequestOriginAddress originAddress) {
+    this.originAddress = originAddress;
+  }
 
-    public  EstimatedDeliveryDateRequestDestinationAddress getDestinationAddress() {
-        return destinationAddress;
-    }
+  public EstimatedDeliveryDateRequestDestinationAddress getDestinationAddress() {
+    return destinationAddress;
+  }
 
-    public void setDestinationAddress( EstimatedDeliveryDateRequestDestinationAddress destinationAddress) {
-        this.destinationAddress = destinationAddress;
-    }
+  public void setDestinationAddress(
+      EstimatedDeliveryDateRequestDestinationAddress destinationAddress) {
+    this.destinationAddress = destinationAddress;
+  }
 
-    public  EstimatedDeliveryDateRequestWeight getWeight() {
-        return weight;
-    }
+  public EstimatedDeliveryDateRequestWeight getWeight() {
+    return weight;
+  }
 
-    public void setWeight( EstimatedDeliveryDateRequestWeight weight) {
-        this.weight = weight;
-    }
+  public void setWeight(EstimatedDeliveryDateRequestWeight weight) {
+    this.weight = weight;
+  }
 
-    public  Integer getPackageCount() {
-        return packageCount;
-    }
+  public Integer getPackageCount() {
+    return packageCount;
+  }
 
-    public void setPackageCount( Integer packageCount) {
-        this.packageCount = packageCount;
-    }
+  public void setPackageCount(Integer packageCount) {
+    this.packageCount = packageCount;
+  }
 
-    public  String getPickupTime() {
-        return pickupTime;
-    }
+  public String getPickupTime() {
+    return pickupTime;
+  }
 
-    public void setPickupTime( String pickupTime) {
-        this.pickupTime = pickupTime;
-    }
+  public void setPickupTime(String pickupTime) {
+    this.pickupTime = pickupTime;
+  }
 
-    public  EstimatedDeliveryDateRequestEstimatedPickup getEstimatedPickup() {
-        return estimatedPickup;
-    }
+  public EstimatedDeliveryDateRequestEstimatedPickup getEstimatedPickup() {
+    return estimatedPickup;
+  }
 
-    public void setEstimatedPickup( EstimatedDeliveryDateRequestEstimatedPickup estimatedPickup) {
-        this.estimatedPickup = estimatedPickup;
-    }
-
+  public void setEstimatedPickup(EstimatedDeliveryDateRequestEstimatedPickup estimatedPickup) {
+    this.estimatedPickup = estimatedPickup;
+  }
 }

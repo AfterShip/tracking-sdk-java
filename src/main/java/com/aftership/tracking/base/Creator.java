@@ -4,14 +4,14 @@
  */
 package com.aftership.tracking.base;
 
-import com.aftership.tracking.http.AfterShipClient;
 import com.aftership.tracking.TrackingSdk;
+import com.aftership.tracking.http.AfterShipClient;
 
 public abstract class Creator<T extends Resource> {
 
-    public T create() throws Exception {
-        return create(TrackingSdk.getRestClient());
-    }
+  public T create() throws Exception {
+    return create(TrackingSdk.getRestClient());
+  }
 
-    public abstract T create(final AfterShipClient client) throws Exception;
+  public abstract T create(final AfterShipClient client) throws Exception;
 }

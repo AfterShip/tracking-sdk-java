@@ -7,30 +7,30 @@ package com.aftership.tracking.model;
 import com.google.gson.annotations.SerializedName;
 
 public enum TrackingLatestEstimatedDeliverySource {
-    @SerializedName("Carrier EDD")
-    CarrierEdd("Carrier EDD"),
+  @SerializedName("Carrier EDD")
+  CarrierEdd("Carrier EDD"),
 
-    @SerializedName("AfterShip EDD")
-    AfterShipEdd("AfterShip EDD"),
+  @SerializedName("AfterShip EDD")
+  AfterShipEdd("AfterShip EDD"),
 
-    @SerializedName("Custom EDD")
-    CustomEdd("Custom EDD"),
+  @SerializedName("Custom EDD")
+  CustomEdd("Custom EDD"),
 
-    @SerializedName("Order EDD")
-    OrderEdd("Order EDD");
+  @SerializedName("Order EDD")
+  OrderEdd("Order EDD");
 
-    private final String value;
+  private final String value;
 
-    TrackingLatestEstimatedDeliverySource(final String value) {
-        this.value = value;
-    }
+  TrackingLatestEstimatedDeliverySource(final String value) {
+    this.value = value;
+  }
 
-    public String getValue() {
-        return value;
-    }
+  public String getValue() {
+    return value;
+  }
 
-    @Override
-    public String toString() {
-        return String.valueOf(value);
-    }
+  @Override
+  public String toString() {
+    return String.valueOf(value);
+  }
 }

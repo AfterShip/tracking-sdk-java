@@ -20,10 +20,10 @@ If you need support using AfterShip products, please contact support@aftership.c
   - [Error Handling](#error-handling)
     - [Error List](#error-list)
   - [Endpoints](#endpoints)
-    - [/trackings](#trackings)
     - [/couriers](#couriers)
     - [/courier-connections](#courier-connections)
     - [/estimated-delivery-date](#estimated-delivery-date)
+    - [/trackings](#trackings)
   - [Help](#help)
   - [License](#license)
 
@@ -38,8 +38,8 @@ Before you begin to integrate:
 
 ### API and SDK Version
 
-- SDK Version: 11.0.0
-- API Version: 2026-01
+- SDK Version: 12.0.0
+- API Version: 2026-07
 ## Quick Start
 
 ### Installation
@@ -47,7 +47,7 @@ Before you begin to integrate:
 <dependency>
     <groupId>com.aftership</groupId>
     <artifactId>tracking-sdk</artifactId>
-    <version>11.0.0</version>
+    <version>12.0.0</version>
 </dependency>
 ```
 
@@ -94,6 +94,31 @@ public class App {
 ## Rate Limiter
 
 See the [Rate Limit](https://www.aftership.com/docs/tracking/quickstart/rate-limit) to understand the AfterShip rate limit policy.
+
+The API returns its current rate limit status in the headers of every response, and the SDK exposes these headers on both successful responses and rate-limited errors, so you can monitor your consumption proactively instead of waiting for `429` errors.
+
+| Header                  | Description                                                |
+| ----------------------- | ---------------------------------------------------------- |
+| `X-RateLimit-Limit`     | The rate limit ceiling for the current endpoint per second |
+| `X-RateLimit-Remaining` | The number of requests left for the 1-second window        |
+| `X-RateLimit-Reset`     | The Unix timestamp when the rate limit will be reset       |
+
+Every successful response exposes `getResponseHeader()` (a `Map<String, List<String>>`) alongside `getData()`. Header names are case-insensitive per the HTTP spec, so normalize when looking up. Taking the Quick Start example above:
+
+```java
+Map<String, List<String>> headers = response.getResponseHeader();
+int remaining = headers.entrySet().stream()
+        .filter(e -> e.getKey().equalsIgnoreCase("x-ratelimit-remaining"))
+        .map(e -> Integer.parseInt(e.getValue().get(0)))
+        .findFirst()
+        .orElse(-1);
+
+if (remaining >= 0 && remaining <= 1) {
+    // Throttle or defer lower-priority requests
+}
+```
+
+When the rate limit is exceeded, the request fails with a `429` error that carries the same headers — see [Error Handling](#error-handling).
 
 ## Error Handling
 
@@ -144,14 +169,6 @@ The SDK will return an error object when there is any error during the request, 
 
 The AfterShip SDK has the following resource which are exactly the same as the API endpoints:
 
-- TrackingResource
-  - Get trackings
-  - Create a tracking
-  - Get a tracking by ID
-  - Update a tracking by ID
-  - Delete a tracking by ID
-  - Retrack an expired tracking by ID
-  - Mark tracking as completed by ID
 - CourierResource
   - Get couriers
   - Detect courier
@@ -164,75 +181,14 @@ The AfterShip SDK has the following resource which are exactly the same as the A
 - EstimatedDeliveryDateResource
   - Prediction for the Estimated Delivery Date
   - Batch prediction for the Estimated Delivery Date
-
-### /trackings
-**GET** /trackings
-
-```java
-    GetTrackingsResponse response = TrackingResource.getTrackings()
-        .fetch();
-    System.out.println(response.getData());
-```
-
-**POST** /trackings
-
-```java
-    CreateTrackingRequest request = new CreateTrackingRequest();
-    request.setTrackingNumber("valid_value");
-    CreateTrackingResponse response = TrackingResource.createTracking()
-        .setCreateTrackingRequest(request)
-        .create();
-    System.out.println(response.getData());
-```
-
-**GET** /trackings/{id}
-
-```java
-    GetTrackingByIdResponse response = TrackingResource.getTrackingById()
-        .setId("valid_value")
-        .fetch();
-    System.out.println(response.getData());
-```
-
-**PUT** /trackings/{id}
-
-```java
-    UpdateTrackingByIdRequest request = new UpdateTrackingByIdRequest();
-    UpdateTrackingByIdResponse response = TrackingResource.updateTrackingById()
-        .setId("valid_value")
-        .setUpdateTrackingByIdRequest(request)
-        .update();
-    System.out.println(response.getData());
-```
-
-**DELETE** /trackings/{id}
-
-```java
-    DeleteTrackingByIdResponse response = TrackingResource.deleteTrackingById()
-        .setId("valid_value")
-        .delete();
-    System.out.println(response.getData());
-```
-
-**POST** /trackings/{id}/retrack
-
-```java
-    RetrackTrackingByIdResponse response = TrackingResource.retrackTrackingById()
-        .setId("valid_value")
-        .create();
-    System.out.println(response.getData());
-```
-
-**POST** /trackings/{id}/mark-as-completed
-
-```java
-    MarkTrackingCompletedByIdRequest request = new MarkTrackingCompletedByIdRequest();
-    MarkTrackingCompletedByIdResponse response = TrackingResource.markTrackingCompletedById()
-        .setId("valid_value")
-        .setMarkTrackingCompletedByIdRequest(request)
-        .create();
-    System.out.println(response.getData());
-```
+- TrackingResource
+  - Get trackings
+  - Create a tracking
+  - Get a tracking by ID
+  - Update a tracking by ID
+  - Delete a tracking by ID
+  - Retrack an expired tracking by ID
+  - Mark tracking as completed by ID
 
 ### /couriers
 **GET** /couriers
@@ -327,6 +283,75 @@ The AfterShip SDK has the following resource which are exactly the same as the A
     PredictBatchRequest request = new PredictBatchRequest();
     PredictBatchResponse response = EstimatedDeliveryDateResource.predictBatch()
         .setPredictBatchRequest(request)
+        .create();
+    System.out.println(response.getData());
+```
+
+### /trackings
+**GET** /trackings
+
+```java
+    GetTrackingsResponse response = TrackingResource.getTrackings()
+        .fetch();
+    System.out.println(response.getData());
+```
+
+**POST** /trackings
+
+```java
+    CreateTrackingRequest request = new CreateTrackingRequest();
+    request.setTrackingNumber("valid_value");
+    CreateTrackingResponse response = TrackingResource.createTracking()
+        .setCreateTrackingRequest(request)
+        .create();
+    System.out.println(response.getData());
+```
+
+**GET** /trackings/{id}
+
+```java
+    GetTrackingByIdResponse response = TrackingResource.getTrackingById()
+        .setId("valid_value")
+        .fetch();
+    System.out.println(response.getData());
+```
+
+**PUT** /trackings/{id}
+
+```java
+    UpdateTrackingByIdRequest request = new UpdateTrackingByIdRequest();
+    UpdateTrackingByIdResponse response = TrackingResource.updateTrackingById()
+        .setId("valid_value")
+        .setUpdateTrackingByIdRequest(request)
+        .update();
+    System.out.println(response.getData());
+```
+
+**DELETE** /trackings/{id}
+
+```java
+    DeleteTrackingByIdResponse response = TrackingResource.deleteTrackingById()
+        .setId("valid_value")
+        .delete();
+    System.out.println(response.getData());
+```
+
+**POST** /trackings/{id}/retrack
+
+```java
+    RetrackTrackingByIdResponse response = TrackingResource.retrackTrackingById()
+        .setId("valid_value")
+        .create();
+    System.out.println(response.getData());
+```
+
+**POST** /trackings/{id}/mark-as-completed
+
+```java
+    MarkTrackingCompletedByIdRequest request = new MarkTrackingCompletedByIdRequest();
+    MarkTrackingCompletedByIdResponse response = TrackingResource.markTrackingCompletedById()
+        .setId("valid_value")
+        .setMarkTrackingCompletedByIdRequest(request)
         .create();
     System.out.println(response.getData());
 ```

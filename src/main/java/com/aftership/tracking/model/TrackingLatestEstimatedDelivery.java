@@ -4,75 +4,74 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class TrackingLatestEstimatedDelivery extends Resource {
 
-    @SerializedName("type")
-    private TrackingLatestEstimatedDeliveryType type;
+  @SerializedName("type")
+  private TrackingLatestEstimatedDeliveryType type;
 
-    @SerializedName("source")
-    private TrackingLatestEstimatedDeliverySource source;
+  @SerializedName("source")
+  private TrackingLatestEstimatedDeliverySource source;
 
-    @SerializedName("datetime")
-    private String datetime;
+  @SerializedName("datetime")
+  private String datetime;
 
-    @SerializedName("datetime_min")
-    private String datetimeMin;
+  @SerializedName("datetime_min")
+  private String datetimeMin;
 
-    @SerializedName("datetime_max")
-    private String datetimeMax;
+  @SerializedName("datetime_max")
+  private String datetimeMax;
 
-    @SerializedName("revise_reason")
-    private String reviseReason;
+  @SerializedName("revise_reason")
+  private String reviseReason;
 
-    public  TrackingLatestEstimatedDeliveryType getType() {
-        return type;
-    }
+  public TrackingLatestEstimatedDeliveryType getType() {
+    return type;
+  }
 
-    public void setType( TrackingLatestEstimatedDeliveryType type) {
-        this.type = type;
-    }
+  public void setType(TrackingLatestEstimatedDeliveryType type) {
+    this.type = type;
+  }
 
-    public  TrackingLatestEstimatedDeliverySource getSource() {
-        return source;
-    }
+  public TrackingLatestEstimatedDeliverySource getSource() {
+    return source;
+  }
 
-    public void setSource( TrackingLatestEstimatedDeliverySource source) {
-        this.source = source;
-    }
+  public void setSource(TrackingLatestEstimatedDeliverySource source) {
+    this.source = source;
+  }
 
-    public  String getDatetime() {
-        return datetime;
-    }
+  public String getDatetime() {
+    return datetime;
+  }
 
-    public void setDatetime( String datetime) {
-        this.datetime = datetime;
-    }
+  public void setDatetime(String datetime) {
+    this.datetime = datetime;
+  }
 
-    public  String getDatetimeMin() {
-        return datetimeMin;
-    }
+  public String getDatetimeMin() {
+    return datetimeMin;
+  }
 
-    public void setDatetimeMin( String datetimeMin) {
-        this.datetimeMin = datetimeMin;
-    }
+  public void setDatetimeMin(String datetimeMin) {
+    this.datetimeMin = datetimeMin;
+  }
 
-    public  String getDatetimeMax() {
-        return datetimeMax;
-    }
+  public String getDatetimeMax() {
+    return datetimeMax;
+  }
 
-    public void setDatetimeMax( String datetimeMax) {
-        this.datetimeMax = datetimeMax;
-    }
+  public void setDatetimeMax(String datetimeMax) {
+    this.datetimeMax = datetimeMax;
+  }
 
-    public  String getReviseReason() {
-        return reviseReason;
-    }
+  public String getReviseReason() {
+    return reviseReason;
+  }
 
-    public void setReviseReason( String reviseReason) {
-        this.reviseReason = reviseReason;
-    }
-
+  public void setReviseReason(String reviseReason) {
+    this.reviseReason = reviseReason;
+  }
 }

@@ -7,45 +7,45 @@ package com.aftership.tracking.model;
 import com.google.gson.annotations.SerializedName;
 
 public enum Tag {
-    @SerializedName("Pending")
-    Pending("Pending"),
+  @SerializedName("Pending")
+  Pending("Pending"),
 
-    @SerializedName("InfoReceived")
-    InfoReceived("InfoReceived"),
+  @SerializedName("InfoReceived")
+  InfoReceived("InfoReceived"),
 
-    @SerializedName("InTransit")
-    InTransit("InTransit"),
+  @SerializedName("InTransit")
+  InTransit("InTransit"),
 
-    @SerializedName("OutForDelivery")
-    OutForDelivery("OutForDelivery"),
+  @SerializedName("OutForDelivery")
+  OutForDelivery("OutForDelivery"),
 
-    @SerializedName("AttemptFail")
-    AttemptFail("AttemptFail"),
+  @SerializedName("AttemptFail")
+  AttemptFail("AttemptFail"),
 
-    @SerializedName("Delivered")
-    Delivered("Delivered"),
+  @SerializedName("Delivered")
+  Delivered("Delivered"),
 
-    @SerializedName("AvailableForPickup")
-    AvailableForPickup("AvailableForPickup"),
+  @SerializedName("AvailableForPickup")
+  AvailableForPickup("AvailableForPickup"),
 
-    @SerializedName("Exception")
-    Exception("Exception"),
+  @SerializedName("Exception")
+  Exception("Exception"),
 
-    @SerializedName("Expired")
-    Expired("Expired");
+  @SerializedName("Expired")
+  Expired("Expired");
 
-    private final String value;
+  private final String value;
 
-    Tag(final String value) {
-        this.value = value;
-    }
+  Tag(final String value) {
+    this.value = value;
+  }
 
-    public String getValue() {
-        return value;
-    }
+  public String getValue() {
+    return value;
+  }
 
-    @Override
-    public String toString() {
-        return String.valueOf(value);
-    }
+  @Override
+  public String toString() {
+    return String.valueOf(value);
+  }
 }

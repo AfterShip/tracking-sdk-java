@@ -7,19 +7,23 @@ package com.aftership.tracking.courier_connection;
 import com.aftership.tracking.base.Resource;
 
 public class CourierConnectionResource extends Resource {
-    public static GetCourierConnectionsFetcher getCourierConnections() {
-        return new GetCourierConnectionsFetcher();
-    }
-    public static PostCourierConnectionsCreator postCourierConnections() {
-        return new PostCourierConnectionsCreator();
-    }
-    public static GetCourierConnectionsByIdFetcher getCourierConnectionsById() {
-        return new GetCourierConnectionsByIdFetcher();
-    }
-    public static PutCourierConnectionsByIdUpdater putCourierConnectionsById() {
-        return new PutCourierConnectionsByIdUpdater();
-    }
-    public static DeleteCourierConnectionsByIdDeleter deleteCourierConnectionsById() {
-        return new DeleteCourierConnectionsByIdDeleter();
-    }
+  public static GetCourierConnectionsFetcher getCourierConnections() {
+    return new GetCourierConnectionsFetcher();
+  }
+
+  public static PostCourierConnectionsCreator postCourierConnections() {
+    return new PostCourierConnectionsCreator();
+  }
+
+  public static GetCourierConnectionsByIdFetcher getCourierConnectionsById() {
+    return new GetCourierConnectionsByIdFetcher();
+  }
+
+  public static PutCourierConnectionsByIdUpdater putCourierConnectionsById() {
+    return new PutCourierConnectionsByIdUpdater();
+  }
+
+  public static DeleteCourierConnectionsByIdDeleter deleteCourierConnectionsById() {
+    return new DeleteCourierConnectionsByIdDeleter();
+  }
 }

@@ -5,82 +5,83 @@
 package com.aftership.tracking.courier_connection;
 
 import com.aftership.tracking.base.Fetcher;
-import com.aftership.tracking.constant.ErrorEnum;
-import com.aftership.tracking.exception.ApiException;
 import com.aftership.tracking.http.*;
+import com.aftership.tracking.http.Request;
+import com.aftership.tracking.model.GetCourierConnectionsResponse;
+import com.aftership.tracking.model.GetCourierConnectionsResponseData;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.util.HashMap;
 import java.util.Map;
-import com.aftership.tracking.http.Request;
-import com.aftership.tracking.model.GetCourierConnectionsResponse;
-import com.aftership.tracking.model.GetCourierConnectionsResponseData;
 
 public class GetCourierConnectionsFetcher extends Fetcher<GetCourierConnectionsResponse> {
-    private final Map<String, String> headerParams= new HashMap<>(8);
+  private final Map<String, String> headerParams = new HashMap<>(8);
 
-    public GetCourierConnectionsFetcher addHeaderParam(final String name, final String value) {
-        if (value == null || value.equals("null")) {
-            return this;
-        }
-
-        if (!headerParams.containsKey(name)) {
-            headerParams.put(name, value);
-        }
-        return this;
+  public GetCourierConnectionsFetcher addHeaderParam(final String name, final String value) {
+    if (value == null || value.equals("null")) {
+      return this;
     }
 
-    private void setHeaderParams(final Request request) {
-        for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
-            request.addHeaderParam(entry.getKey(), entry.getValue());
-        }
+    if (!headerParams.containsKey(name)) {
+      headerParams.put(name, value);
     }
-     private String courierSlug;
+    return this;
+  }
 
-     private String cursor;
-
-     private String limit;
-
-
-    public GetCourierConnectionsFetcher setCourierSlug(String courierSlug) {
-        this.courierSlug = courierSlug;
-        return this;
+  private void setHeaderParams(final Request request) {
+    for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
+      request.addHeaderParam(entry.getKey(), entry.getValue());
     }
+  }
 
-    public GetCourierConnectionsFetcher setCursor(String cursor) {
-        this.cursor = cursor;
-        return this;
-    }
+  private String courierSlug;
 
-    public GetCourierConnectionsFetcher setLimit(String limit) {
-        this.limit = limit;
-        return this;
-    }
+  private String cursor;
 
-    @Override
-    public GetCourierConnectionsResponse fetch(AfterShipClient client) throws Exception {
-        String path = "/tracking/2026-01/courier-connections";
-        Request request = new Request(HttpMethod.GET, path);
-        addQueryParams(request);
-        setHeaderParams(request);
-        Response response = client.request(request);
-        AfterShipResponse<GetCourierConnectionsResponseData> responseData = new Gson().fromJson(response.getContent(), new TypeToken<AfterShipResponse<GetCourierConnectionsResponseData>>() {
-            }.getType());
-        GetCourierConnectionsResponse result = new GetCourierConnectionsResponse();
-        result.setData(responseData.getData());
-        result.setResponseHeader(response.getResponseHeader());
-        return result;
-    }
+  private String limit;
 
-    private void addQueryParams(final Request request) {
-        if (courierSlug != null) {
-            request.addQueryParam("courier_slug", courierSlug);
-        }
-        if (cursor != null) {
-            request.addQueryParam("cursor", cursor);
-        }
-        if (limit != null) {
-            request.addQueryParam("limit", limit);
-        }
+  public GetCourierConnectionsFetcher setCourierSlug(String courierSlug) {
+    this.courierSlug = courierSlug;
+    return this;
+  }
+
+  public GetCourierConnectionsFetcher setCursor(String cursor) {
+    this.cursor = cursor;
+    return this;
+  }
+
+  public GetCourierConnectionsFetcher setLimit(String limit) {
+    this.limit = limit;
+    return this;
+  }
+
+  @Override
+  public GetCourierConnectionsResponse fetch(AfterShipClient client) throws Exception {
+    String path = "/tracking/2026-07/courier-connections";
+    Request request = new Request(HttpMethod.GET, path);
+    addQueryParams(request);
+    setHeaderParams(request);
+    Response response = client.request(request);
+    AfterShipResponse<GetCourierConnectionsResponseData> responseData =
+        new Gson()
+            .fromJson(
+                response.getContent(),
+                new TypeToken<AfterShipResponse<GetCourierConnectionsResponseData>>() {}.getType());
+    GetCourierConnectionsResponse result = new GetCourierConnectionsResponse();
+    result.setData(responseData.getData());
+    result.setResponseHeader(response.getResponseHeader());
+    return result;
+  }
+
+  private void addQueryParams(final Request request) {
+    if (courierSlug != null) {
+      request.addQueryParam("courier_slug", courierSlug);
     }
+    if (cursor != null) {
+      request.addQueryParam("cursor", cursor);
+    }
+    if (limit != null) {
+      request.addQueryParam("limit", limit);
+    }
+  }
 }

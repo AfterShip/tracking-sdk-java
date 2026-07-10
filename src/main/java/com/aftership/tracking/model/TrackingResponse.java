@@ -4,31 +4,30 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class TrackingResponse extends Resource {
 
-    @SerializedName("meta")
-    private Meta meta;
+  @SerializedName("meta")
+  private Meta meta;
 
-    @SerializedName("data")
-    private Tracking data;
+  @SerializedName("data")
+  private Tracking data;
 
-    public  Meta getMeta() {
-        return meta;
-    }
+  public Meta getMeta() {
+    return meta;
+  }
 
-    public void setMeta( Meta meta) {
-        this.meta = meta;
-    }
+  public void setMeta(Meta meta) {
+    this.meta = meta;
+  }
 
-    public  Tracking getData() {
-        return data;
-    }
+  public Tracking getData() {
+    return data;
+  }
 
-    public void setData( Tracking data) {
-        this.data = data;
-    }
-
+  public void setData(Tracking data) {
+    this.data = data;
+  }
 }
