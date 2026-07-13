@@ -4,42 +4,41 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class Meta extends Resource {
 
-    @SerializedName("code")
-    private Integer code;
+  @SerializedName("code")
+  private Integer code;
 
-    @SerializedName("message")
-    private String message;
+  @SerializedName("message")
+  private String message;
 
-    @SerializedName("type")
-    private MetaType type;
+  @SerializedName("type")
+  private MetaType type;
 
-    public  Integer getCode() {
-        return code;
-    }
+  public Integer getCode() {
+    return code;
+  }
 
-    public void setCode( Integer code) {
-        this.code = code;
-    }
+  public void setCode(Integer code) {
+    this.code = code;
+  }
 
-    public  String getMessage() {
-        return message;
-    }
+  public String getMessage() {
+    return message;
+  }
 
-    public void setMessage( String message) {
-        this.message = message;
-    }
+  public void setMessage(String message) {
+    this.message = message;
+  }
 
-    public  MetaType getType() {
-        return type;
-    }
+  public MetaType getType() {
+    return type;
+  }
 
-    public void setType( MetaType type) {
-        this.type = type;
-    }
-
+  public void setType(MetaType type) {
+    this.type = type;
+  }
 }

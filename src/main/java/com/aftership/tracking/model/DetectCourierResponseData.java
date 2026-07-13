@@ -4,31 +4,30 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class DetectCourierResponseData extends Resource {
 
-    @SerializedName("total")
-    private Integer total;
+  @SerializedName("total")
+  private Integer total;
 
-    @SerializedName("couriers")
-    private java.util.List<Courier> couriers;
+  @SerializedName("couriers")
+  private java.util.List<Courier> couriers;
 
-    public  Integer getTotal() {
-        return total;
-    }
+  public Integer getTotal() {
+    return total;
+  }
 
-    public void setTotal( Integer total) {
-        this.total = total;
-    }
+  public void setTotal(Integer total) {
+    this.total = total;
+  }
 
-    public java.util.List<Courier>  getCouriers() {
-        return couriers;
-    }
+  public java.util.List<Courier> getCouriers() {
+    return couriers;
+  }
 
-    public void setCouriers(java.util.List<Courier>  couriers) {
-        this.couriers = couriers;
-    }
-
+  public void setCouriers(java.util.List<Courier> couriers) {
+    this.couriers = couriers;
+  }
 }

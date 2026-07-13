@@ -5,58 +5,59 @@
 package com.aftership.tracking.tracking;
 
 import com.aftership.tracking.base.Creator;
-import com.aftership.tracking.constant.ErrorEnum;
-import com.aftership.tracking.exception.ApiException;
 import com.aftership.tracking.http.*;
+import com.aftership.tracking.http.Request;
+import com.aftership.tracking.model.CreateTrackingRequest;
+import com.aftership.tracking.model.CreateTrackingResponse;
+import com.aftership.tracking.model.Tracking;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.util.HashMap;
 import java.util.Map;
-import com.aftership.tracking.http.Request;
-import com.aftership.tracking.model.CreateTrackingResponse;
-import com.aftership.tracking.model.Tracking;
-import com.aftership.tracking.model.CreateTrackingRequest;
 
 public class CreateTrackingCreator extends Creator<CreateTrackingResponse> {
-    private final Map<String, String> headerParams= new HashMap<>(8);
+  private final Map<String, String> headerParams = new HashMap<>(8);
 
-    public CreateTrackingCreator addHeaderParam(final String name, final String value) {
-        if (value == null || value.equals("null")) {
-            return this;
-        }
-
-        if (!headerParams.containsKey(name)) {
-            headerParams.put(name, value);
-        }
-        return this;
+  public CreateTrackingCreator addHeaderParam(final String name, final String value) {
+    if (value == null || value.equals("null")) {
+      return this;
     }
 
-    private void setHeaderParams(final Request request) {
-        for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
-            request.addHeaderParam(entry.getKey(), entry.getValue());
-        }
+    if (!headerParams.containsKey(name)) {
+      headerParams.put(name, value);
     }
-    private CreateTrackingRequest createTrackingRequest;
+    return this;
+  }
 
-    public CreateTrackingCreator setCreateTrackingRequest(CreateTrackingRequest createTrackingRequest) {
-        this.createTrackingRequest = createTrackingRequest;
-        return this;
+  private void setHeaderParams(final Request request) {
+    for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
+      request.addHeaderParam(entry.getKey(), entry.getValue());
     }
+  }
 
-    @Override
-    public CreateTrackingResponse create(AfterShipClient client) throws Exception {
-        String path = "/tracking/2026-01/trackings";
-        Request request = new Request(HttpMethod.POST, path);
-        request.setBody((new Gson()).toJson(createTrackingRequest));
+  private CreateTrackingRequest createTrackingRequest;
 
-        setHeaderParams(request);
-        Response response = client.request(request);
-        AfterShipResponse<Tracking> responseData = new Gson().fromJson(response.getContent(), new TypeToken<AfterShipResponse<Tracking>>() {
-            }.getType());
-        CreateTrackingResponse result = new CreateTrackingResponse();
-        result.setData(responseData.getData());
-        result.setResponseHeader(response.getResponseHeader());
-        return result;
-    }
+  public CreateTrackingCreator setCreateTrackingRequest(
+      CreateTrackingRequest createTrackingRequest) {
+    this.createTrackingRequest = createTrackingRequest;
+    return this;
+  }
 
+  @Override
+  public CreateTrackingResponse create(AfterShipClient client) throws Exception {
+    String path = "/tracking/2026-07/trackings";
+    Request request = new Request(HttpMethod.POST, path);
+    request.setBody((new Gson()).toJson(createTrackingRequest));
+
+    setHeaderParams(request);
+    Response response = client.request(request);
+    AfterShipResponse<Tracking> responseData =
+        new Gson()
+            .fromJson(
+                response.getContent(), new TypeToken<AfterShipResponse<Tracking>>() {}.getType());
+    CreateTrackingResponse result = new CreateTrackingResponse();
+    result.setData(responseData.getData());
+    result.setResponseHeader(response.getResponseHeader());
+    return result;
+  }
 }

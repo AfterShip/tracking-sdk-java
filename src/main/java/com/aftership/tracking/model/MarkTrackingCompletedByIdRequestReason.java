@@ -7,27 +7,27 @@ package com.aftership.tracking.model;
 import com.google.gson.annotations.SerializedName;
 
 public enum MarkTrackingCompletedByIdRequestReason {
-    @SerializedName("DELIVERED")
-    Delivered("DELIVERED"),
+  @SerializedName("DELIVERED")
+  Delivered("DELIVERED"),
 
-    @SerializedName("LOST")
-    Lost("LOST"),
+  @SerializedName("LOST")
+  Lost("LOST"),
 
-    @SerializedName("RETURNED_TO_SENDER")
-    ReturnedToSender("RETURNED_TO_SENDER");
+  @SerializedName("RETURNED_TO_SENDER")
+  ReturnedToSender("RETURNED_TO_SENDER");
 
-    private final String value;
+  private final String value;
 
-    MarkTrackingCompletedByIdRequestReason(final String value) {
-        this.value = value;
-    }
+  MarkTrackingCompletedByIdRequestReason(final String value) {
+    this.value = value;
+  }
 
-    public String getValue() {
-        return value;
-    }
+  public String getValue() {
+    return value;
+  }
 
-    @Override
-    public String toString() {
-        return String.valueOf(value);
-    }
+  @Override
+  public String toString() {
+    return String.valueOf(value);
+  }
 }

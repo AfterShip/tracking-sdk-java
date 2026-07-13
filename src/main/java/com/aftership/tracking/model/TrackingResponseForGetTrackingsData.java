@@ -4,31 +4,30 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class TrackingResponseForGetTrackingsData extends Resource {
 
-    @SerializedName("pagination")
-    private TrackingResponseForGetTrackingsDataPagination pagination;
+  @SerializedName("pagination")
+  private TrackingResponseForGetTrackingsDataPagination pagination;
 
-    @SerializedName("trackings")
-    private java.util.List<Tracking> trackings;
+  @SerializedName("trackings")
+  private java.util.List<Tracking> trackings;
 
-    public  TrackingResponseForGetTrackingsDataPagination getPagination() {
-        return pagination;
-    }
+  public TrackingResponseForGetTrackingsDataPagination getPagination() {
+    return pagination;
+  }
 
-    public void setPagination( TrackingResponseForGetTrackingsDataPagination pagination) {
-        this.pagination = pagination;
-    }
+  public void setPagination(TrackingResponseForGetTrackingsDataPagination pagination) {
+    this.pagination = pagination;
+  }
 
-    public java.util.List<Tracking>  getTrackings() {
-        return trackings;
-    }
+  public java.util.List<Tracking> getTrackings() {
+    return trackings;
+  }
 
-    public void setTrackings(java.util.List<Tracking>  trackings) {
-        this.trackings = trackings;
-    }
-
+  public void setTrackings(java.util.List<Tracking> trackings) {
+    this.trackings = trackings;
+  }
 }

@@ -8,56 +8,58 @@ import com.aftership.tracking.base.Fetcher;
 import com.aftership.tracking.constant.ErrorEnum;
 import com.aftership.tracking.exception.ApiException;
 import com.aftership.tracking.http.*;
+import com.aftership.tracking.http.Request;
+import com.aftership.tracking.model.CourierConnection;
+import com.aftership.tracking.model.GetCourierConnectionsByIdResponse;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.util.HashMap;
 import java.util.Map;
-import com.aftership.tracking.http.Request;
-import com.aftership.tracking.model.GetCourierConnectionsByIdResponse;
-import com.aftership.tracking.model.CourierConnection;
 
 public class GetCourierConnectionsByIdFetcher extends Fetcher<GetCourierConnectionsByIdResponse> {
-    private final Map<String, String> headerParams= new HashMap<>(8);
+  private final Map<String, String> headerParams = new HashMap<>(8);
 
-    public GetCourierConnectionsByIdFetcher addHeaderParam(final String name, final String value) {
-        if (value == null || value.equals("null")) {
-            return this;
-        }
-
-        if (!headerParams.containsKey(name)) {
-            headerParams.put(name, value);
-        }
-        return this;
+  public GetCourierConnectionsByIdFetcher addHeaderParam(final String name, final String value) {
+    if (value == null || value.equals("null")) {
+      return this;
     }
 
-    private void setHeaderParams(final Request request) {
-        for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
-            request.addHeaderParam(entry.getKey(), entry.getValue());
-        }
+    if (!headerParams.containsKey(name)) {
+      headerParams.put(name, value);
     }
-    private String id;
+    return this;
+  }
 
-
-    public GetCourierConnectionsByIdFetcher setId(String id) {
-        this.id = id;
-        return this;
+  private void setHeaderParams(final Request request) {
+    for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
+      request.addHeaderParam(entry.getKey(), entry.getValue());
     }
+  }
 
-    @Override
-    public GetCourierConnectionsByIdResponse fetch(AfterShipClient client) throws Exception {
-        if (id == null || id.isEmpty()) {
-            throw new ApiException(ErrorEnum.BAD_REQUEST.name(), "Invalid request: `id` is invalid");
-        }
-        String path = String.format("/tracking/2026-01/courier-connections/%s", id);
-        Request request = new Request(HttpMethod.GET, path);
-        setHeaderParams(request);
-        Response response = client.request(request);
-        AfterShipResponse<CourierConnection> responseData = new Gson().fromJson(response.getContent(), new TypeToken<AfterShipResponse<CourierConnection>>() {
-            }.getType());
-        GetCourierConnectionsByIdResponse result = new GetCourierConnectionsByIdResponse();
-        result.setData(responseData.getData());
-        result.setResponseHeader(response.getResponseHeader());
-        return result;
+  private String id;
+
+  public GetCourierConnectionsByIdFetcher setId(String id) {
+    this.id = id;
+    return this;
+  }
+
+  @Override
+  public GetCourierConnectionsByIdResponse fetch(AfterShipClient client) throws Exception {
+    if (id == null || id.isEmpty()) {
+      throw new ApiException(ErrorEnum.BAD_REQUEST.name(), "Invalid request: `id` is invalid");
     }
-
+    String path = String.format("/tracking/2026-07/courier-connections/%s", id);
+    Request request = new Request(HttpMethod.GET, path);
+    setHeaderParams(request);
+    Response response = client.request(request);
+    AfterShipResponse<CourierConnection> responseData =
+        new Gson()
+            .fromJson(
+                response.getContent(),
+                new TypeToken<AfterShipResponse<CourierConnection>>() {}.getType());
+    GetCourierConnectionsByIdResponse result = new GetCourierConnectionsByIdResponse();
+    result.setData(responseData.getData());
+    result.setResponseHeader(response.getResponseHeader());
+    return result;
+  }
 }

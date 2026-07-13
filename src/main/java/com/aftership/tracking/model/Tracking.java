@@ -4,823 +4,892 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class Tracking extends Resource {
 
-    @SerializedName("id")
-    private String id;
+  @SerializedName("id")
+  private String id;
 
-    @SerializedName("legacy_id")
-    private String legacyId;
+  @SerializedName("legacy_id")
+  private String legacyId;
 
-    @SerializedName("created_at")
-    private String createdAt;
+  @SerializedName("created_at")
+  private String createdAt;
 
-    @SerializedName("updated_at")
-    private String updatedAt;
+  @SerializedName("updated_at")
+  private String updatedAt;
 
-    @SerializedName("tracking_number")
-    private String trackingNumber;
+  @SerializedName("tracking_number")
+  private String trackingNumber;
 
-    @SerializedName("slug")
-    private String slug;
+  @SerializedName("slug")
+  private String slug;
 
-    @SerializedName("active")
-    private Boolean active;
+  @SerializedName("active")
+  private Boolean active;
 
-    @SerializedName("custom_fields")
-    private java.util.Map<String,String> customFields;
+  @SerializedName("custom_fields")
+  private java.util.Map<String, String> customFields;
 
-    @SerializedName("transit_time")
-    private Integer transitTime;
+  @SerializedName("transit_time")
+  private Integer transitTime;
 
-    @SerializedName("origin_country_region")
-    private String originCountryRegion;
+  @SerializedName("origin_country_region")
+  private String originCountryRegion;
 
-    @SerializedName("origin_state")
-    private String originState;
+  @SerializedName("origin_state")
+  private String originState;
 
-    @SerializedName("origin_city")
-    private String originCity;
+  @SerializedName("origin_city")
+  private String originCity;
 
-    @SerializedName("origin_postal_code")
-    private String originPostalCode;
+  @SerializedName("origin_postal_code")
+  private String originPostalCode;
 
-    @SerializedName("origin_raw_location")
-    private String originRawLocation;
+  @SerializedName("origin_raw_location")
+  private String originRawLocation;
 
-    @SerializedName("destination_country_region")
-    private String destinationCountryRegion;
+  @SerializedName("destination_country_region")
+  private String destinationCountryRegion;
 
-    @SerializedName("destination_state")
-    private String destinationState;
+  @SerializedName("destination_state")
+  private String destinationState;
 
-    @SerializedName("destination_city")
-    private String destinationCity;
+  @SerializedName("destination_city")
+  private String destinationCity;
 
-    @SerializedName("destination_postal_code")
-    private String destinationPostalCode;
+  @SerializedName("destination_postal_code")
+  private String destinationPostalCode;
 
-    @SerializedName("destination_raw_location")
-    private String destinationRawLocation;
+  @SerializedName("destination_raw_location")
+  private String destinationRawLocation;
 
-    @SerializedName("courier_destination_country_region")
-    private String courierDestinationCountryRegion;
+  @SerializedName("courier_destination_country_region")
+  private String courierDestinationCountryRegion;
 
-    @SerializedName("courier_estimated_delivery_date")
-    private TrackingCourierEstimatedDeliveryDate courierEstimatedDeliveryDate;
+  @SerializedName("courier_estimated_delivery_date")
+  private TrackingCourierEstimatedDeliveryDate courierEstimatedDeliveryDate;
 
-    @SerializedName("note")
-    private String note;
+  @SerializedName("note")
+  private String note;
 
-    @SerializedName("order_id")
-    private String orderId;
+  @SerializedName("order_id")
+  private String orderId;
 
-    @SerializedName("order_id_path")
-    private String orderIdPath;
+  @SerializedName("order_id_path")
+  private String orderIdPath;
 
-    @SerializedName("order_date")
-    private String orderDate;
+  @SerializedName("order_date")
+  private String orderDate;
 
-    @SerializedName("shipment_package_count")
-    private Float shipmentPackageCount;
+  @SerializedName("shipment_package_count")
+  private Float shipmentPackageCount;
 
-    @SerializedName("shipment_pickup_date")
-    private String shipmentPickupDate;
+  @SerializedName("shipment_pickup_date")
+  private String shipmentPickupDate;
 
-    @SerializedName("shipment_delivery_date")
-    private String shipmentDeliveryDate;
+  @SerializedName("shipment_delivery_date")
+  private String shipmentDeliveryDate;
 
-    @SerializedName("shipment_type")
-    private String shipmentType;
+  @SerializedName("shipment_type")
+  private String shipmentType;
 
-    @SerializedName("shipment_weight")
-    private TrackingShipmentWeight shipmentWeight;
+  @SerializedName("shipment_weight")
+  private TrackingShipmentWeight shipmentWeight;
 
-    @SerializedName("signed_by")
-    private String signedBy;
+  @SerializedName("shipment_dimensions")
+  private TrackingShipmentDimensions shipmentDimensions;
 
-    @SerializedName("source")
-    private String source;
+  @SerializedName("signed_by")
+  private String signedBy;
 
-    @SerializedName("tag")
-    private Tag tag;
+  @SerializedName("source")
+  private String source;
 
-    @SerializedName("subtag")
-    private String subtag;
+  @SerializedName("tag")
+  private Tag tag;
 
-    @SerializedName("subtag_message")
-    private String subtagMessage;
+  @SerializedName("subtag")
+  private String subtag;
 
-    @SerializedName("title")
-    private String title;
+  @SerializedName("subtag_message")
+  private String subtagMessage;
 
-    @SerializedName("tracked_count")
-    private Float trackedCount;
+  @SerializedName("title")
+  private String title;
 
-    @SerializedName("language")
-    private String language;
+  @SerializedName("tracked_count")
+  private Float trackedCount;
 
-    @SerializedName("unique_token")
-    private String uniqueToken;
+  @SerializedName("language")
+  private String language;
 
-    @SerializedName("checkpoints")
-    private java.util.List<Checkpoint> checkpoints;
+  @SerializedName("unique_token")
+  private String uniqueToken;
 
-    @SerializedName("subscribed_smses")
-    private java.util.List<String> subscribedSmses;
+  @SerializedName("checkpoints")
+  private java.util.List<Checkpoint> checkpoints;
 
-    @SerializedName("subscribed_emails")
-    private java.util.List<String> subscribedEmails;
+  @SerializedName("subscribed_smses")
+  private java.util.List<String> subscribedSmses;
 
-    @SerializedName("return_to_sender")
-    private Boolean returnToSender;
+  @SerializedName("subscribed_emails")
+  private java.util.List<String> subscribedEmails;
 
-    @SerializedName("order_promised_delivery_date")
-    private TrackingOrderPromisedDeliveryDate orderPromisedDeliveryDate;
+  @SerializedName("return_to_sender")
+  private Boolean returnToSender;
 
-    @SerializedName("delivery_type")
-    private String deliveryType;
+  @SerializedName("order_promised_delivery_date")
+  private TrackingOrderPromisedDeliveryDate orderPromisedDeliveryDate;
 
-    @SerializedName("pickup_location")
-    private String pickupLocation;
+  @SerializedName("delivery_type")
+  private String deliveryType;
 
-    @SerializedName("pickup_note")
-    private String pickupNote;
+  @SerializedName("pickup_location")
+  private String pickupLocation;
 
-    @SerializedName("courier_tracking_link")
-    private String courierTrackingLink;
+  @SerializedName("pickup_note")
+  private String pickupNote;
 
-    @SerializedName("first_attempted_at")
-    private String firstAttemptedAt;
+  @SerializedName("courier_tracking_link")
+  private String courierTrackingLink;
 
-    @SerializedName("courier_redirect_link")
-    private String courierRedirectLink;
+  @SerializedName("first_attempted_at")
+  private String firstAttemptedAt;
 
-    @SerializedName("tracking_account_number")
-    private String trackingAccountNumber;
+  @SerializedName("courier_redirect_link")
+  private String courierRedirectLink;
 
-    @SerializedName("tracking_key")
-    private String trackingKey;
+  @SerializedName("tracking_account_number")
+  private String trackingAccountNumber;
 
-    @SerializedName("tracking_ship_date")
-    private String trackingShipDate;
+  @SerializedName("tracking_key")
+  private String trackingKey;
 
-    @SerializedName("on_time_status")
-    private String onTimeStatus;
+  @SerializedName("tracking_ship_date")
+  private String trackingShipDate;
 
-    @SerializedName("on_time_difference")
-    private Float onTimeDifference;
+  @SerializedName("on_time_status")
+  private String onTimeStatus;
 
-    @SerializedName("order_tags")
-    private java.util.List<String> orderTags;
+  @SerializedName("on_time_difference")
+  private Float onTimeDifference;
 
-    @SerializedName("aftership_estimated_delivery_date")
-    private TrackingAftershipEstimatedDeliveryDate aftershipEstimatedDeliveryDate;
+  @SerializedName("order_tags")
+  private java.util.List<String> orderTags;
 
-    @SerializedName("custom_estimated_delivery_date")
-    private TrackingCustomEstimatedDeliveryDate customEstimatedDeliveryDate;
+  @SerializedName("aftership_estimated_delivery_date")
+  private TrackingAftershipEstimatedDeliveryDate aftershipEstimatedDeliveryDate;
 
-    @SerializedName("order_number")
-    private String orderNumber;
+  @SerializedName("custom_estimated_delivery_date")
+  private TrackingCustomEstimatedDeliveryDate customEstimatedDeliveryDate;
 
-    @SerializedName("first_estimated_delivery")
-    private TrackingFirstEstimatedDelivery firstEstimatedDelivery;
+  @SerializedName("order_number")
+  private String orderNumber;
 
-    @SerializedName("latest_estimated_delivery")
-    private TrackingLatestEstimatedDelivery latestEstimatedDelivery;
+  @SerializedName("first_estimated_delivery")
+  private TrackingFirstEstimatedDelivery firstEstimatedDelivery;
 
-    @SerializedName("shipment_tags")
-    private java.util.List<String> shipmentTags;
+  @SerializedName("latest_estimated_delivery")
+  private TrackingLatestEstimatedDelivery latestEstimatedDelivery;
 
-    @SerializedName("courier_connection_id")
-    private String courierConnectionId;
+  @SerializedName("shipment_tags")
+  private java.util.List<String> shipmentTags;
 
-    @SerializedName("carbon_emissions")
-    private TrackingCarbonEmissions carbonEmissions;
+  @SerializedName("courier_connection_id")
+  private String courierConnectionId;
 
-    @SerializedName("location_id")
-    private String locationId;
+  @SerializedName("carbon_emissions")
+  private TrackingCarbonEmissions carbonEmissions;
 
-    @SerializedName("shipping_method")
-    private String shippingMethod;
+  @SerializedName("location_id")
+  private String locationId;
 
-    @SerializedName("failed_delivery_attempts")
-    private Integer failedDeliveryAttempts;
+  @SerializedName("shipping_method")
+  private String shippingMethod;
 
-    @SerializedName("signature_requirement")
-    private TrackingSignatureRequirement signatureRequirement;
+  @SerializedName("failed_delivery_attempts")
+  private Integer failedDeliveryAttempts;
 
-    @SerializedName("delivery_location_type")
-    private String deliveryLocationType;
+  @SerializedName("signature_requirement")
+  private TrackingSignatureRequirement signatureRequirement;
 
-    @SerializedName("aftership_tracking_url")
-    private String aftershipTrackingUrl;
+  @SerializedName("delivery_location_type")
+  private String deliveryLocationType;
 
-    @SerializedName("aftership_tracking_order_url")
-    private String aftershipTrackingOrderUrl;
+  @SerializedName("aftership_tracking_url")
+  private String aftershipTrackingUrl;
 
-    @SerializedName("first_mile")
-    private TrackingFirstMile firstMile;
+  @SerializedName("aftership_tracking_order_url")
+  private String aftershipTrackingOrderUrl;
 
-    @SerializedName("last_mile")
-    private TrackingLastMile lastMile;
+  @SerializedName("first_mile")
+  private TrackingFirstMile firstMile;
 
-    @SerializedName("customers")
-    private java.util.List<TrackingCustomers> customers;
+  @SerializedName("last_mile")
+  private TrackingLastMile lastMile;
 
-    public  String getId() {
-        return id;
-    }
+  @SerializedName("customers")
+  private java.util.List<TrackingCustomers> customers;
 
-    public void setId( String id) {
-        this.id = id;
-    }
+  @SerializedName("proof_of_delivery")
+  private java.util.List<TrackingProofOfDelivery> proofOfDelivery;
 
-    public  String getLegacyId() {
-        return legacyId;
-    }
+  @SerializedName("multi_piece_info")
+  private TrackingMultiPieceInfo multiPieceInfo;
 
-    public void setLegacyId( String legacyId) {
-        this.legacyId = legacyId;
-    }
+  @SerializedName("shipment_direction")
+  private TrackingShipmentDirection shipmentDirection;
 
-    public  String getCreatedAt() {
-        return createdAt;
-    }
+  @SerializedName("return_shipment")
+  private TrackingReturnShipment returnShipment;
 
-    public void setCreatedAt( String createdAt) {
-        this.createdAt = createdAt;
-    }
+  @SerializedName("forward_shipment")
+  private TrackingForwardShipment forwardShipment;
 
-    public  String getUpdatedAt() {
-        return updatedAt;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public void setUpdatedAt( String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public  String getTrackingNumber() {
-        return trackingNumber;
-    }
+  public String getLegacyId() {
+    return legacyId;
+  }
 
-    public void setTrackingNumber( String trackingNumber) {
-        this.trackingNumber = trackingNumber;
-    }
+  public void setLegacyId(String legacyId) {
+    this.legacyId = legacyId;
+  }
 
-    public  String getSlug() {
-        return slug;
-    }
+  public String getCreatedAt() {
+    return createdAt;
+  }
 
-    public void setSlug( String slug) {
-        this.slug = slug;
-    }
+  public void setCreatedAt(String createdAt) {
+    this.createdAt = createdAt;
+  }
 
-    public  Boolean getActive() {
-        return active;
-    }
+  public String getUpdatedAt() {
+    return updatedAt;
+  }
 
-    public void setActive( Boolean active) {
-        this.active = active;
-    }
+  public void setUpdatedAt(String updatedAt) {
+    this.updatedAt = updatedAt;
+  }
 
-    public  java.util.Map<String,String> getCustomFields() {
-        return customFields;
-    }
+  public String getTrackingNumber() {
+    return trackingNumber;
+  }
 
-    public void setCustomFields( java.util.Map<String,String> customFields) {
-        this.customFields = customFields;
-    }
+  public void setTrackingNumber(String trackingNumber) {
+    this.trackingNumber = trackingNumber;
+  }
 
-    public  Integer getTransitTime() {
-        return transitTime;
-    }
+  public String getSlug() {
+    return slug;
+  }
 
-    public void setTransitTime( Integer transitTime) {
-        this.transitTime = transitTime;
-    }
+  public void setSlug(String slug) {
+    this.slug = slug;
+  }
 
-    public  String getOriginCountryRegion() {
-        return originCountryRegion;
-    }
+  public Boolean getActive() {
+    return active;
+  }
 
-    public void setOriginCountryRegion( String originCountryRegion) {
-        this.originCountryRegion = originCountryRegion;
-    }
+  public void setActive(Boolean active) {
+    this.active = active;
+  }
 
-    public  String getOriginState() {
-        return originState;
-    }
+  public java.util.Map<String, String> getCustomFields() {
+    return customFields;
+  }
 
-    public void setOriginState( String originState) {
-        this.originState = originState;
-    }
+  public void setCustomFields(java.util.Map<String, String> customFields) {
+    this.customFields = customFields;
+  }
 
-    public  String getOriginCity() {
-        return originCity;
-    }
+  public Integer getTransitTime() {
+    return transitTime;
+  }
 
-    public void setOriginCity( String originCity) {
-        this.originCity = originCity;
-    }
+  public void setTransitTime(Integer transitTime) {
+    this.transitTime = transitTime;
+  }
 
-    public  String getOriginPostalCode() {
-        return originPostalCode;
-    }
+  public String getOriginCountryRegion() {
+    return originCountryRegion;
+  }
 
-    public void setOriginPostalCode( String originPostalCode) {
-        this.originPostalCode = originPostalCode;
-    }
+  public void setOriginCountryRegion(String originCountryRegion) {
+    this.originCountryRegion = originCountryRegion;
+  }
 
-    public  String getOriginRawLocation() {
-        return originRawLocation;
-    }
+  public String getOriginState() {
+    return originState;
+  }
 
-    public void setOriginRawLocation( String originRawLocation) {
-        this.originRawLocation = originRawLocation;
-    }
+  public void setOriginState(String originState) {
+    this.originState = originState;
+  }
 
-    public  String getDestinationCountryRegion() {
-        return destinationCountryRegion;
-    }
+  public String getOriginCity() {
+    return originCity;
+  }
 
-    public void setDestinationCountryRegion( String destinationCountryRegion) {
-        this.destinationCountryRegion = destinationCountryRegion;
-    }
+  public void setOriginCity(String originCity) {
+    this.originCity = originCity;
+  }
 
-    public  String getDestinationState() {
-        return destinationState;
-    }
+  public String getOriginPostalCode() {
+    return originPostalCode;
+  }
 
-    public void setDestinationState( String destinationState) {
-        this.destinationState = destinationState;
-    }
+  public void setOriginPostalCode(String originPostalCode) {
+    this.originPostalCode = originPostalCode;
+  }
 
-    public  String getDestinationCity() {
-        return destinationCity;
-    }
+  public String getOriginRawLocation() {
+    return originRawLocation;
+  }
 
-    public void setDestinationCity( String destinationCity) {
-        this.destinationCity = destinationCity;
-    }
+  public void setOriginRawLocation(String originRawLocation) {
+    this.originRawLocation = originRawLocation;
+  }
 
-    public  String getDestinationPostalCode() {
-        return destinationPostalCode;
-    }
+  public String getDestinationCountryRegion() {
+    return destinationCountryRegion;
+  }
 
-    public void setDestinationPostalCode( String destinationPostalCode) {
-        this.destinationPostalCode = destinationPostalCode;
-    }
+  public void setDestinationCountryRegion(String destinationCountryRegion) {
+    this.destinationCountryRegion = destinationCountryRegion;
+  }
 
-    public  String getDestinationRawLocation() {
-        return destinationRawLocation;
-    }
+  public String getDestinationState() {
+    return destinationState;
+  }
 
-    public void setDestinationRawLocation( String destinationRawLocation) {
-        this.destinationRawLocation = destinationRawLocation;
-    }
+  public void setDestinationState(String destinationState) {
+    this.destinationState = destinationState;
+  }
 
-    public  String getCourierDestinationCountryRegion() {
-        return courierDestinationCountryRegion;
-    }
+  public String getDestinationCity() {
+    return destinationCity;
+  }
 
-    public void setCourierDestinationCountryRegion( String courierDestinationCountryRegion) {
-        this.courierDestinationCountryRegion = courierDestinationCountryRegion;
-    }
+  public void setDestinationCity(String destinationCity) {
+    this.destinationCity = destinationCity;
+  }
 
-    public  TrackingCourierEstimatedDeliveryDate getCourierEstimatedDeliveryDate() {
-        return courierEstimatedDeliveryDate;
-    }
+  public String getDestinationPostalCode() {
+    return destinationPostalCode;
+  }
 
-    public void setCourierEstimatedDeliveryDate( TrackingCourierEstimatedDeliveryDate courierEstimatedDeliveryDate) {
-        this.courierEstimatedDeliveryDate = courierEstimatedDeliveryDate;
-    }
+  public void setDestinationPostalCode(String destinationPostalCode) {
+    this.destinationPostalCode = destinationPostalCode;
+  }
 
-    public  String getNote() {
-        return note;
-    }
+  public String getDestinationRawLocation() {
+    return destinationRawLocation;
+  }
 
-    public void setNote( String note) {
-        this.note = note;
-    }
+  public void setDestinationRawLocation(String destinationRawLocation) {
+    this.destinationRawLocation = destinationRawLocation;
+  }
 
-    public  String getOrderId() {
-        return orderId;
-    }
+  public String getCourierDestinationCountryRegion() {
+    return courierDestinationCountryRegion;
+  }
 
-    public void setOrderId( String orderId) {
-        this.orderId = orderId;
-    }
+  public void setCourierDestinationCountryRegion(String courierDestinationCountryRegion) {
+    this.courierDestinationCountryRegion = courierDestinationCountryRegion;
+  }
 
-    public  String getOrderIdPath() {
-        return orderIdPath;
-    }
+  public TrackingCourierEstimatedDeliveryDate getCourierEstimatedDeliveryDate() {
+    return courierEstimatedDeliveryDate;
+  }
 
-    public void setOrderIdPath( String orderIdPath) {
-        this.orderIdPath = orderIdPath;
-    }
+  public void setCourierEstimatedDeliveryDate(
+      TrackingCourierEstimatedDeliveryDate courierEstimatedDeliveryDate) {
+    this.courierEstimatedDeliveryDate = courierEstimatedDeliveryDate;
+  }
 
-    public  String getOrderDate() {
-        return orderDate;
-    }
+  public String getNote() {
+    return note;
+  }
 
-    public void setOrderDate( String orderDate) {
-        this.orderDate = orderDate;
-    }
+  public void setNote(String note) {
+    this.note = note;
+  }
 
-    public  Float getShipmentPackageCount() {
-        return shipmentPackageCount;
-    }
+  public String getOrderId() {
+    return orderId;
+  }
 
-    public void setShipmentPackageCount( Float shipmentPackageCount) {
-        this.shipmentPackageCount = shipmentPackageCount;
-    }
+  public void setOrderId(String orderId) {
+    this.orderId = orderId;
+  }
 
-    public  String getShipmentPickupDate() {
-        return shipmentPickupDate;
-    }
+  public String getOrderIdPath() {
+    return orderIdPath;
+  }
 
-    public void setShipmentPickupDate( String shipmentPickupDate) {
-        this.shipmentPickupDate = shipmentPickupDate;
-    }
+  public void setOrderIdPath(String orderIdPath) {
+    this.orderIdPath = orderIdPath;
+  }
 
-    public  String getShipmentDeliveryDate() {
-        return shipmentDeliveryDate;
-    }
+  public String getOrderDate() {
+    return orderDate;
+  }
 
-    public void setShipmentDeliveryDate( String shipmentDeliveryDate) {
-        this.shipmentDeliveryDate = shipmentDeliveryDate;
-    }
+  public void setOrderDate(String orderDate) {
+    this.orderDate = orderDate;
+  }
 
-    public  String getShipmentType() {
-        return shipmentType;
-    }
+  public Float getShipmentPackageCount() {
+    return shipmentPackageCount;
+  }
 
-    public void setShipmentType( String shipmentType) {
-        this.shipmentType = shipmentType;
-    }
+  public void setShipmentPackageCount(Float shipmentPackageCount) {
+    this.shipmentPackageCount = shipmentPackageCount;
+  }
 
-    public  TrackingShipmentWeight getShipmentWeight() {
-        return shipmentWeight;
-    }
+  public String getShipmentPickupDate() {
+    return shipmentPickupDate;
+  }
 
-    public void setShipmentWeight( TrackingShipmentWeight shipmentWeight) {
-        this.shipmentWeight = shipmentWeight;
-    }
+  public void setShipmentPickupDate(String shipmentPickupDate) {
+    this.shipmentPickupDate = shipmentPickupDate;
+  }
 
-    public  String getSignedBy() {
-        return signedBy;
-    }
+  public String getShipmentDeliveryDate() {
+    return shipmentDeliveryDate;
+  }
 
-    public void setSignedBy( String signedBy) {
-        this.signedBy = signedBy;
-    }
+  public void setShipmentDeliveryDate(String shipmentDeliveryDate) {
+    this.shipmentDeliveryDate = shipmentDeliveryDate;
+  }
 
-    public  String getSource() {
-        return source;
-    }
+  public String getShipmentType() {
+    return shipmentType;
+  }
 
-    public void setSource( String source) {
-        this.source = source;
-    }
+  public void setShipmentType(String shipmentType) {
+    this.shipmentType = shipmentType;
+  }
 
-    public  Tag getTag() {
-        return tag;
-    }
+  public TrackingShipmentWeight getShipmentWeight() {
+    return shipmentWeight;
+  }
 
-    public void setTag( Tag tag) {
-        this.tag = tag;
-    }
+  public void setShipmentWeight(TrackingShipmentWeight shipmentWeight) {
+    this.shipmentWeight = shipmentWeight;
+  }
 
-    public  String getSubtag() {
-        return subtag;
-    }
+  public TrackingShipmentDimensions getShipmentDimensions() {
+    return shipmentDimensions;
+  }
 
-    public void setSubtag( String subtag) {
-        this.subtag = subtag;
-    }
+  public void setShipmentDimensions(TrackingShipmentDimensions shipmentDimensions) {
+    this.shipmentDimensions = shipmentDimensions;
+  }
 
-    public  String getSubtagMessage() {
-        return subtagMessage;
-    }
+  public String getSignedBy() {
+    return signedBy;
+  }
 
-    public void setSubtagMessage( String subtagMessage) {
-        this.subtagMessage = subtagMessage;
-    }
+  public void setSignedBy(String signedBy) {
+    this.signedBy = signedBy;
+  }
 
-    public  String getTitle() {
-        return title;
-    }
+  public String getSource() {
+    return source;
+  }
 
-    public void setTitle( String title) {
-        this.title = title;
-    }
+  public void setSource(String source) {
+    this.source = source;
+  }
 
-    public  Float getTrackedCount() {
-        return trackedCount;
-    }
+  public Tag getTag() {
+    return tag;
+  }
 
-    public void setTrackedCount( Float trackedCount) {
-        this.trackedCount = trackedCount;
-    }
+  public void setTag(Tag tag) {
+    this.tag = tag;
+  }
 
-    public  String getLanguage() {
-        return language;
-    }
+  public String getSubtag() {
+    return subtag;
+  }
 
-    public void setLanguage( String language) {
-        this.language = language;
-    }
+  public void setSubtag(String subtag) {
+    this.subtag = subtag;
+  }
 
-    public  String getUniqueToken() {
-        return uniqueToken;
-    }
+  public String getSubtagMessage() {
+    return subtagMessage;
+  }
 
-    public void setUniqueToken( String uniqueToken) {
-        this.uniqueToken = uniqueToken;
-    }
+  public void setSubtagMessage(String subtagMessage) {
+    this.subtagMessage = subtagMessage;
+  }
 
-    public java.util.List<Checkpoint>  getCheckpoints() {
-        return checkpoints;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public void setCheckpoints(java.util.List<Checkpoint>  checkpoints) {
-        this.checkpoints = checkpoints;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public java.util.List<String>  getSubscribedSmses() {
-        return subscribedSmses;
-    }
+  public Float getTrackedCount() {
+    return trackedCount;
+  }
 
-    public void setSubscribedSmses(java.util.List<String>  subscribedSmses) {
-        this.subscribedSmses = subscribedSmses;
-    }
+  public void setTrackedCount(Float trackedCount) {
+    this.trackedCount = trackedCount;
+  }
 
-    public java.util.List<String>  getSubscribedEmails() {
-        return subscribedEmails;
-    }
+  public String getLanguage() {
+    return language;
+  }
 
-    public void setSubscribedEmails(java.util.List<String>  subscribedEmails) {
-        this.subscribedEmails = subscribedEmails;
-    }
+  public void setLanguage(String language) {
+    this.language = language;
+  }
 
-    public  Boolean getReturnToSender() {
-        return returnToSender;
-    }
+  public String getUniqueToken() {
+    return uniqueToken;
+  }
 
-    public void setReturnToSender( Boolean returnToSender) {
-        this.returnToSender = returnToSender;
-    }
+  public void setUniqueToken(String uniqueToken) {
+    this.uniqueToken = uniqueToken;
+  }
 
-    public  TrackingOrderPromisedDeliveryDate getOrderPromisedDeliveryDate() {
-        return orderPromisedDeliveryDate;
-    }
+  public java.util.List<Checkpoint> getCheckpoints() {
+    return checkpoints;
+  }
 
-    public void setOrderPromisedDeliveryDate( TrackingOrderPromisedDeliveryDate orderPromisedDeliveryDate) {
-        this.orderPromisedDeliveryDate = orderPromisedDeliveryDate;
-    }
+  public void setCheckpoints(java.util.List<Checkpoint> checkpoints) {
+    this.checkpoints = checkpoints;
+  }
 
-    public  String getDeliveryType() {
-        return deliveryType;
-    }
+  public java.util.List<String> getSubscribedSmses() {
+    return subscribedSmses;
+  }
 
-    public void setDeliveryType( String deliveryType) {
-        this.deliveryType = deliveryType;
-    }
+  public void setSubscribedSmses(java.util.List<String> subscribedSmses) {
+    this.subscribedSmses = subscribedSmses;
+  }
 
-    public  String getPickupLocation() {
-        return pickupLocation;
-    }
+  public java.util.List<String> getSubscribedEmails() {
+    return subscribedEmails;
+  }
 
-    public void setPickupLocation( String pickupLocation) {
-        this.pickupLocation = pickupLocation;
-    }
+  public void setSubscribedEmails(java.util.List<String> subscribedEmails) {
+    this.subscribedEmails = subscribedEmails;
+  }
 
-    public  String getPickupNote() {
-        return pickupNote;
-    }
+  public Boolean getReturnToSender() {
+    return returnToSender;
+  }
 
-    public void setPickupNote( String pickupNote) {
-        this.pickupNote = pickupNote;
-    }
+  public void setReturnToSender(Boolean returnToSender) {
+    this.returnToSender = returnToSender;
+  }
 
-    public  String getCourierTrackingLink() {
-        return courierTrackingLink;
-    }
+  public TrackingOrderPromisedDeliveryDate getOrderPromisedDeliveryDate() {
+    return orderPromisedDeliveryDate;
+  }
 
-    public void setCourierTrackingLink( String courierTrackingLink) {
-        this.courierTrackingLink = courierTrackingLink;
-    }
+  public void setOrderPromisedDeliveryDate(
+      TrackingOrderPromisedDeliveryDate orderPromisedDeliveryDate) {
+    this.orderPromisedDeliveryDate = orderPromisedDeliveryDate;
+  }
 
-    public  String getFirstAttemptedAt() {
-        return firstAttemptedAt;
-    }
+  public String getDeliveryType() {
+    return deliveryType;
+  }
 
-    public void setFirstAttemptedAt( String firstAttemptedAt) {
-        this.firstAttemptedAt = firstAttemptedAt;
-    }
+  public void setDeliveryType(String deliveryType) {
+    this.deliveryType = deliveryType;
+  }
 
-    public  String getCourierRedirectLink() {
-        return courierRedirectLink;
-    }
+  public String getPickupLocation() {
+    return pickupLocation;
+  }
 
-    public void setCourierRedirectLink( String courierRedirectLink) {
-        this.courierRedirectLink = courierRedirectLink;
-    }
+  public void setPickupLocation(String pickupLocation) {
+    this.pickupLocation = pickupLocation;
+  }
 
-    public  String getTrackingAccountNumber() {
-        return trackingAccountNumber;
-    }
+  public String getPickupNote() {
+    return pickupNote;
+  }
 
-    public void setTrackingAccountNumber( String trackingAccountNumber) {
-        this.trackingAccountNumber = trackingAccountNumber;
-    }
+  public void setPickupNote(String pickupNote) {
+    this.pickupNote = pickupNote;
+  }
 
-    public  String getTrackingKey() {
-        return trackingKey;
-    }
+  public String getCourierTrackingLink() {
+    return courierTrackingLink;
+  }
 
-    public void setTrackingKey( String trackingKey) {
-        this.trackingKey = trackingKey;
-    }
+  public void setCourierTrackingLink(String courierTrackingLink) {
+    this.courierTrackingLink = courierTrackingLink;
+  }
 
-    public  String getTrackingShipDate() {
-        return trackingShipDate;
-    }
+  public String getFirstAttemptedAt() {
+    return firstAttemptedAt;
+  }
 
-    public void setTrackingShipDate( String trackingShipDate) {
-        this.trackingShipDate = trackingShipDate;
-    }
+  public void setFirstAttemptedAt(String firstAttemptedAt) {
+    this.firstAttemptedAt = firstAttemptedAt;
+  }
 
-    public  String getOnTimeStatus() {
-        return onTimeStatus;
-    }
+  public String getCourierRedirectLink() {
+    return courierRedirectLink;
+  }
 
-    public void setOnTimeStatus( String onTimeStatus) {
-        this.onTimeStatus = onTimeStatus;
-    }
+  public void setCourierRedirectLink(String courierRedirectLink) {
+    this.courierRedirectLink = courierRedirectLink;
+  }
 
-    public  Float getOnTimeDifference() {
-        return onTimeDifference;
-    }
+  public String getTrackingAccountNumber() {
+    return trackingAccountNumber;
+  }
 
-    public void setOnTimeDifference( Float onTimeDifference) {
-        this.onTimeDifference = onTimeDifference;
-    }
+  public void setTrackingAccountNumber(String trackingAccountNumber) {
+    this.trackingAccountNumber = trackingAccountNumber;
+  }
 
-    public java.util.List<String>  getOrderTags() {
-        return orderTags;
-    }
+  public String getTrackingKey() {
+    return trackingKey;
+  }
 
-    public void setOrderTags(java.util.List<String>  orderTags) {
-        this.orderTags = orderTags;
-    }
+  public void setTrackingKey(String trackingKey) {
+    this.trackingKey = trackingKey;
+  }
 
-    public  TrackingAftershipEstimatedDeliveryDate getAftershipEstimatedDeliveryDate() {
-        return aftershipEstimatedDeliveryDate;
-    }
+  public String getTrackingShipDate() {
+    return trackingShipDate;
+  }
 
-    public void setAftershipEstimatedDeliveryDate( TrackingAftershipEstimatedDeliveryDate aftershipEstimatedDeliveryDate) {
-        this.aftershipEstimatedDeliveryDate = aftershipEstimatedDeliveryDate;
-    }
+  public void setTrackingShipDate(String trackingShipDate) {
+    this.trackingShipDate = trackingShipDate;
+  }
 
-    public  TrackingCustomEstimatedDeliveryDate getCustomEstimatedDeliveryDate() {
-        return customEstimatedDeliveryDate;
-    }
+  public String getOnTimeStatus() {
+    return onTimeStatus;
+  }
 
-    public void setCustomEstimatedDeliveryDate( TrackingCustomEstimatedDeliveryDate customEstimatedDeliveryDate) {
-        this.customEstimatedDeliveryDate = customEstimatedDeliveryDate;
-    }
+  public void setOnTimeStatus(String onTimeStatus) {
+    this.onTimeStatus = onTimeStatus;
+  }
 
-    public  String getOrderNumber() {
-        return orderNumber;
-    }
+  public Float getOnTimeDifference() {
+    return onTimeDifference;
+  }
 
-    public void setOrderNumber( String orderNumber) {
-        this.orderNumber = orderNumber;
-    }
+  public void setOnTimeDifference(Float onTimeDifference) {
+    this.onTimeDifference = onTimeDifference;
+  }
 
-    public  TrackingFirstEstimatedDelivery getFirstEstimatedDelivery() {
-        return firstEstimatedDelivery;
-    }
+  public java.util.List<String> getOrderTags() {
+    return orderTags;
+  }
 
-    public void setFirstEstimatedDelivery( TrackingFirstEstimatedDelivery firstEstimatedDelivery) {
-        this.firstEstimatedDelivery = firstEstimatedDelivery;
-    }
+  public void setOrderTags(java.util.List<String> orderTags) {
+    this.orderTags = orderTags;
+  }
 
-    public  TrackingLatestEstimatedDelivery getLatestEstimatedDelivery() {
-        return latestEstimatedDelivery;
-    }
+  public TrackingAftershipEstimatedDeliveryDate getAftershipEstimatedDeliveryDate() {
+    return aftershipEstimatedDeliveryDate;
+  }
 
-    public void setLatestEstimatedDelivery( TrackingLatestEstimatedDelivery latestEstimatedDelivery) {
-        this.latestEstimatedDelivery = latestEstimatedDelivery;
-    }
+  public void setAftershipEstimatedDeliveryDate(
+      TrackingAftershipEstimatedDeliveryDate aftershipEstimatedDeliveryDate) {
+    this.aftershipEstimatedDeliveryDate = aftershipEstimatedDeliveryDate;
+  }
 
-    public java.util.List<String>  getShipmentTags() {
-        return shipmentTags;
-    }
+  public TrackingCustomEstimatedDeliveryDate getCustomEstimatedDeliveryDate() {
+    return customEstimatedDeliveryDate;
+  }
 
-    public void setShipmentTags(java.util.List<String>  shipmentTags) {
-        this.shipmentTags = shipmentTags;
-    }
+  public void setCustomEstimatedDeliveryDate(
+      TrackingCustomEstimatedDeliveryDate customEstimatedDeliveryDate) {
+    this.customEstimatedDeliveryDate = customEstimatedDeliveryDate;
+  }
 
-    public  String getCourierConnectionId() {
-        return courierConnectionId;
-    }
+  public String getOrderNumber() {
+    return orderNumber;
+  }
 
-    public void setCourierConnectionId( String courierConnectionId) {
-        this.courierConnectionId = courierConnectionId;
-    }
+  public void setOrderNumber(String orderNumber) {
+    this.orderNumber = orderNumber;
+  }
 
-    public  TrackingCarbonEmissions getCarbonEmissions() {
-        return carbonEmissions;
-    }
+  public TrackingFirstEstimatedDelivery getFirstEstimatedDelivery() {
+    return firstEstimatedDelivery;
+  }
 
-    public void setCarbonEmissions( TrackingCarbonEmissions carbonEmissions) {
-        this.carbonEmissions = carbonEmissions;
-    }
+  public void setFirstEstimatedDelivery(TrackingFirstEstimatedDelivery firstEstimatedDelivery) {
+    this.firstEstimatedDelivery = firstEstimatedDelivery;
+  }
 
-    public  String getLocationId() {
-        return locationId;
-    }
+  public TrackingLatestEstimatedDelivery getLatestEstimatedDelivery() {
+    return latestEstimatedDelivery;
+  }
 
-    public void setLocationId( String locationId) {
-        this.locationId = locationId;
-    }
+  public void setLatestEstimatedDelivery(TrackingLatestEstimatedDelivery latestEstimatedDelivery) {
+    this.latestEstimatedDelivery = latestEstimatedDelivery;
+  }
 
-    public  String getShippingMethod() {
-        return shippingMethod;
-    }
+  public java.util.List<String> getShipmentTags() {
+    return shipmentTags;
+  }
 
-    public void setShippingMethod( String shippingMethod) {
-        this.shippingMethod = shippingMethod;
-    }
+  public void setShipmentTags(java.util.List<String> shipmentTags) {
+    this.shipmentTags = shipmentTags;
+  }
 
-    public  Integer getFailedDeliveryAttempts() {
-        return failedDeliveryAttempts;
-    }
+  public String getCourierConnectionId() {
+    return courierConnectionId;
+  }
 
-    public void setFailedDeliveryAttempts( Integer failedDeliveryAttempts) {
-        this.failedDeliveryAttempts = failedDeliveryAttempts;
-    }
+  public void setCourierConnectionId(String courierConnectionId) {
+    this.courierConnectionId = courierConnectionId;
+  }
 
-    public  TrackingSignatureRequirement getSignatureRequirement() {
-        return signatureRequirement;
-    }
+  public TrackingCarbonEmissions getCarbonEmissions() {
+    return carbonEmissions;
+  }
 
-    public void setSignatureRequirement( TrackingSignatureRequirement signatureRequirement) {
-        this.signatureRequirement = signatureRequirement;
-    }
+  public void setCarbonEmissions(TrackingCarbonEmissions carbonEmissions) {
+    this.carbonEmissions = carbonEmissions;
+  }
 
-    public  String getDeliveryLocationType() {
-        return deliveryLocationType;
-    }
+  public String getLocationId() {
+    return locationId;
+  }
 
-    public void setDeliveryLocationType( String deliveryLocationType) {
-        this.deliveryLocationType = deliveryLocationType;
-    }
+  public void setLocationId(String locationId) {
+    this.locationId = locationId;
+  }
 
-    public  String getAftershipTrackingUrl() {
-        return aftershipTrackingUrl;
-    }
+  public String getShippingMethod() {
+    return shippingMethod;
+  }
 
-    public void setAftershipTrackingUrl( String aftershipTrackingUrl) {
-        this.aftershipTrackingUrl = aftershipTrackingUrl;
-    }
+  public void setShippingMethod(String shippingMethod) {
+    this.shippingMethod = shippingMethod;
+  }
 
-    public  String getAftershipTrackingOrderUrl() {
-        return aftershipTrackingOrderUrl;
-    }
+  public Integer getFailedDeliveryAttempts() {
+    return failedDeliveryAttempts;
+  }
 
-    public void setAftershipTrackingOrderUrl( String aftershipTrackingOrderUrl) {
-        this.aftershipTrackingOrderUrl = aftershipTrackingOrderUrl;
-    }
+  public void setFailedDeliveryAttempts(Integer failedDeliveryAttempts) {
+    this.failedDeliveryAttempts = failedDeliveryAttempts;
+  }
 
-    public  TrackingFirstMile getFirstMile() {
-        return firstMile;
-    }
+  public TrackingSignatureRequirement getSignatureRequirement() {
+    return signatureRequirement;
+  }
 
-    public void setFirstMile( TrackingFirstMile firstMile) {
-        this.firstMile = firstMile;
-    }
+  public void setSignatureRequirement(TrackingSignatureRequirement signatureRequirement) {
+    this.signatureRequirement = signatureRequirement;
+  }
 
-    public  TrackingLastMile getLastMile() {
-        return lastMile;
-    }
+  public String getDeliveryLocationType() {
+    return deliveryLocationType;
+  }
 
-    public void setLastMile( TrackingLastMile lastMile) {
-        this.lastMile = lastMile;
-    }
+  public void setDeliveryLocationType(String deliveryLocationType) {
+    this.deliveryLocationType = deliveryLocationType;
+  }
 
-    public java.util.List<TrackingCustomers>  getCustomers() {
-        return customers;
-    }
+  public String getAftershipTrackingUrl() {
+    return aftershipTrackingUrl;
+  }
 
-    public void setCustomers(java.util.List<TrackingCustomers>  customers) {
-        this.customers = customers;
-    }
+  public void setAftershipTrackingUrl(String aftershipTrackingUrl) {
+    this.aftershipTrackingUrl = aftershipTrackingUrl;
+  }
 
+  public String getAftershipTrackingOrderUrl() {
+    return aftershipTrackingOrderUrl;
+  }
+
+  public void setAftershipTrackingOrderUrl(String aftershipTrackingOrderUrl) {
+    this.aftershipTrackingOrderUrl = aftershipTrackingOrderUrl;
+  }
+
+  public TrackingFirstMile getFirstMile() {
+    return firstMile;
+  }
+
+  public void setFirstMile(TrackingFirstMile firstMile) {
+    this.firstMile = firstMile;
+  }
+
+  public TrackingLastMile getLastMile() {
+    return lastMile;
+  }
+
+  public void setLastMile(TrackingLastMile lastMile) {
+    this.lastMile = lastMile;
+  }
+
+  public java.util.List<TrackingCustomers> getCustomers() {
+    return customers;
+  }
+
+  public void setCustomers(java.util.List<TrackingCustomers> customers) {
+    this.customers = customers;
+  }
+
+  public java.util.List<TrackingProofOfDelivery> getProofOfDelivery() {
+    return proofOfDelivery;
+  }
+
+  public void setProofOfDelivery(java.util.List<TrackingProofOfDelivery> proofOfDelivery) {
+    this.proofOfDelivery = proofOfDelivery;
+  }
+
+  public TrackingMultiPieceInfo getMultiPieceInfo() {
+    return multiPieceInfo;
+  }
+
+  public void setMultiPieceInfo(TrackingMultiPieceInfo multiPieceInfo) {
+    this.multiPieceInfo = multiPieceInfo;
+  }
+
+  public TrackingShipmentDirection getShipmentDirection() {
+    return shipmentDirection;
+  }
+
+  public void setShipmentDirection(TrackingShipmentDirection shipmentDirection) {
+    this.shipmentDirection = shipmentDirection;
+  }
+
+  public TrackingReturnShipment getReturnShipment() {
+    return returnShipment;
+  }
+
+  public void setReturnShipment(TrackingReturnShipment returnShipment) {
+    this.returnShipment = returnShipment;
+  }
+
+  public TrackingForwardShipment getForwardShipment() {
+    return forwardShipment;
+  }
+
+  public void setForwardShipment(TrackingForwardShipment forwardShipment) {
+    this.forwardShipment = forwardShipment;
+  }
 }

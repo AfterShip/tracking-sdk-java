@@ -4,60 +4,60 @@
  */
 package com.aftership.tracking.http;
 
-import org.apache.http.Header;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.http.Header;
 
 public class Response {
-    private final int statusCode;
-    private final String content;
-    private final boolean isTimeout;
-    private final Header[] headers;
+  private final int statusCode;
+  private final String content;
+  private final boolean isTimeout;
+  private final Header[] headers;
 
-    public Response() {
-        this.statusCode = 0;
-        this.content = "";
-        this.isTimeout = true;
-        this.headers = null;
-    }
+  public Response() {
+    this.statusCode = 0;
+    this.content = "";
+    this.isTimeout = true;
+    this.headers = null;
+  }
 
-    public Response(String content, int statusCode, boolean isTimeout, Header[] headers) {
-        this.content = content;
-        this.statusCode = statusCode;
-        this.isTimeout = isTimeout;
-        this.headers = headers;
-    }
+  public Response(String content, int statusCode, boolean isTimeout, Header[] headers) {
+    this.content = content;
+    this.statusCode = statusCode;
+    this.isTimeout = isTimeout;
+    this.headers = headers;
+  }
 
-    public String getContent() {
-        return content;
-    }
+  public String getContent() {
+    return content;
+  }
 
-    public int getStatusCode() {
-        return statusCode;
-    }
+  public int getStatusCode() {
+    return statusCode;
+  }
 
-    public boolean isTimeout() {
-        return isTimeout;
-    }
+  public boolean isTimeout() {
+    return isTimeout;
+  }
 
-    public Header[] getHeaders() {
-        return headers;
-    }
+  public Header[] getHeaders() {
+    return headers;
+  }
 
-    public Map<String, List<String>> getResponseHeader() {
-        Map<String, List<String>> headerMap = new HashMap<>();
-        if (headers != null) {
-            for (Header header : headers) {
-                String name = header.getName();
-                String value = header.getValue();
-                if (!headerMap.containsKey(name)) {
-                    headerMap.put(name, new ArrayList<>());
-                }
-                headerMap.get(name).add(value);
-            }
+  public Map<String, List<String>> getResponseHeader() {
+    Map<String, List<String>> headerMap = new HashMap<>();
+    if (headers != null) {
+      for (Header header : headers) {
+        String name = header.getName();
+        String value = header.getValue();
+        if (!headerMap.containsKey(name)) {
+          headerMap.put(name, new ArrayList<>());
         }
-        return headerMap;
+        headerMap.get(name).add(value);
+      }
     }
+    return headerMap;
+  }
 }

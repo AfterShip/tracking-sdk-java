@@ -4,64 +4,64 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class EstimatedDeliveryDateResponseEstimatedPickup extends Resource {
 
-    @SerializedName("order_time")
-    private String orderTime;
+  @SerializedName("order_time")
+  private String orderTime;
 
-    @SerializedName("order_cutoff_time")
-    private String orderCutoffTime;
+  @SerializedName("order_cutoff_time")
+  private String orderCutoffTime;
 
-    @SerializedName("business_days")
-    private java.util.List<Integer> businessDays;
+  @SerializedName("business_days")
+  private java.util.List<Integer> businessDays;
 
-    @SerializedName("order_processing_time")
-    private EstimatedDeliveryDateResponseEstimatedPickupOrderProcessingTime orderProcessingTime;
+  @SerializedName("order_processing_time")
+  private EstimatedDeliveryDateResponseEstimatedPickupOrderProcessingTime orderProcessingTime;
 
-    @SerializedName("pickup_time")
-    private String pickupTime;
+  @SerializedName("pickup_time")
+  private String pickupTime;
 
-    public  String getOrderTime() {
-        return orderTime;
-    }
+  public String getOrderTime() {
+    return orderTime;
+  }
 
-    public void setOrderTime( String orderTime) {
-        this.orderTime = orderTime;
-    }
+  public void setOrderTime(String orderTime) {
+    this.orderTime = orderTime;
+  }
 
-    public  String getOrderCutoffTime() {
-        return orderCutoffTime;
-    }
+  public String getOrderCutoffTime() {
+    return orderCutoffTime;
+  }
 
-    public void setOrderCutoffTime( String orderCutoffTime) {
-        this.orderCutoffTime = orderCutoffTime;
-    }
+  public void setOrderCutoffTime(String orderCutoffTime) {
+    this.orderCutoffTime = orderCutoffTime;
+  }
 
-    public java.util.List<Integer>  getBusinessDays() {
-        return businessDays;
-    }
+  public java.util.List<Integer> getBusinessDays() {
+    return businessDays;
+  }
 
-    public void setBusinessDays(java.util.List<Integer>  businessDays) {
-        this.businessDays = businessDays;
-    }
+  public void setBusinessDays(java.util.List<Integer> businessDays) {
+    this.businessDays = businessDays;
+  }
 
-    public  EstimatedDeliveryDateResponseEstimatedPickupOrderProcessingTime getOrderProcessingTime() {
-        return orderProcessingTime;
-    }
+  public EstimatedDeliveryDateResponseEstimatedPickupOrderProcessingTime getOrderProcessingTime() {
+    return orderProcessingTime;
+  }
 
-    public void setOrderProcessingTime( EstimatedDeliveryDateResponseEstimatedPickupOrderProcessingTime orderProcessingTime) {
-        this.orderProcessingTime = orderProcessingTime;
-    }
+  public void setOrderProcessingTime(
+      EstimatedDeliveryDateResponseEstimatedPickupOrderProcessingTime orderProcessingTime) {
+    this.orderProcessingTime = orderProcessingTime;
+  }
 
-    public  String getPickupTime() {
-        return pickupTime;
-    }
+  public String getPickupTime() {
+    return pickupTime;
+  }
 
-    public void setPickupTime( String pickupTime) {
-        this.pickupTime = pickupTime;
-    }
-
+  public void setPickupTime(String pickupTime) {
+    this.pickupTime = pickupTime;
+  }
 }

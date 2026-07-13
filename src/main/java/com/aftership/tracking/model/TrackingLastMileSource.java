@@ -7,24 +7,24 @@ package com.aftership.tracking.model;
 import com.google.gson.annotations.SerializedName;
 
 public enum TrackingLastMileSource {
-    @SerializedName("system")
-    System("system"),
+  @SerializedName("system")
+  System("system"),
 
-    @SerializedName("user")
-    User("user");
+  @SerializedName("user")
+  User("user");
 
-    private final String value;
+  private final String value;
 
-    TrackingLastMileSource(final String value) {
-        this.value = value;
-    }
+  TrackingLastMileSource(final String value) {
+    this.value = value;
+  }
 
-    public String getValue() {
-        return value;
-    }
+  public String getValue() {
+    return value;
+  }
 
-    @Override
-    public String toString() {
-        return String.valueOf(value);
-    }
+  @Override
+  public String toString() {
+    return String.valueOf(value);
+  }
 }

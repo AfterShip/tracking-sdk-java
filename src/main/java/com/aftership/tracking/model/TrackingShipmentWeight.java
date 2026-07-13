@@ -4,31 +4,30 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class TrackingShipmentWeight extends Resource {
 
-    @SerializedName("unit")
-    private String unit;
+  @SerializedName("unit")
+  private String unit;
 
-    @SerializedName("value")
-    private Float value;
+  @SerializedName("value")
+  private Float value;
 
-    public  String getUnit() {
-        return unit;
-    }
+  public String getUnit() {
+    return unit;
+  }
 
-    public void setUnit( String unit) {
-        this.unit = unit;
-    }
+  public void setUnit(String unit) {
+    this.unit = unit;
+  }
 
-    public  Float getValue() {
-        return value;
-    }
+  public Float getValue() {
+    return value;
+  }
 
-    public void setValue( Float value) {
-        this.value = value;
-    }
-
+  public void setValue(Float value) {
+    this.value = value;
+  }
 }

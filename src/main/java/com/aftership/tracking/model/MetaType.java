@@ -7,36 +7,36 @@ package com.aftership.tracking.model;
 import com.google.gson.annotations.SerializedName;
 
 public enum MetaType {
-    @SerializedName("BadRequest")
-    BadRequest("BadRequest"),
+  @SerializedName("BadRequest")
+  BadRequest("BadRequest"),
 
-    @SerializedName("Unauthorized")
-    Unauthorized("Unauthorized"),
+  @SerializedName("Unauthorized")
+  Unauthorized("Unauthorized"),
 
-    @SerializedName("Forbidden")
-    Forbidden("Forbidden"),
+  @SerializedName("Forbidden")
+  Forbidden("Forbidden"),
 
-    @SerializedName("NotFound")
-    NotFound("NotFound"),
+  @SerializedName("NotFound")
+  NotFound("NotFound"),
 
-    @SerializedName("TooManyRequests")
-    TooManyRequests("TooManyRequests"),
+  @SerializedName("TooManyRequests")
+  TooManyRequests("TooManyRequests"),
 
-    @SerializedName("InternalError")
-    InternalError("InternalError");
+  @SerializedName("InternalError")
+  InternalError("InternalError");
 
-    private final String value;
+  private final String value;
 
-    MetaType(final String value) {
-        this.value = value;
-    }
+  MetaType(final String value) {
+    this.value = value;
+  }
 
-    public String getValue() {
-        return value;
-    }
+  public String getValue() {
+    return value;
+  }
 
-    @Override
-    public String toString() {
-        return String.valueOf(value);
-    }
+  @Override
+  public String toString() {
+    return String.valueOf(value);
+  }
 }

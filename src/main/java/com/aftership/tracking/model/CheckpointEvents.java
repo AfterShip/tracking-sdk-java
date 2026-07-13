@@ -4,31 +4,30 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class CheckpointEvents extends Resource {
 
-    @SerializedName("code")
-    private String code;
+  @SerializedName("code")
+  private String code;
 
-    @SerializedName("reason")
-    private CheckpointEventsReason reason;
+  @SerializedName("reason")
+  private CheckpointEventsReason reason;
 
-    public  String getCode() {
-        return code;
-    }
+  public String getCode() {
+    return code;
+  }
 
-    public void setCode( String code) {
-        this.code = code;
-    }
+  public void setCode(String code) {
+    this.code = code;
+  }
 
-    public  CheckpointEventsReason getReason() {
-        return reason;
-    }
+  public CheckpointEventsReason getReason() {
+    return reason;
+  }
 
-    public void setReason( CheckpointEventsReason reason) {
-        this.reason = reason;
-    }
-
+  public void setReason(CheckpointEventsReason reason) {
+    this.reason = reason;
+  }
 }

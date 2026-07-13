@@ -7,24 +7,24 @@ package com.aftership.tracking.model;
 import com.google.gson.annotations.SerializedName;
 
 public enum CheckpointSource {
-    @SerializedName("carrier")
-    Carrier("carrier"),
+  @SerializedName("carrier")
+  Carrier("carrier"),
 
-    @SerializedName("user")
-    User("user");
+  @SerializedName("user")
+  User("user");
 
-    private final String value;
+  private final String value;
 
-    CheckpointSource(final String value) {
-        this.value = value;
-    }
+  CheckpointSource(final String value) {
+    this.value = value;
+  }
 
-    public String getValue() {
-        return value;
-    }
+  public String getValue() {
+    return value;
+  }
 
-    @Override
-    public String toString() {
-        return String.valueOf(value);
-    }
+  @Override
+  public String toString() {
+    return String.valueOf(value);
+  }
 }

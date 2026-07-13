@@ -4,20 +4,19 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class CourierCredentials extends Resource {
 
-    @SerializedName("fields")
-    private java.util.List<CredentialField> fields;
+  @SerializedName("fields")
+  private java.util.List<CredentialField> fields;
 
-    public java.util.List<CredentialField>  getFields() {
-        return fields;
-    }
+  public java.util.List<CredentialField> getFields() {
+    return fields;
+  }
 
-    public void setFields(java.util.List<CredentialField>  fields) {
-        this.fields = fields;
-    }
-
+  public void setFields(java.util.List<CredentialField> fields) {
+    this.fields = fields;
+  }
 }

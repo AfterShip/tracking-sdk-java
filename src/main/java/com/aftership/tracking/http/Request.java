@@ -6,90 +6,92 @@ package com.aftership.tracking.http;
 
 import com.aftership.tracking.auth.Auth;
 import com.aftership.tracking.auth.AuthType;
-import com.aftership.tracking.exception.ApiException;
 import com.aftership.tracking.constant.ErrorEnum;
-import org.apache.http.client.utils.URIBuilder;
+import com.aftership.tracking.exception.ApiException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import org.apache.http.client.utils.URIBuilder;
 
 public class Request {
-    private final Map<String, String> headerParams;
-    private final URIBuilder uriBuilder;
-    private final HttpMethod method;
-    private String body;
-    private final String date;
+  private final Map<String, String> headerParams;
+  private final URIBuilder uriBuilder;
+  private final HttpMethod method;
+  private String body;
+  private final String date;
 
-    public Request(HttpMethod method, String path) {
-        this.method = method;
-        this.date = this.getCurrDate();
-        this.uriBuilder = new URIBuilder().setPath(path);
-        this.headerParams = new HashMap<>(8);
+  public Request(HttpMethod method, String path) {
+    this.method = method;
+    this.date = this.getCurrDate();
+    this.uriBuilder = new URIBuilder().setPath(path);
+    this.headerParams = new HashMap<>(8);
+  }
+
+  public void setDomain(final String domain) throws Exception {
+    URIBuilder validateURI = new URIBuilder(domain);
+    uriBuilder.setHost(validateURI.getHost());
+    uriBuilder.setScheme(validateURI.getScheme());
+    uriBuilder.setPort(validateURI.getPort());
+  }
+
+  public void setAuth(
+      final String apiKey, final String apiSecret, final AuthType authenticationType)
+      throws Exception {
+    Auth auth = new Auth(apiKey, apiSecret, authenticationType);
+    Map<String, String> authHeaders = auth.getAuthHeader(this);
+    if (authHeaders != null) {
+      headerParams.putAll(authHeaders);
+    }
+  }
+
+  public void addQueryParam(final String name, final String value) {
+    if (value != null && !value.equals("null")) {
+      uriBuilder.addParameter(name, value);
+    }
+  }
+
+  public void addHeaderParam(final String name, final String value) {
+    if (value == null || value.equals("null")) {
+      return;
     }
 
-    public void setDomain(final String domain) throws Exception {
-        URIBuilder validateURI = new URIBuilder(domain);
-        uriBuilder.setHost(validateURI.getHost());
-        uriBuilder.setScheme(validateURI.getScheme());
-        uriBuilder.setPort(validateURI.getPort());
+    if (!headerParams.containsKey(name)) {
+      headerParams.put(name, value);
     }
+  }
 
-    public void setAuth(final String apiKey, final String apiSecret, final AuthType authenticationType) throws Exception {
-        Auth auth = new Auth(apiKey, apiSecret, authenticationType);
-        Map<String, String> authHeaders = auth.getAuthHeader(this);
-        if (authHeaders != null) {
-            headerParams.putAll(authHeaders);
-        }
+  private String getCurrDate() {
+    SimpleDateFormat sdf3 = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
+    sdf3.setTimeZone(TimeZone.getTimeZone("GMT"));
+    return sdf3.format(new Date());
+  }
+
+  public String getBody() {
+    return body;
+  }
+
+  public Map<String, String> getHeaders() {
+    return headerParams;
+  }
+
+  public void setBody(String body) {
+    this.body = body;
+  }
+
+  public String getDate() {
+    return date;
+  }
+
+  public HttpMethod getMethod() {
+    return method;
+  }
+
+  public URI getURI() throws Exception {
+    try {
+      return uriBuilder.build();
+    } catch (URISyntaxException e) {
+      throw new ApiException(ErrorEnum.BAD_REQUEST.name(), e.getMessage());
     }
-
-    public void addQueryParam(final String name, final String value) {
-        if (value != null && !value.equals("null")) {
-            uriBuilder.addParameter(name, value);
-        }
-    }
-
-    public void addHeaderParam(final String name, final String value) {
-        if (value == null || value.equals("null")) {
-            return;
-        }
-
-        if (!headerParams.containsKey(name)) {
-            headerParams.put(name,value);
-        }
-    }
-
-    private String getCurrDate() {
-        SimpleDateFormat sdf3 = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
-        sdf3.setTimeZone(TimeZone.getTimeZone("GMT"));
-        return sdf3.format(new Date());
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public Map<String, String> getHeaders() {
-        return headerParams;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public HttpMethod getMethod() {
-        return method;
-    }
-
-    public URI getURI() throws Exception {
-        try {
-            return uriBuilder.build();
-        } catch (URISyntaxException e) {
-            throw new ApiException(ErrorEnum.BAD_REQUEST.name(), e.getMessage());
-        }
-    }
+  }
 }

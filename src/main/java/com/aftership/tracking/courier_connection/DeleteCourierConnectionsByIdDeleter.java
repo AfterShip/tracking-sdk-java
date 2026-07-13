@@ -8,56 +8,59 @@ import com.aftership.tracking.base.Deleter;
 import com.aftership.tracking.constant.ErrorEnum;
 import com.aftership.tracking.exception.ApiException;
 import com.aftership.tracking.http.*;
+import com.aftership.tracking.http.Request;
+import com.aftership.tracking.model.CourierConnection;
+import com.aftership.tracking.model.DeleteCourierConnectionsByIdResponse;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.util.HashMap;
 import java.util.Map;
-import com.aftership.tracking.http.Request;
-import com.aftership.tracking.model.DeleteCourierConnectionsByIdResponse;
-import com.aftership.tracking.model.CourierConnection;
 
-public class DeleteCourierConnectionsByIdDeleter extends Deleter<DeleteCourierConnectionsByIdResponse> {
-    private final Map<String, String> headerParams= new HashMap<>(8);
+public class DeleteCourierConnectionsByIdDeleter
+    extends Deleter<DeleteCourierConnectionsByIdResponse> {
+  private final Map<String, String> headerParams = new HashMap<>(8);
 
-    public DeleteCourierConnectionsByIdDeleter addHeaderParam(final String name, final String value) {
-        if (value == null || value.equals("null")) {
-            return this;
-        }
-
-        if (!headerParams.containsKey(name)) {
-            headerParams.put(name, value);
-        }
-        return this;
+  public DeleteCourierConnectionsByIdDeleter addHeaderParam(final String name, final String value) {
+    if (value == null || value.equals("null")) {
+      return this;
     }
 
-    private void setHeaderParams(final Request request) {
-        for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
-            request.addHeaderParam(entry.getKey(), entry.getValue());
-        }
+    if (!headerParams.containsKey(name)) {
+      headerParams.put(name, value);
     }
-    private String id;
+    return this;
+  }
 
-
-    public DeleteCourierConnectionsByIdDeleter setId(String id) {
-        this.id = id;
-        return this;
+  private void setHeaderParams(final Request request) {
+    for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
+      request.addHeaderParam(entry.getKey(), entry.getValue());
     }
+  }
 
-    @Override
-    public DeleteCourierConnectionsByIdResponse delete(AfterShipClient client) throws Exception {
-        if (id == null || id.isEmpty()) {
-            throw new ApiException(ErrorEnum.BAD_REQUEST.name(), "Invalid request: `id` is invalid");
-        }
-        String path = String.format("/tracking/2026-01/courier-connections/%s", id);
-        Request request = new Request(HttpMethod.DELETE, path);
-        setHeaderParams(request);
-        Response response = client.request(request);
-        AfterShipResponse<CourierConnection> responseData = new Gson().fromJson(response.getContent(), new TypeToken<AfterShipResponse<CourierConnection>>() {
-            }.getType());
-        DeleteCourierConnectionsByIdResponse result = new DeleteCourierConnectionsByIdResponse();
-        result.setData(responseData.getData());
-        result.setResponseHeader(response.getResponseHeader());
-        return result;
+  private String id;
+
+  public DeleteCourierConnectionsByIdDeleter setId(String id) {
+    this.id = id;
+    return this;
+  }
+
+  @Override
+  public DeleteCourierConnectionsByIdResponse delete(AfterShipClient client) throws Exception {
+    if (id == null || id.isEmpty()) {
+      throw new ApiException(ErrorEnum.BAD_REQUEST.name(), "Invalid request: `id` is invalid");
     }
-
+    String path = String.format("/tracking/2026-07/courier-connections/%s", id);
+    Request request = new Request(HttpMethod.DELETE, path);
+    setHeaderParams(request);
+    Response response = client.request(request);
+    AfterShipResponse<CourierConnection> responseData =
+        new Gson()
+            .fromJson(
+                response.getContent(),
+                new TypeToken<AfterShipResponse<CourierConnection>>() {}.getType());
+    DeleteCourierConnectionsByIdResponse result = new DeleteCourierConnectionsByIdResponse();
+    result.setData(responseData.getData());
+    result.setResponseHeader(response.getResponseHeader());
+    return result;
+  }
 }

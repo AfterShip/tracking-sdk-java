@@ -4,64 +4,74 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class CreateTrackingRequestCustomers extends Resource {
 
-    @SerializedName("role")
-    private String role;
+  @SerializedName("role")
+  private String role;
 
-    @SerializedName("name")
-    private String name;
+  @SerializedName("name")
+  private String name;
 
-    @SerializedName("phone_number")
-    private String phoneNumber;
+  @SerializedName("phone_number")
+  private String phoneNumber;
 
-    @SerializedName("email")
-    private String email;
+  @SerializedName("email")
+  private String email;
 
-    @SerializedName("language")
-    private String language;
+  @SerializedName("language")
+  private String language;
 
-    public  String getRole() {
-        return role;
-    }
+  @SerializedName("id")
+  private String id;
 
-    public void setRole( String role) {
-        this.role = role;
-    }
+  public String getRole() {
+    return role;
+  }
 
-    public  String getName() {
-        return name;
-    }
+  public void setRole(String role) {
+    this.role = role;
+  }
 
-    public void setName( String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public  String getPhoneNumber() {
-        return phoneNumber;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setPhoneNumber( String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
 
-    public  String getEmail() {
-        return email;
-    }
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
 
-    public void setEmail( String email) {
-        this.email = email;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public  String getLanguage() {
-        return language;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public void setLanguage( String language) {
-        this.language = language;
-    }
+  public String getLanguage() {
+    return language;
+  }
 
+  public void setLanguage(String language) {
+    this.language = language;
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
 }

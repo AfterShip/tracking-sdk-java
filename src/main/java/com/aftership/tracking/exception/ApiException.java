@@ -4,78 +4,84 @@
  */
 package com.aftership.tracking.exception;
 
-import org.apache.http.Header;
-
 import java.util.Arrays;
+import org.apache.http.Header;
 
 public class ApiException extends Exception {
 
-    private final Integer metaCode;
-    private final String message;
-    private final String code;
-    private final Integer statusCode;
-    private final String responseBody;
-    private final Header[] headers;
+  private final Integer metaCode;
+  private final String message;
+  private final String code;
+  private final Integer statusCode;
+  private final String responseBody;
+  private final Header[] headers;
 
-    public ApiException(final String code, final String message) {
-        this.metaCode = null;
-        this.message = message;
-        this.statusCode = null;
-        this.code = code;
-        this.responseBody = "";
-        this.headers = null;
-    }
+  public ApiException(final String code, final String message) {
+    this.metaCode = null;
+    this.message = message;
+    this.statusCode = null;
+    this.code = code;
+    this.responseBody = "";
+    this.headers = null;
+  }
 
-    public ApiException(
-            final int metaCode,
-            final String message,
-            final String code,
-            final int statusCode,
-            final String responseBody,
-            final Header[] headers
-    ) {
-        this.metaCode = metaCode;
-        this.message = message;
-        this.code = code;
-        this.statusCode = statusCode;
-        this.responseBody = responseBody;
-        this.headers = headers;
-    }
+  public ApiException(
+      final int metaCode,
+      final String message,
+      final String code,
+      final int statusCode,
+      final String responseBody,
+      final Header[] headers) {
+    this.metaCode = metaCode;
+    this.message = message;
+    this.code = code;
+    this.statusCode = statusCode;
+    this.responseBody = responseBody;
+    this.headers = headers;
+  }
 
-    public Integer getMetaCode() {
-        return metaCode;
-    }
+  public Integer getMetaCode() {
+    return metaCode;
+  }
 
-    @Override
-    public String getMessage() {
-        return message;
-    }
+  @Override
+  public String getMessage() {
+    return message;
+  }
 
-    public String getCode() {
-        return code;
-    }
+  public String getCode() {
+    return code;
+  }
 
-    public Integer getStatusCode() {
-        return statusCode;
-    }
+  public Integer getStatusCode() {
+    return statusCode;
+  }
 
-    public String getResponseBody() {
-        return responseBody;
-    }
+  public String getResponseBody() {
+    return responseBody;
+  }
 
-    public Header[] getHeaders() {
-        return headers;
-    }
+  public Header[] getHeaders() {
+    return headers;
+  }
 
-    @Override
-    public String toString() {
-        return "ApiException{" +
-                "metaCode=" + metaCode +
-                ", message='" + message + '\'' +
-                ", code=" + code +
-                ", statusCode=" + statusCode +
-                ", responseBody='" + responseBody + '\'' +
-                ", headers=" + Arrays.toString(headers) +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "ApiException{"
+        + "metaCode="
+        + metaCode
+        + ", message='"
+        + message
+        + '\''
+        + ", code="
+        + code
+        + ", statusCode="
+        + statusCode
+        + ", responseBody='"
+        + responseBody
+        + '\''
+        + ", headers="
+        + Arrays.toString(headers)
+        + '}';
+  }
 }

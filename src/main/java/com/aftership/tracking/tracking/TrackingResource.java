@@ -7,25 +7,31 @@ package com.aftership.tracking.tracking;
 import com.aftership.tracking.base.Resource;
 
 public class TrackingResource extends Resource {
-    public static GetTrackingsFetcher getTrackings() {
-        return new GetTrackingsFetcher();
-    }
-    public static CreateTrackingCreator createTracking() {
-        return new CreateTrackingCreator();
-    }
-    public static GetTrackingByIdFetcher getTrackingById() {
-        return new GetTrackingByIdFetcher();
-    }
-    public static UpdateTrackingByIdUpdater updateTrackingById() {
-        return new UpdateTrackingByIdUpdater();
-    }
-    public static DeleteTrackingByIdDeleter deleteTrackingById() {
-        return new DeleteTrackingByIdDeleter();
-    }
-    public static RetrackTrackingByIdCreator retrackTrackingById() {
-        return new RetrackTrackingByIdCreator();
-    }
-    public static MarkTrackingCompletedByIdCreator markTrackingCompletedById() {
-        return new MarkTrackingCompletedByIdCreator();
-    }
+  public static GetTrackingsFetcher getTrackings() {
+    return new GetTrackingsFetcher();
+  }
+
+  public static CreateTrackingCreator createTracking() {
+    return new CreateTrackingCreator();
+  }
+
+  public static GetTrackingByIdFetcher getTrackingById() {
+    return new GetTrackingByIdFetcher();
+  }
+
+  public static UpdateTrackingByIdUpdater updateTrackingById() {
+    return new UpdateTrackingByIdUpdater();
+  }
+
+  public static DeleteTrackingByIdDeleter deleteTrackingById() {
+    return new DeleteTrackingByIdDeleter();
+  }
+
+  public static RetrackTrackingByIdCreator retrackTrackingById() {
+    return new RetrackTrackingByIdCreator();
+  }
+
+  public static MarkTrackingCompletedByIdCreator markTrackingCompletedById() {
+    return new MarkTrackingCompletedByIdCreator();
+  }
 }

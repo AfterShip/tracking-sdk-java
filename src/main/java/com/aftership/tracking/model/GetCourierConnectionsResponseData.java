@@ -4,31 +4,30 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class GetCourierConnectionsResponseData extends Resource {
 
-    @SerializedName("pagination")
-    private GetCourierConnectionsResponseDataPagination pagination;
+  @SerializedName("pagination")
+  private GetCourierConnectionsResponseDataPagination pagination;
 
-    @SerializedName("courier_connections")
-    private java.util.List<CourierConnection> courierConnections;
+  @SerializedName("courier_connections")
+  private java.util.List<CourierConnection> courierConnections;
 
-    public  GetCourierConnectionsResponseDataPagination getPagination() {
-        return pagination;
-    }
+  public GetCourierConnectionsResponseDataPagination getPagination() {
+    return pagination;
+  }
 
-    public void setPagination( GetCourierConnectionsResponseDataPagination pagination) {
-        this.pagination = pagination;
-    }
+  public void setPagination(GetCourierConnectionsResponseDataPagination pagination) {
+    this.pagination = pagination;
+  }
 
-    public java.util.List<CourierConnection>  getCourierConnections() {
-        return courierConnections;
-    }
+  public java.util.List<CourierConnection> getCourierConnections() {
+    return courierConnections;
+  }
 
-    public void setCourierConnections(java.util.List<CourierConnection>  courierConnections) {
-        this.courierConnections = courierConnections;
-    }
-
+  public void setCourierConnections(java.util.List<CourierConnection> courierConnections) {
+    this.courierConnections = courierConnections;
+  }
 }

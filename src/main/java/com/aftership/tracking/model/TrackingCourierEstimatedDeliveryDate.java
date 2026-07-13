@@ -4,42 +4,41 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class TrackingCourierEstimatedDeliveryDate extends Resource {
 
-    @SerializedName("estimated_delivery_date")
-    private String estimatedDeliveryDate;
+  @SerializedName("estimated_delivery_date")
+  private String estimatedDeliveryDate;
 
-    @SerializedName("estimated_delivery_date_min")
-    private String estimatedDeliveryDateMin;
+  @SerializedName("estimated_delivery_date_min")
+  private String estimatedDeliveryDateMin;
 
-    @SerializedName("estimated_delivery_date_max")
-    private String estimatedDeliveryDateMax;
+  @SerializedName("estimated_delivery_date_max")
+  private String estimatedDeliveryDateMax;
 
-    public  String getEstimatedDeliveryDate() {
-        return estimatedDeliveryDate;
-    }
+  public String getEstimatedDeliveryDate() {
+    return estimatedDeliveryDate;
+  }
 
-    public void setEstimatedDeliveryDate( String estimatedDeliveryDate) {
-        this.estimatedDeliveryDate = estimatedDeliveryDate;
-    }
+  public void setEstimatedDeliveryDate(String estimatedDeliveryDate) {
+    this.estimatedDeliveryDate = estimatedDeliveryDate;
+  }
 
-    public  String getEstimatedDeliveryDateMin() {
-        return estimatedDeliveryDateMin;
-    }
+  public String getEstimatedDeliveryDateMin() {
+    return estimatedDeliveryDateMin;
+  }
 
-    public void setEstimatedDeliveryDateMin( String estimatedDeliveryDateMin) {
-        this.estimatedDeliveryDateMin = estimatedDeliveryDateMin;
-    }
+  public void setEstimatedDeliveryDateMin(String estimatedDeliveryDateMin) {
+    this.estimatedDeliveryDateMin = estimatedDeliveryDateMin;
+  }
 
-    public  String getEstimatedDeliveryDateMax() {
-        return estimatedDeliveryDateMax;
-    }
+  public String getEstimatedDeliveryDateMax() {
+    return estimatedDeliveryDateMax;
+  }
 
-    public void setEstimatedDeliveryDateMax( String estimatedDeliveryDateMax) {
-        this.estimatedDeliveryDateMax = estimatedDeliveryDateMax;
-    }
-
+  public void setEstimatedDeliveryDateMax(String estimatedDeliveryDateMax) {
+    this.estimatedDeliveryDateMax = estimatedDeliveryDateMax;
+  }
 }

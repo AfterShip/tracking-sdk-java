@@ -5,58 +5,59 @@
 package com.aftership.tracking.courier;
 
 import com.aftership.tracking.base.Creator;
-import com.aftership.tracking.constant.ErrorEnum;
-import com.aftership.tracking.exception.ApiException;
 import com.aftership.tracking.http.*;
+import com.aftership.tracking.http.Request;
+import com.aftership.tracking.model.DetectCourierRequest;
+import com.aftership.tracking.model.DetectCourierResponse;
+import com.aftership.tracking.model.DetectCourierResponseData;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.util.HashMap;
 import java.util.Map;
-import com.aftership.tracking.http.Request;
-import com.aftership.tracking.model.DetectCourierResponse;
-import com.aftership.tracking.model.DetectCourierResponseData;
-import com.aftership.tracking.model.DetectCourierRequest;
 
 public class DetectCourierCreator extends Creator<DetectCourierResponse> {
-    private final Map<String, String> headerParams= new HashMap<>(8);
+  private final Map<String, String> headerParams = new HashMap<>(8);
 
-    public DetectCourierCreator addHeaderParam(final String name, final String value) {
-        if (value == null || value.equals("null")) {
-            return this;
-        }
-
-        if (!headerParams.containsKey(name)) {
-            headerParams.put(name, value);
-        }
-        return this;
+  public DetectCourierCreator addHeaderParam(final String name, final String value) {
+    if (value == null || value.equals("null")) {
+      return this;
     }
 
-    private void setHeaderParams(final Request request) {
-        for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
-            request.addHeaderParam(entry.getKey(), entry.getValue());
-        }
+    if (!headerParams.containsKey(name)) {
+      headerParams.put(name, value);
     }
-    private DetectCourierRequest detectCourierRequest;
+    return this;
+  }
 
-    public DetectCourierCreator setDetectCourierRequest(DetectCourierRequest detectCourierRequest) {
-        this.detectCourierRequest = detectCourierRequest;
-        return this;
+  private void setHeaderParams(final Request request) {
+    for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
+      request.addHeaderParam(entry.getKey(), entry.getValue());
     }
+  }
 
-    @Override
-    public DetectCourierResponse create(AfterShipClient client) throws Exception {
-        String path = "/tracking/2026-01/couriers/detect";
-        Request request = new Request(HttpMethod.POST, path);
-        request.setBody((new Gson()).toJson(detectCourierRequest));
+  private DetectCourierRequest detectCourierRequest;
 
-        setHeaderParams(request);
-        Response response = client.request(request);
-        AfterShipResponse<DetectCourierResponseData> responseData = new Gson().fromJson(response.getContent(), new TypeToken<AfterShipResponse<DetectCourierResponseData>>() {
-            }.getType());
-        DetectCourierResponse result = new DetectCourierResponse();
-        result.setData(responseData.getData());
-        result.setResponseHeader(response.getResponseHeader());
-        return result;
-    }
+  public DetectCourierCreator setDetectCourierRequest(DetectCourierRequest detectCourierRequest) {
+    this.detectCourierRequest = detectCourierRequest;
+    return this;
+  }
 
+  @Override
+  public DetectCourierResponse create(AfterShipClient client) throws Exception {
+    String path = "/tracking/2026-07/couriers/detect";
+    Request request = new Request(HttpMethod.POST, path);
+    request.setBody((new Gson()).toJson(detectCourierRequest));
+
+    setHeaderParams(request);
+    Response response = client.request(request);
+    AfterShipResponse<DetectCourierResponseData> responseData =
+        new Gson()
+            .fromJson(
+                response.getContent(),
+                new TypeToken<AfterShipResponse<DetectCourierResponseData>>() {}.getType());
+    DetectCourierResponse result = new DetectCourierResponse();
+    result.setData(responseData.getData());
+    result.setResponseHeader(response.getResponseHeader());
+    return result;
+  }
 }

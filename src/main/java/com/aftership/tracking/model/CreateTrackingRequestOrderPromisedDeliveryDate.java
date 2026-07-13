@@ -4,42 +4,41 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class CreateTrackingRequestOrderPromisedDeliveryDate extends Resource {
 
-    @SerializedName("promised_delivery_date")
-    private String promisedDeliveryDate;
+  @SerializedName("promised_delivery_date")
+  private String promisedDeliveryDate;
 
-    @SerializedName("promised_delivery_date_min")
-    private String promisedDeliveryDateMin;
+  @SerializedName("promised_delivery_date_min")
+  private String promisedDeliveryDateMin;
 
-    @SerializedName("promised_delivery_date_max")
-    private String promisedDeliveryDateMax;
+  @SerializedName("promised_delivery_date_max")
+  private String promisedDeliveryDateMax;
 
-    public  String getPromisedDeliveryDate() {
-        return promisedDeliveryDate;
-    }
+  public String getPromisedDeliveryDate() {
+    return promisedDeliveryDate;
+  }
 
-    public void setPromisedDeliveryDate( String promisedDeliveryDate) {
-        this.promisedDeliveryDate = promisedDeliveryDate;
-    }
+  public void setPromisedDeliveryDate(String promisedDeliveryDate) {
+    this.promisedDeliveryDate = promisedDeliveryDate;
+  }
 
-    public  String getPromisedDeliveryDateMin() {
-        return promisedDeliveryDateMin;
-    }
+  public String getPromisedDeliveryDateMin() {
+    return promisedDeliveryDateMin;
+  }
 
-    public void setPromisedDeliveryDateMin( String promisedDeliveryDateMin) {
-        this.promisedDeliveryDateMin = promisedDeliveryDateMin;
-    }
+  public void setPromisedDeliveryDateMin(String promisedDeliveryDateMin) {
+    this.promisedDeliveryDateMin = promisedDeliveryDateMin;
+  }
 
-    public  String getPromisedDeliveryDateMax() {
-        return promisedDeliveryDateMax;
-    }
+  public String getPromisedDeliveryDateMax() {
+    return promisedDeliveryDateMax;
+  }
 
-    public void setPromisedDeliveryDateMax( String promisedDeliveryDateMax) {
-        this.promisedDeliveryDateMax = promisedDeliveryDateMax;
-    }
-
+  public void setPromisedDeliveryDateMax(String promisedDeliveryDateMax) {
+    this.promisedDeliveryDateMax = promisedDeliveryDateMax;
+  }
 }

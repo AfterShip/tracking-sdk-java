@@ -5,58 +5,60 @@
 package com.aftership.tracking.courier_connection;
 
 import com.aftership.tracking.base.Creator;
-import com.aftership.tracking.constant.ErrorEnum;
-import com.aftership.tracking.exception.ApiException;
 import com.aftership.tracking.http.*;
+import com.aftership.tracking.http.Request;
+import com.aftership.tracking.model.CourierConnection;
+import com.aftership.tracking.model.PostCourierConnectionsRequest;
+import com.aftership.tracking.model.PostCourierConnectionsResponse;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.util.HashMap;
 import java.util.Map;
-import com.aftership.tracking.http.Request;
-import com.aftership.tracking.model.PostCourierConnectionsResponse;
-import com.aftership.tracking.model.CourierConnection;
-import com.aftership.tracking.model.PostCourierConnectionsRequest;
 
 public class PostCourierConnectionsCreator extends Creator<PostCourierConnectionsResponse> {
-    private final Map<String, String> headerParams= new HashMap<>(8);
+  private final Map<String, String> headerParams = new HashMap<>(8);
 
-    public PostCourierConnectionsCreator addHeaderParam(final String name, final String value) {
-        if (value == null || value.equals("null")) {
-            return this;
-        }
-
-        if (!headerParams.containsKey(name)) {
-            headerParams.put(name, value);
-        }
-        return this;
+  public PostCourierConnectionsCreator addHeaderParam(final String name, final String value) {
+    if (value == null || value.equals("null")) {
+      return this;
     }
 
-    private void setHeaderParams(final Request request) {
-        for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
-            request.addHeaderParam(entry.getKey(), entry.getValue());
-        }
+    if (!headerParams.containsKey(name)) {
+      headerParams.put(name, value);
     }
-    private PostCourierConnectionsRequest postCourierConnectionsRequest;
+    return this;
+  }
 
-    public PostCourierConnectionsCreator setPostCourierConnectionsRequest(PostCourierConnectionsRequest postCourierConnectionsRequest) {
-        this.postCourierConnectionsRequest = postCourierConnectionsRequest;
-        return this;
+  private void setHeaderParams(final Request request) {
+    for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
+      request.addHeaderParam(entry.getKey(), entry.getValue());
     }
+  }
 
-    @Override
-    public PostCourierConnectionsResponse create(AfterShipClient client) throws Exception {
-        String path = "/tracking/2026-01/courier-connections";
-        Request request = new Request(HttpMethod.POST, path);
-        request.setBody((new Gson()).toJson(postCourierConnectionsRequest));
+  private PostCourierConnectionsRequest postCourierConnectionsRequest;
 
-        setHeaderParams(request);
-        Response response = client.request(request);
-        AfterShipResponse<CourierConnection> responseData = new Gson().fromJson(response.getContent(), new TypeToken<AfterShipResponse<CourierConnection>>() {
-            }.getType());
-        PostCourierConnectionsResponse result = new PostCourierConnectionsResponse();
-        result.setData(responseData.getData());
-        result.setResponseHeader(response.getResponseHeader());
-        return result;
-    }
+  public PostCourierConnectionsCreator setPostCourierConnectionsRequest(
+      PostCourierConnectionsRequest postCourierConnectionsRequest) {
+    this.postCourierConnectionsRequest = postCourierConnectionsRequest;
+    return this;
+  }
 
+  @Override
+  public PostCourierConnectionsResponse create(AfterShipClient client) throws Exception {
+    String path = "/tracking/2026-07/courier-connections";
+    Request request = new Request(HttpMethod.POST, path);
+    request.setBody((new Gson()).toJson(postCourierConnectionsRequest));
+
+    setHeaderParams(request);
+    Response response = client.request(request);
+    AfterShipResponse<CourierConnection> responseData =
+        new Gson()
+            .fromJson(
+                response.getContent(),
+                new TypeToken<AfterShipResponse<CourierConnection>>() {}.getType());
+    PostCourierConnectionsResponse result = new PostCourierConnectionsResponse();
+    result.setData(responseData.getData());
+    result.setResponseHeader(response.getResponseHeader());
+    return result;
+  }
 }

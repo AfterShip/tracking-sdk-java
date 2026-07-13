@@ -4,14 +4,14 @@
  */
 package com.aftership.tracking.base;
 
-import com.aftership.tracking.http.AfterShipClient;
 import com.aftership.tracking.TrackingSdk;
+import com.aftership.tracking.http.AfterShipClient;
 
 public abstract class Deleter<T extends Resource> {
 
-    public T delete() throws Exception {
-        return delete(TrackingSdk.getRestClient());
-    }
+  public T delete() throws Exception {
+    return delete(TrackingSdk.getRestClient());
+  }
 
-    public abstract T delete(final AfterShipClient client) throws Exception;
+  public abstract T delete(final AfterShipClient client) throws Exception;
 }

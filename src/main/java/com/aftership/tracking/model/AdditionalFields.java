@@ -7,39 +7,39 @@ package com.aftership.tracking.model;
 import com.google.gson.annotations.SerializedName;
 
 public enum AdditionalFields {
-    @SerializedName("tracking_account_number")
-    TrackingAccountNumber("tracking_account_number"),
+  @SerializedName("tracking_account_number")
+  TrackingAccountNumber("tracking_account_number"),
 
-    @SerializedName("destination_postal_code")
-    DestinationPostalCode("destination_postal_code"),
+  @SerializedName("destination_postal_code")
+  DestinationPostalCode("destination_postal_code"),
 
-    @SerializedName("destination_state")
-    DestinationState("destination_state"),
+  @SerializedName("destination_state")
+  DestinationState("destination_state"),
 
-    @SerializedName("tracking_key")
-    TrackingKey("tracking_key"),
+  @SerializedName("tracking_key")
+  TrackingKey("tracking_key"),
 
-    @SerializedName("origin_country_region")
-    OriginCountryRegion("origin_country_region"),
+  @SerializedName("origin_country_region")
+  OriginCountryRegion("origin_country_region"),
 
-    @SerializedName("destination_country_region")
-    DestinationCountryRegion("destination_country_region"),
+  @SerializedName("destination_country_region")
+  DestinationCountryRegion("destination_country_region"),
 
-    @SerializedName("tracking_ship_date")
-    TrackingShipDate("tracking_ship_date");
+  @SerializedName("tracking_ship_date")
+  TrackingShipDate("tracking_ship_date");
 
-    private final String value;
+  private final String value;
 
-    AdditionalFields(final String value) {
-        this.value = value;
-    }
+  AdditionalFields(final String value) {
+    this.value = value;
+  }
 
-    public String getValue() {
-        return value;
-    }
+  public String getValue() {
+    return value;
+  }
 
-    @Override
-    public String toString() {
-        return String.valueOf(value);
-    }
+  @Override
+  public String toString() {
+    return String.valueOf(value);
+  }
 }

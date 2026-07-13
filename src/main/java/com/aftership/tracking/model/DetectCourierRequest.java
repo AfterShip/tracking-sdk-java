@@ -4,119 +4,118 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class DetectCourierRequest extends Resource {
 
-    @SerializedName("tracking_number")
-    private String trackingNumber;
+  @SerializedName("tracking_number")
+  private String trackingNumber;
 
-    @SerializedName("slug")
-    private java.util.List<String> slug;
+  @SerializedName("slug")
+  private java.util.List<String> slug;
 
-    @SerializedName("destination_postal_code")
-    private String destinationPostalCode;
+  @SerializedName("destination_postal_code")
+  private String destinationPostalCode;
 
-    @SerializedName("tracking_ship_date")
-    private String trackingShipDate;
+  @SerializedName("tracking_ship_date")
+  private String trackingShipDate;
 
-    @SerializedName("tracking_account_number")
-    private String trackingAccountNumber;
+  @SerializedName("tracking_account_number")
+  private String trackingAccountNumber;
 
-    @SerializedName("tracking_key")
-    private String trackingKey;
+  @SerializedName("tracking_key")
+  private String trackingKey;
 
-    @SerializedName("destination_state")
-    private String destinationState;
+  @SerializedName("destination_state")
+  private String destinationState;
 
-    @SerializedName("slug_group")
-    private String slugGroup;
+  @SerializedName("slug_group")
+  private String slugGroup;
 
-    @SerializedName("origin_country_region")
-    private String originCountryRegion;
+  @SerializedName("origin_country_region")
+  private String originCountryRegion;
 
-    @SerializedName("destination_country_region")
-    private String destinationCountryRegion;
+  @SerializedName("destination_country_region")
+  private String destinationCountryRegion;
 
-    public  String getTrackingNumber() {
-        return trackingNumber;
-    }
+  public String getTrackingNumber() {
+    return trackingNumber;
+  }
 
-    public void setTrackingNumber( String trackingNumber) {
-        this.trackingNumber = trackingNumber;
-    }
+  public void setTrackingNumber(String trackingNumber) {
+    this.trackingNumber = trackingNumber;
+  }
 
-    public java.util.List<String>  getSlug() {
-        return slug;
-    }
+  public java.util.List<String> getSlug() {
+    return slug;
+  }
 
-    public void setSlug(java.util.List<String>  slug) {
-        this.slug = slug;
-    }
+  public void setSlug(java.util.List<String> slug) {
+    this.slug = slug;
+  }
 
-    public  String getDestinationPostalCode() {
-        return destinationPostalCode;
-    }
+  public String getDestinationPostalCode() {
+    return destinationPostalCode;
+  }
 
-    public void setDestinationPostalCode( String destinationPostalCode) {
-        this.destinationPostalCode = destinationPostalCode;
-    }
+  public void setDestinationPostalCode(String destinationPostalCode) {
+    this.destinationPostalCode = destinationPostalCode;
+  }
 
-    public  String getTrackingShipDate() {
-        return trackingShipDate;
-    }
+  public String getTrackingShipDate() {
+    return trackingShipDate;
+  }
 
-    public void setTrackingShipDate( String trackingShipDate) {
-        this.trackingShipDate = trackingShipDate;
-    }
+  public void setTrackingShipDate(String trackingShipDate) {
+    this.trackingShipDate = trackingShipDate;
+  }
 
-    public  String getTrackingAccountNumber() {
-        return trackingAccountNumber;
-    }
+  public String getTrackingAccountNumber() {
+    return trackingAccountNumber;
+  }
 
-    public void setTrackingAccountNumber( String trackingAccountNumber) {
-        this.trackingAccountNumber = trackingAccountNumber;
-    }
+  public void setTrackingAccountNumber(String trackingAccountNumber) {
+    this.trackingAccountNumber = trackingAccountNumber;
+  }
 
-    public  String getTrackingKey() {
-        return trackingKey;
-    }
+  public String getTrackingKey() {
+    return trackingKey;
+  }
 
-    public void setTrackingKey( String trackingKey) {
-        this.trackingKey = trackingKey;
-    }
+  public void setTrackingKey(String trackingKey) {
+    this.trackingKey = trackingKey;
+  }
 
-    public  String getDestinationState() {
-        return destinationState;
-    }
+  public String getDestinationState() {
+    return destinationState;
+  }
 
-    public void setDestinationState( String destinationState) {
-        this.destinationState = destinationState;
-    }
+  public void setDestinationState(String destinationState) {
+    this.destinationState = destinationState;
+  }
 
-    public  String getSlugGroup() {
-        return slugGroup;
-    }
+  public String getSlugGroup() {
+    return slugGroup;
+  }
 
-    public void setSlugGroup( String slugGroup) {
-        this.slugGroup = slugGroup;
-    }
+  public void setSlugGroup(String slugGroup) {
+    this.slugGroup = slugGroup;
+  }
 
-    public  String getOriginCountryRegion() {
-        return originCountryRegion;
-    }
+  public String getOriginCountryRegion() {
+    return originCountryRegion;
+  }
 
-    public void setOriginCountryRegion( String originCountryRegion) {
-        this.originCountryRegion = originCountryRegion;
-    }
+  public void setOriginCountryRegion(String originCountryRegion) {
+    this.originCountryRegion = originCountryRegion;
+  }
 
-    public  String getDestinationCountryRegion() {
-        return destinationCountryRegion;
-    }
+  public String getDestinationCountryRegion() {
+    return destinationCountryRegion;
+  }
 
-    public void setDestinationCountryRegion( String destinationCountryRegion) {
-        this.destinationCountryRegion = destinationCountryRegion;
-    }
-
+  public void setDestinationCountryRegion(String destinationCountryRegion) {
+    this.destinationCountryRegion = destinationCountryRegion;
+  }
 }

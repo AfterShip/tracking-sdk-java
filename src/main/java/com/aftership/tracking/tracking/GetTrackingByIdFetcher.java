@@ -8,79 +8,81 @@ import com.aftership.tracking.base.Fetcher;
 import com.aftership.tracking.constant.ErrorEnum;
 import com.aftership.tracking.exception.ApiException;
 import com.aftership.tracking.http.*;
+import com.aftership.tracking.http.Request;
+import com.aftership.tracking.model.GetTrackingByIdResponse;
+import com.aftership.tracking.model.Tracking;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.util.HashMap;
 import java.util.Map;
-import com.aftership.tracking.http.Request;
-import com.aftership.tracking.model.GetTrackingByIdResponse;
-import com.aftership.tracking.model.Tracking;
 
 public class GetTrackingByIdFetcher extends Fetcher<GetTrackingByIdResponse> {
-    private final Map<String, String> headerParams= new HashMap<>(8);
+  private final Map<String, String> headerParams = new HashMap<>(8);
 
-    public GetTrackingByIdFetcher addHeaderParam(final String name, final String value) {
-        if (value == null || value.equals("null")) {
-            return this;
-        }
-
-        if (!headerParams.containsKey(name)) {
-            headerParams.put(name, value);
-        }
-        return this;
+  public GetTrackingByIdFetcher addHeaderParam(final String name, final String value) {
+    if (value == null || value.equals("null")) {
+      return this;
     }
 
-    private void setHeaderParams(final Request request) {
-        for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
-            request.addHeaderParam(entry.getKey(), entry.getValue());
-        }
+    if (!headerParams.containsKey(name)) {
+      headerParams.put(name, value);
     }
-     private String fields;
+    return this;
+  }
 
-     private String lang;
-
-    private String id;
-
-
-    public GetTrackingByIdFetcher setFields(String fields) {
-        this.fields = fields;
-        return this;
+  private void setHeaderParams(final Request request) {
+    for (final Map.Entry<String, String> entry : headerParams.entrySet()) {
+      request.addHeaderParam(entry.getKey(), entry.getValue());
     }
+  }
 
-    public GetTrackingByIdFetcher setLang(String lang) {
-        this.lang = lang;
-        return this;
-    }
+  private String fields;
 
-    public GetTrackingByIdFetcher setId(String id) {
-        this.id = id;
-        return this;
-    }
+  private String lang;
 
-    @Override
-    public GetTrackingByIdResponse fetch(AfterShipClient client) throws Exception {
-        if (id == null || id.isEmpty()) {
-            throw new ApiException(ErrorEnum.BAD_REQUEST.name(), "Invalid request: `id` is invalid");
-        }
-        String path = String.format("/tracking/2026-01/trackings/%s", id);
-        Request request = new Request(HttpMethod.GET, path);
-        addQueryParams(request);
-        setHeaderParams(request);
-        Response response = client.request(request);
-        AfterShipResponse<Tracking> responseData = new Gson().fromJson(response.getContent(), new TypeToken<AfterShipResponse<Tracking>>() {
-            }.getType());
-        GetTrackingByIdResponse result = new GetTrackingByIdResponse();
-        result.setData(responseData.getData());
-        result.setResponseHeader(response.getResponseHeader());
-        return result;
-    }
+  private String id;
 
-    private void addQueryParams(final Request request) {
-        if (fields != null) {
-            request.addQueryParam("fields", fields);
-        }
-        if (lang != null) {
-            request.addQueryParam("lang", lang);
-        }
+  public GetTrackingByIdFetcher setFields(String fields) {
+    this.fields = fields;
+    return this;
+  }
+
+  public GetTrackingByIdFetcher setLang(String lang) {
+    this.lang = lang;
+    return this;
+  }
+
+  public GetTrackingByIdFetcher setId(String id) {
+    this.id = id;
+    return this;
+  }
+
+  @Override
+  public GetTrackingByIdResponse fetch(AfterShipClient client) throws Exception {
+    if (id == null || id.isEmpty()) {
+      throw new ApiException(ErrorEnum.BAD_REQUEST.name(), "Invalid request: `id` is invalid");
     }
+    String path = String.format("/tracking/2026-07/trackings/%s", id);
+    Request request = new Request(HttpMethod.GET, path);
+    addQueryParams(request);
+    setHeaderParams(request);
+    Response response = client.request(request);
+    AfterShipResponse<Tracking> responseData =
+        new Gson()
+            .fromJson(
+                response.getContent(), new TypeToken<AfterShipResponse<Tracking>>() {}.getType());
+    GetTrackingByIdResponse result = new GetTrackingByIdResponse();
+    result.setData(responseData.getData());
+    result.setResponseHeader(response.getResponseHeader());
+    return result;
+  }
+
+  private void addQueryParams(final Request request) {
+    if (fields != null) {
+      request.addQueryParam("fields", fields);
+    }
+    if (lang != null) {
+      request.addQueryParam("lang", lang);
+    }
+  }
 }

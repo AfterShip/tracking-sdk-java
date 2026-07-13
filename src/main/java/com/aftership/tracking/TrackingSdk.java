@@ -10,136 +10,135 @@ import com.aftership.tracking.exception.ApiException;
 import com.aftership.tracking.http.AfterShipClient;
 
 public class TrackingSdk {
-    private static final String DEFAULT_DOMAIN = "https://api.aftership.com";
-	private static final int DEFAULT_TIMEOUT = 30000;
-    private static final int DEFAULT_MAX_RETRY = 2;
-    private static AfterShipClient client;
+  private static final String DEFAULT_DOMAIN = "https://api.aftership.com";
+  private static final int DEFAULT_TIMEOUT = 30000;
+  private static final int DEFAULT_MAX_RETRY = 2;
+  private static AfterShipClient client;
 
-    private static String apiKey = System.getenv("AFTERSHIP_TRACKING_SDK_API_KEY");
-    private static String apiSecret = System.getenv("AFTERSHIP_TRACKING_SDK_API_SECRET");
-    private static AuthType authType;
+  private static String apiKey = System.getenv("AFTERSHIP_TRACKING_SDK_API_KEY");
+  private static String apiSecret = System.getenv("AFTERSHIP_TRACKING_SDK_API_SECRET");
+  private static AuthType authType;
 
-    private static String domain = System.getenv("AFTERSHIP_TRACKING_SDK_DOMAIN");
-    private static Integer maxRetry;
-    private static Integer timeout;
-    private static String userAgent = System.getenv("AFTERSHIP_TRACKING_SDK_USER_AGENT");
-    private static String proxy = System.getenv("AFTERSHIP_TRACKING_SDK_PROXY");
+  private static String domain = System.getenv("AFTERSHIP_TRACKING_SDK_DOMAIN");
+  private static Integer maxRetry;
+  private static Integer timeout;
+  private static String userAgent = System.getenv("AFTERSHIP_TRACKING_SDK_USER_AGENT");
+  private static String proxy = System.getenv("AFTERSHIP_TRACKING_SDK_PROXY");
 
-    private TrackingSdk() {
+  private TrackingSdk() {}
+
+  public static synchronized void init(final String apiKey) {
+    TrackingSdk.apiKey = apiKey;
+  }
+
+  public static synchronized void init(
+      final String apiKey, final String apiSecret, AuthType authType) {
+    TrackingSdk.apiKey = apiKey;
+    TrackingSdk.apiSecret = apiSecret;
+    TrackingSdk.authType = authType;
+  }
+
+  private static void getAuthType() {
+    if (authType != null) {
+      return;
     }
-
-    public static synchronized void init(final String apiKey) {
-        TrackingSdk.apiKey = apiKey;
+    String auth = System.getenv("AFTERSHIP_TRACKING_SDK_AUTHENTICATION_TYPE");
+    if (auth != null && !auth.isEmpty()) {
+      auth = auth.toUpperCase();
+      if (auth.equals(AuthType.AES.name())) {
+        authType = AuthType.AES;
+        return;
+      }
+      if (auth.equals(AuthType.RSA.name())) {
+        authType = AuthType.RSA;
+        return;
+      }
     }
+    authType = AuthType.APIKEY;
+  }
 
-    public static synchronized void init(final String apiKey, final String apiSecret, AuthType authType) {
-        TrackingSdk.apiKey = apiKey;
-        TrackingSdk.apiSecret = apiSecret;
-        TrackingSdk.authType = authType;
+  private static Integer getIntegerFromEnv(String envName, Integer defaultValue) {
+    String envValue = System.getenv(envName);
+    if (envValue == null) {
+      return defaultValue;
     }
+    if (envValue.isEmpty()) {
+      return defaultValue;
+    }
+    try {
+      return Integer.parseInt(envValue);
+    } catch (NumberFormatException e) {
+      return defaultValue;
+    }
+  }
 
-    private static void getAuthType() {
-        if (authType != null) {
-            return;
-        }
-        String auth = System.getenv("AFTERSHIP_TRACKING_SDK_AUTHENTICATION_TYPE");
-        if (auth != null && !auth.isEmpty()) {
-            auth = auth.toUpperCase();
-            if (auth.equals(AuthType.AES.name())) {
-                authType = AuthType.AES;
-                return;
-            }
-            if (auth.equals(AuthType.RSA.name())) {
-                authType = AuthType.RSA;
-                return;
-            }
-        }
-        authType = AuthType.APIKEY;
+  public static AfterShipClient getRestClient() throws Exception {
+    if (client == null) {
+      client = buildRestClient();
     }
+    return client;
+  }
 
-    private static Integer getIntegerFromEnv(String envName, Integer defaultValue) {
-        String envValue = System.getenv(envName);
-        if (envValue == null) {
-            return defaultValue;
-        }
-        if (envValue.isEmpty()) {
-            return defaultValue;
-        }
-        try {
-            return Integer.parseInt(envValue);
-        } catch (NumberFormatException e) {
-            return defaultValue;
-        }
+  private static AfterShipClient buildRestClient() throws Exception {
+    getAuthType();
+    if (apiKey == null || apiKey.isEmpty()) {
+      throw new ApiException(ErrorEnum.INVALID_API_KEY.name(), "Invalid option `apiKey`");
     }
+    if (AuthType.AES.equals(authType) || AuthType.RSA.equals(authType)) {
+      if (apiSecret == null || apiSecret.isEmpty()) {
+        throw new ApiException(ErrorEnum.INVALID_API_KEY.name(), "Invalid option `apiSecret`");
+      }
+    }
+    if (timeout == null) {
+      Integer envTimeout = getIntegerFromEnv("AFTERSHIP_TRACKING_SDK_TIMEOUT", DEFAULT_TIMEOUT);
+      setTimeout(envTimeout);
+    }
+    if (maxRetry == null) {
+      Integer envMaxRetry =
+          getIntegerFromEnv("AFTERSHIP_TRACKING_SDK_MAX_RETRY", DEFAULT_MAX_RETRY);
+      setMaxRetry(envMaxRetry);
+    }
+    AfterShipClient.Builder builder = new AfterShipClient.Builder(apiKey, apiSecret, authType);
+    if (domain != null && !domain.isEmpty()) {
+      builder.setDomain(domain);
+    } else {
+      builder.setDomain(DEFAULT_DOMAIN);
+    }
+    if (userAgent != null && !userAgent.isEmpty()) {
+      builder.setUserAgent(userAgent);
+    }
+    if (proxy != null && !proxy.isEmpty()) {
+      builder.setProxy(proxy);
+    }
+    return builder.setTimeout(timeout).setMaxRetry(maxRetry).build();
+  }
 
-    public static AfterShipClient getRestClient() throws Exception {
-        if (client == null) {
-            client = buildRestClient();
-        }
-        return client;
+  public static void setDomain(final String domain) throws Exception {
+    if (domain == null || domain.isEmpty()) {
+      throw new ApiException(ErrorEnum.INVALID_OPTION.name(), "Invalid option `domain`");
     }
+    TrackingSdk.domain = domain;
+  }
 
-    private static AfterShipClient buildRestClient() throws Exception {
-        getAuthType();
-        if (apiKey == null || apiKey.isEmpty()) {
-            throw new ApiException(ErrorEnum.INVALID_API_KEY.name(), "Invalid option `apiKey`");
-        }
-        if (AuthType.AES.equals(authType) || AuthType.RSA.equals(authType)) {
-            if (apiSecret == null || apiSecret.isEmpty()) {
-                throw new ApiException(ErrorEnum.INVALID_API_KEY.name(), "Invalid option `apiSecret`");
-            }
-        }
-        if (timeout == null) {
-            Integer envTimeout = getIntegerFromEnv("AFTERSHIP_TRACKING_SDK_TIMEOUT", DEFAULT_TIMEOUT);
-            setTimeout(envTimeout);
-        }
-        if (maxRetry == null) {
-            Integer envMaxRetry = getIntegerFromEnv("AFTERSHIP_TRACKING_SDK_MAX_RETRY", DEFAULT_MAX_RETRY);
-            setMaxRetry(envMaxRetry);
-        }
-        AfterShipClient.Builder builder = new AfterShipClient.Builder(apiKey, apiSecret, authType);
-        if (domain != null && !domain.isEmpty()) {
-            builder.setDomain(domain);
-        } else {
-            builder.setDomain(DEFAULT_DOMAIN);
-        }
-        if (userAgent != null && !userAgent.isEmpty()) {
-            builder.setUserAgent(userAgent);
-        }
-        if (proxy != null && !proxy.isEmpty()) {
-            builder.setProxy(proxy);
-        }
-        return builder.setTimeout(timeout)
-            .setMaxRetry(maxRetry)
-            .build();
+  public static void setMaxRetry(final int maxRetry) throws Exception {
+    if (maxRetry < 0 || maxRetry > 10) {
+      throw new ApiException(ErrorEnum.INVALID_OPTION.name(), "Invalid option `maxRetry`");
     }
+    TrackingSdk.maxRetry = maxRetry;
+  }
 
-    public static void setDomain(final String domain) throws Exception {
-        if (domain == null || domain.isEmpty()) {
-            throw new ApiException(ErrorEnum.INVALID_OPTION.name(), "Invalid option `domain`");
-        }
-        TrackingSdk.domain = domain;
+  public static void setTimeout(final int timeout) throws Exception {
+    if (timeout < 0) {
+      throw new ApiException(ErrorEnum.INVALID_OPTION.name(), "Invalid option `timeout`");
     }
+    TrackingSdk.timeout = timeout;
+  }
 
-    public static void setMaxRetry(final int maxRetry) throws Exception {
-        if (maxRetry < 0 || maxRetry > 10) {
-            throw new ApiException(ErrorEnum.INVALID_OPTION.name(), "Invalid option `maxRetry`");
-        }
-        TrackingSdk.maxRetry = maxRetry;
-    }
+  public static void setUserAgent(final String userAgent) {
+    TrackingSdk.userAgent = userAgent;
+  }
 
-    public static void setTimeout(final int timeout) throws Exception {
-        if (timeout < 0) {
-            throw new ApiException(ErrorEnum.INVALID_OPTION.name(), "Invalid option `timeout`");
-        }
-        TrackingSdk.timeout = timeout;
-    }
-
-    public static void setUserAgent(final String userAgent) {
-        TrackingSdk.userAgent = userAgent;
-    }
-
-    public static void setProxy(final String proxy) {
-        TrackingSdk.proxy = proxy;
-    }
+  public static void setProxy(final String proxy) {
+    TrackingSdk.proxy = proxy;
+  }
 }

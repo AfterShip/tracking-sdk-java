@@ -7,27 +7,27 @@ package com.aftership.tracking.model;
 import com.google.gson.annotations.SerializedName;
 
 public enum UpdateTrackingByIdRequestDeliveryType {
-    @SerializedName("pickup_at_store")
-    PickupAtStore("pickup_at_store"),
+  @SerializedName("pickup_at_store")
+  PickupAtStore("pickup_at_store"),
 
-    @SerializedName("pickup_at_courier")
-    PickupAtCourier("pickup_at_courier"),
+  @SerializedName("pickup_at_courier")
+  PickupAtCourier("pickup_at_courier"),
 
-    @SerializedName("door_to_door")
-    DoorToDoor("door_to_door");
+  @SerializedName("door_to_door")
+  DoorToDoor("door_to_door");
 
-    private final String value;
+  private final String value;
 
-    UpdateTrackingByIdRequestDeliveryType(final String value) {
-        this.value = value;
-    }
+  UpdateTrackingByIdRequestDeliveryType(final String value) {
+    this.value = value;
+  }
 
-    public String getValue() {
-        return value;
-    }
+  public String getValue() {
+    return value;
+  }
 
-    @Override
-    public String toString() {
-        return String.valueOf(value);
-    }
+  @Override
+  public String toString() {
+    return String.valueOf(value);
+  }
 }

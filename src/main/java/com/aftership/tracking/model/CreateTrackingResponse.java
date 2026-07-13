@@ -4,30 +4,27 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
-import java.util.List;
-import java.util.Map;
 
 public class CreateTrackingResponse extends Resource {
 
-    private java.util.Map<String, java.util.List<String>> responseHeader;
+  private java.util.Map<String, java.util.List<String>> responseHeader;
 
-    private Tracking data;
+  private Tracking data;
 
-    public java.util.Map<String, java.util.List<String>> getResponseHeader() {
-        return responseHeader;
-    }
+  public java.util.Map<String, java.util.List<String>> getResponseHeader() {
+    return responseHeader;
+  }
 
-    public void setResponseHeader(java.util.Map<String, java.util.List<String>> responseHeader) {
-        this.responseHeader = responseHeader;
-    }
+  public void setResponseHeader(java.util.Map<String, java.util.List<String>> responseHeader) {
+    this.responseHeader = responseHeader;
+  }
 
-    public Tracking getData() {
-        return data;
-    }
+  public Tracking getData() {
+    return data;
+  }
 
-    public void setData(Tracking data) {
-        this.data = data;
-    }
+  public void setData(Tracking data) {
+    this.data = data;
+  }
 }

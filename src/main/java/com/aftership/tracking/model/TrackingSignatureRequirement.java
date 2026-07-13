@@ -7,33 +7,33 @@ package com.aftership.tracking.model;
 import com.google.gson.annotations.SerializedName;
 
 public enum TrackingSignatureRequirement {
-    @SerializedName("signature_required")
-    SignatureRequired("signature_required"),
+  @SerializedName("signature_required")
+  SignatureRequired("signature_required"),
 
-    @SerializedName("adult_signature_required")
-    AdultSignatureRequired("adult_signature_required"),
+  @SerializedName("adult_signature_required")
+  AdultSignatureRequired("adult_signature_required"),
 
-    @SerializedName("indirect_signature_required")
-    IndirectSignatureRequired("indirect_signature_required"),
+  @SerializedName("indirect_signature_required")
+  IndirectSignatureRequired("indirect_signature_required"),
 
-    @SerializedName("no_signature_required")
-    NoSignatureRequired("no_signature_required"),
+  @SerializedName("no_signature_required")
+  NoSignatureRequired("no_signature_required"),
 
-    @SerializedName("null")
-    Null("null");
+  @SerializedName("null")
+  Null("null");
 
-    private final String value;
+  private final String value;
 
-    TrackingSignatureRequirement(final String value) {
-        this.value = value;
-    }
+  TrackingSignatureRequirement(final String value) {
+    this.value = value;
+  }
 
-    public String getValue() {
-        return value;
-    }
+  public String getValue() {
+    return value;
+  }
 
-    @Override
-    public String toString() {
-        return String.valueOf(value);
-    }
+  @Override
+  public String toString() {
+    return String.valueOf(value);
+  }
 }

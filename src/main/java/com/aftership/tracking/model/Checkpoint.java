@@ -4,196 +4,206 @@
  */
 package com.aftership.tracking.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.aftership.tracking.base.Resource;
+import com.google.gson.annotations.SerializedName;
 
 public class Checkpoint extends Resource {
 
-    @SerializedName("created_at")
-    private String createdAt;
+  @SerializedName("created_at")
+  private String createdAt;
 
-    @SerializedName("slug")
-    private String slug;
+  @SerializedName("slug")
+  private String slug;
 
-    @SerializedName("checkpoint_time")
-    private String checkpointTime;
+  @SerializedName("checkpoint_time")
+  private String checkpointTime;
 
-    @SerializedName("location")
-    private String location;
+  @SerializedName("location")
+  private String location;
 
-    @SerializedName("city")
-    private String city;
+  @SerializedName("city")
+  private String city;
 
-    @SerializedName("state")
-    private String state;
+  @SerializedName("state")
+  private String state;
 
-    @SerializedName("postal_code")
-    private String postalCode;
+  @SerializedName("postal_code")
+  private String postalCode;
 
-    @SerializedName("coordinate")
-    private CheckpointCoordinate coordinate;
+  @SerializedName("coordinate")
+  private CheckpointCoordinate coordinate;
 
-    @SerializedName("country_region")
-    private String countryRegion;
+  @SerializedName("country_region")
+  private String countryRegion;
 
-    @SerializedName("country_region_name")
-    private String countryRegionName;
+  @SerializedName("country_region_name")
+  private String countryRegionName;
 
-    @SerializedName("message")
-    private String message;
+  @SerializedName("message")
+  private String message;
 
-    @SerializedName("tag")
-    private Tag tag;
+  @SerializedName("tag")
+  private Tag tag;
 
-    @SerializedName("subtag")
-    private String subtag;
+  @SerializedName("subtag")
+  private String subtag;
 
-    @SerializedName("subtag_message")
-    private String subtagMessage;
+  @SerializedName("subtag_message")
+  private String subtagMessage;
 
-    @SerializedName("raw_tag")
-    private String rawTag;
+  @SerializedName("raw_tag")
+  private String rawTag;
 
-    @SerializedName("events")
-    private java.util.List<CheckpointEvents> events;
+  @SerializedName("events")
+  private java.util.List<CheckpointEvents> events;
 
-    @SerializedName("source")
-    private CheckpointSource source;
+  @SerializedName("source")
+  private CheckpointSource source;
 
-    public  String getCreatedAt() {
-        return createdAt;
-    }
+  @SerializedName("hash")
+  private String hash;
 
-    public void setCreatedAt( String createdAt) {
-        this.createdAt = createdAt;
-    }
+  public String getCreatedAt() {
+    return createdAt;
+  }
 
-    public  String getSlug() {
-        return slug;
-    }
+  public void setCreatedAt(String createdAt) {
+    this.createdAt = createdAt;
+  }
 
-    public void setSlug( String slug) {
-        this.slug = slug;
-    }
+  public String getSlug() {
+    return slug;
+  }
 
-    public  String getCheckpointTime() {
-        return checkpointTime;
-    }
+  public void setSlug(String slug) {
+    this.slug = slug;
+  }
 
-    public void setCheckpointTime( String checkpointTime) {
-        this.checkpointTime = checkpointTime;
-    }
+  public String getCheckpointTime() {
+    return checkpointTime;
+  }
 
-    public  String getLocation() {
-        return location;
-    }
+  public void setCheckpointTime(String checkpointTime) {
+    this.checkpointTime = checkpointTime;
+  }
 
-    public void setLocation( String location) {
-        this.location = location;
-    }
+  public String getLocation() {
+    return location;
+  }
 
-    public  String getCity() {
-        return city;
-    }
+  public void setLocation(String location) {
+    this.location = location;
+  }
 
-    public void setCity( String city) {
-        this.city = city;
-    }
+  public String getCity() {
+    return city;
+  }
 
-    public  String getState() {
-        return state;
-    }
+  public void setCity(String city) {
+    this.city = city;
+  }
 
-    public void setState( String state) {
-        this.state = state;
-    }
+  public String getState() {
+    return state;
+  }
 
-    public  String getPostalCode() {
-        return postalCode;
-    }
+  public void setState(String state) {
+    this.state = state;
+  }
 
-    public void setPostalCode( String postalCode) {
-        this.postalCode = postalCode;
-    }
+  public String getPostalCode() {
+    return postalCode;
+  }
 
-    public  CheckpointCoordinate getCoordinate() {
-        return coordinate;
-    }
+  public void setPostalCode(String postalCode) {
+    this.postalCode = postalCode;
+  }
 
-    public void setCoordinate( CheckpointCoordinate coordinate) {
-        this.coordinate = coordinate;
-    }
+  public CheckpointCoordinate getCoordinate() {
+    return coordinate;
+  }
 
-    public  String getCountryRegion() {
-        return countryRegion;
-    }
+  public void setCoordinate(CheckpointCoordinate coordinate) {
+    this.coordinate = coordinate;
+  }
 
-    public void setCountryRegion( String countryRegion) {
-        this.countryRegion = countryRegion;
-    }
+  public String getCountryRegion() {
+    return countryRegion;
+  }
 
-    public  String getCountryRegionName() {
-        return countryRegionName;
-    }
+  public void setCountryRegion(String countryRegion) {
+    this.countryRegion = countryRegion;
+  }
 
-    public void setCountryRegionName( String countryRegionName) {
-        this.countryRegionName = countryRegionName;
-    }
+  public String getCountryRegionName() {
+    return countryRegionName;
+  }
 
-    public  String getMessage() {
-        return message;
-    }
+  public void setCountryRegionName(String countryRegionName) {
+    this.countryRegionName = countryRegionName;
+  }
 
-    public void setMessage( String message) {
-        this.message = message;
-    }
+  public String getMessage() {
+    return message;
+  }
 
-    public  Tag getTag() {
-        return tag;
-    }
+  public void setMessage(String message) {
+    this.message = message;
+  }
 
-    public void setTag( Tag tag) {
-        this.tag = tag;
-    }
+  public Tag getTag() {
+    return tag;
+  }
 
-    public  String getSubtag() {
-        return subtag;
-    }
+  public void setTag(Tag tag) {
+    this.tag = tag;
+  }
 
-    public void setSubtag( String subtag) {
-        this.subtag = subtag;
-    }
+  public String getSubtag() {
+    return subtag;
+  }
 
-    public  String getSubtagMessage() {
-        return subtagMessage;
-    }
+  public void setSubtag(String subtag) {
+    this.subtag = subtag;
+  }
 
-    public void setSubtagMessage( String subtagMessage) {
-        this.subtagMessage = subtagMessage;
-    }
+  public String getSubtagMessage() {
+    return subtagMessage;
+  }
 
-    public  String getRawTag() {
-        return rawTag;
-    }
+  public void setSubtagMessage(String subtagMessage) {
+    this.subtagMessage = subtagMessage;
+  }
 
-    public void setRawTag( String rawTag) {
-        this.rawTag = rawTag;
-    }
+  public String getRawTag() {
+    return rawTag;
+  }
 
-    public java.util.List<CheckpointEvents>  getEvents() {
-        return events;
-    }
+  public void setRawTag(String rawTag) {
+    this.rawTag = rawTag;
+  }
 
-    public void setEvents(java.util.List<CheckpointEvents>  events) {
-        this.events = events;
-    }
+  public java.util.List<CheckpointEvents> getEvents() {
+    return events;
+  }
 
-    public  CheckpointSource getSource() {
-        return source;
-    }
+  public void setEvents(java.util.List<CheckpointEvents> events) {
+    this.events = events;
+  }
 
-    public void setSource( CheckpointSource source) {
-        this.source = source;
-    }
+  public CheckpointSource getSource() {
+    return source;
+  }
 
+  public void setSource(CheckpointSource source) {
+    this.source = source;
+  }
+
+  public String getHash() {
+    return hash;
+  }
+
+  public void setHash(String hash) {
+    this.hash = hash;
+  }
 }

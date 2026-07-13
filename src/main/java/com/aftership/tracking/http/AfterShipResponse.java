@@ -5,23 +5,23 @@
 package com.aftership.tracking.http;
 
 public class AfterShipResponse<T> {
-    private Meta meta;
+  private Meta meta;
 
-    private T data;
+  private T data;
 
-    public Meta getMeta() {
-        return meta;
-    }
+  public Meta getMeta() {
+    return meta;
+  }
 
-    public void setMeta(Meta meta) {
-        this.meta = meta;
-    }
+  public void setMeta(Meta meta) {
+    this.meta = meta;
+  }
 
-    public T getData() {
-        return data;
-    }
+  public T getData() {
+    return data;
+  }
 
-    public void setData(T data) {
-        this.data = data;
-    }
+  public void setData(T data) {
+    this.data = data;
+  }
 }

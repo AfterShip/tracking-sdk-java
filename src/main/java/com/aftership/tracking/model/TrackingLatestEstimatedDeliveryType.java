@@ -7,24 +7,24 @@ package com.aftership.tracking.model;
 import com.google.gson.annotations.SerializedName;
 
 public enum TrackingLatestEstimatedDeliveryType {
-    @SerializedName("range")
-    Range("range"),
+  @SerializedName("range")
+  Range("range"),
 
-    @SerializedName("specific")
-    Specific("specific");
+  @SerializedName("specific")
+  Specific("specific");
 
-    private final String value;
+  private final String value;
 
-    TrackingLatestEstimatedDeliveryType(final String value) {
-        this.value = value;
-    }
+  TrackingLatestEstimatedDeliveryType(final String value) {
+    this.value = value;
+  }
 
-    public String getValue() {
-        return value;
-    }
+  public String getValue() {
+    return value;
+  }
 
-    @Override
-    public String toString() {
-        return String.valueOf(value);
-    }
+  @Override
+  public String toString() {
+    return String.valueOf(value);
+  }
 }
