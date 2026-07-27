@@ -38,7 +38,7 @@ Before you begin to integrate:
 
 ### API and SDK Version
 
-- SDK Version: 12.0.0
+- SDK Version: 12.0.1
 - API Version: 2026-07
 ## Quick Start
 
@@ -47,7 +47,7 @@ Before you begin to integrate:
 <dependency>
     <groupId>com.aftership</groupId>
     <artifactId>tracking-sdk</artifactId>
-    <version>12.0.0</version>
+    <version>12.0.1</version>
 </dependency>
 ```
 
