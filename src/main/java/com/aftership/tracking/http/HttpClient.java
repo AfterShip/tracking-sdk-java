@@ -30,7 +30,7 @@ import org.apache.http.util.EntityUtils;
 public class HttpClient {
 
   private static final String DEFAULT_USER_AGENT =
-      "tracking-sdk-java/12.0.0 (https://www.aftership.com) apache-httpclient/4.5.14";
+      "tracking-sdk-java/12.0.1 (https://www.aftership.com) apache-httpclient/4.5.14";
   protected final org.apache.http.client.HttpClient client;
 
   public HttpClient(final RequestConfig requestConfig, String userAgent) {
