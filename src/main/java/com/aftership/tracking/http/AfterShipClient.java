@@ -10,6 +10,7 @@ import com.aftership.tracking.exception.ApiException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.apache.http.HttpHost;
+import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.client.config.RequestConfig;
 
 public class AfterShipClient {
@@ -141,7 +142,8 @@ public class AfterShipClient {
 
     public AfterShipClient build() {
       if (this.httpClient == null) {
-        RequestConfig.Builder builder = RequestConfig.custom();
+        RequestConfig.Builder builder =
+            RequestConfig.custom().setCookieSpec(CookieSpecs.IGNORE_COOKIES);
         if (this.proxy != null && !this.proxy.isEmpty()) {
           builder.setProxy(HttpHost.create(this.proxy));
         }
